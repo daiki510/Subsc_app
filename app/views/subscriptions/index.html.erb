@@ -1,2 +1,29 @@
-<h1>Subscriptions#index</h1>
-<p>Find me in app/views/subscriptions/index.html.erb</p>
+<div class="container">
+  <div class="index-box">
+    <h1>サブスク一覧</h1>
+
+    <%= link_to 'サブスク新規登録', new_subscription_path, class: "btn btn-primary my-3" %>
+    <table class="table table-hover">
+      <tr>
+        <th id="name">名前</th>
+        <th id="icon">アイコン</th>
+        <th id="summary">概要</th>
+        <th id="menu" colspan="3">メニュー</th>
+      </tr>
+
+      <% @subscriptions.each do |subscription| %>
+        <tr>
+          <td><%= subscription.name %></td>
+          <td><%= subscription.icon %></td>
+          <td><%= subscription.summary %></td>
+
+          <td>
+            <%= link_to '詳細', subscription_path(subscription.id) ,class: "btn btn-info mr-2" %>
+            <%= link_to '編集', edit_subscription_path(subscription.id) ,class: "btn btn-success mr-2" %>
+            <%= link_to '削除', subscription_path(subscription), method: :delete, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
