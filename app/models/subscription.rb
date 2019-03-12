@@ -1,3 +1,3 @@
 class Subscription < ApplicationRecord
-  enum status: { public: 0, private: 9, development: 5 }
+  enum status: { open: 0, secret: 9, development: 5 }
 end
