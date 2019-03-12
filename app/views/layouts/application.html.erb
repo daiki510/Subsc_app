@@ -20,6 +20,13 @@
       </nav>
     </header>
 
+    <%# フラッシュメッセージ %>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% elsif alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
 
     <footer class="footer mt-auto py-3 text-center bg-light fixed-bottom">
