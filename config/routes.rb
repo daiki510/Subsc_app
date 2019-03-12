@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   root 'subscriptions#index'
-  devise_for :users
+  
+  resources :users, only: [:show]
+  devise_for :users, controllers: {
+        registrations: 'users/registrations'
+  }
+
   resources :subscriptions
 end
