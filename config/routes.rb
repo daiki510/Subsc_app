@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'subscriptions#index'
+  devise_for :users
   resources :subscriptions
 end
