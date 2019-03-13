@@ -6,13 +6,15 @@ class DetailsController < ApplicationController
   # end
 
   def new
-    @detail = Detail.new
+    @detail = current_user.details.new(subscription_id: params[:subscription_id])
+    # raise
   end
 
   def create
+    # @detail = current_user.details.create(subscription_id: params[:subscription_id])
     @detail = Detail.new(detail_params)
     if @detail.save
-      redirect_to details_path, notice: "詳細情報を登録しました"
+      redirect_to user_path(current_user.id), notice: "詳細情報を登録しました"
     else
       render 'new'
     end
@@ -45,6 +47,6 @@ class DetailsController < ApplicationController
   end
 
   def detail_params
-    params.require(:detail).permit(:charge, :due_date, :payment_type, :note)
+    params.require(:detail).permit(:charge, :due_date, :payment_type, :note, :user_id, :subscription_id)
   end
 end
