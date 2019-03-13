@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   }
   resources :users, only: [:index,:show]
 
-  resources :subscriptions
+  resources :subscriptions do
+    resources :additions, only: [:create, :destroy]
+  end
 end

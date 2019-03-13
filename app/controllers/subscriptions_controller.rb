@@ -3,6 +3,8 @@ class SubscriptionsController < ApplicationController
 
   def index
     @subscriptions = Subscription.all
+    @addition = Addition.new
+    # raise
   end
 
   def new
@@ -19,6 +21,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def show
+    @addition = Addition.new
+    # raise
   end
 
   def edit

@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :addtions, dependent: :destroy
+  has_many :additions, dependent: :destroy
   has_many :added_subscriptions, through: :additions, source: :subscription
+
+  def already_added?(subscription)
+    self.additions.exists?(subscription_id: subscription.id)
+  end
 end
