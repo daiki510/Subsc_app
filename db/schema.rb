@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_011940) do
+ActiveRecord::Schema.define(version: 2019_03_13_025652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 2019_03_13_011940) do
     t.datetime "updated_at", null: false
     t.index ["subscription_id"], name: "index_additions_on_subscription_id"
     t.index ["user_id"], name: "index_additions_on_user_id"
+  end
+
+  create_table "details", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "subscription_id"
+    t.integer "charge", null: false
+    t.date "due_date", null: false
+    t.string "payment_type", default: "", null: false
+    t.text "note", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_details_on_subscription_id"
+    t.index ["user_id"], name: "index_details_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -54,4 +67,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_011940) do
 
   add_foreign_key "additions", "subscriptions"
   add_foreign_key "additions", "users"
+  add_foreign_key "details", "subscriptions"
+  add_foreign_key "details", "users"
 end
