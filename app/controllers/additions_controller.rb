@@ -6,7 +6,6 @@ class AdditionsController < ApplicationController
 
   def destroy
     @addition = Addition.find_by(subscription_id: params[:subscription_id], user_id: current_user.id)
-    # raise
     @addition.destroy
     redirect_to subscriptions_path, notice: "「#{@addition.subscription.name}」を利用一覧から外しました"
   end
