@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get 'details/new'
-  get 'details/show'
-  get 'details/edit'
   root 'subscriptions#index'
+
+  resources :details
 
   devise_for :users, controllers: {
     registrations: 'users/registrations'

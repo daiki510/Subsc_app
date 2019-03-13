@@ -3,4 +3,7 @@ class Subscription < ApplicationRecord
 
   has_many :additions, dependent: :destroy
   has_many :added_users, through: :additions, source: :user
+
+  has_many :details, dependent: :destroy
+  has_many :detailed_users, through: :details, source: :user
 end

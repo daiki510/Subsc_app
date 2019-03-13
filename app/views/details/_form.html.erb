@@ -1,0 +1,49 @@
+<div class="form">
+  <%= form_with model: @detail, local: true do |f| %>
+
+    <% if @detail.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @detail.errors.count %>件のエラーがあります。</h2>
+
+        <ul>
+          <% @detail.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-wrapper">
+      <% if params[:id] %>
+         <h1>サブスク詳細編集</h1>
+      <% else %>
+         <h1>サブスク詳細登録</h1>
+      <% end %>
+      
+        <div class="form-item">
+         <%= f.label :charge %>
+         <%= f.number_field :charge, class: "form-control w-50" %>
+        </div>
+        <div class="form-item">
+          <%= f.label :due_date %>
+          <%= f.date_field :due_date, class: "form-control w-50" %>
+        </div>
+        <div class="form-item">
+           <%= f.label :payment_type %>
+           <%= f.text_field :payment_type ,class: "form-control w-50" %> 
+        </div>
+        <div class="form-item">
+           <%= f.label :note %>
+           <%= f.text_area :note ,class: "form-control w-50" ,rows: 5 %> 
+        </div>
+        <div class="button-panel">
+          <%= f.submit class: "btn btn-primary my-2" %>
+        </div>
+      
+      <div class="form-footer">
+        <%= link_to "一覧へ戻る", user_path(current_user.id), class: "btn btn-light" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
