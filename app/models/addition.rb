@@ -1,4 +1,4 @@
-class UserSubsc < ApplicationRecord
+class Addition < ApplicationRecord
   belongs_to :user
   belongs_to :subscription
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserSubscTest < ActiveSupport::TestCase
+class AdditionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
