@@ -41,7 +41,7 @@
           </td>
           <td>
             <% if %>
-            <%# <%= link_to '詳細', detail_path(subscription.id) ,class: "btn btn-info mr-2" %>
+            <%= link_to '詳細', detail_path(subscription.id) ,class: "btn btn-info mr-2" %>
             <%# <%= link_to '詳細編集', edit_details_path(subscription.id) ,class: "btn btn-success mr-2" %>
             <%# <% else %>
             <%= link_to '詳細登録', new_detail_path(subscription_id: subscription.id) ,class: "btn btn-info mr-2" %>
