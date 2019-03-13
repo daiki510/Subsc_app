@@ -8,6 +8,7 @@
         <th id="name">名前</th>
         <th id="icon">アイコン</th>
         <th id="summary">概要</th>
+        <th id="count">利用者数</th>
         <th id="status">利用状況</th>
         <th id="addition">追加</th>
         <th id="menu" colspan="3">メニュー</th>
@@ -18,6 +19,7 @@
           <td><%= subscription.name %></td>
           <td><%= subscription.icon %></td>
           <td><%= subscription.summary %></td>
+          <td class="text-center"><%= subscription.additions.count %></td>
           <td>
             <% if current_user.already_added?(subscription) %>
               利用中

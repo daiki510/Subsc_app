@@ -4,7 +4,6 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions = Subscription.all
     @addition = Addition.new
-    # raise
   end
 
   def new
