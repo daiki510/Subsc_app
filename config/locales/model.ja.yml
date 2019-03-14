@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      subscription: "サブスクリプション"
+      user: "ユーザー"
+      detail: "詳細"
+    attributes:
+      subscription:
+        name: "名前"
+        icon: "アイコン"
+        summary: "概要"
+      detail:
+        charge: "利用料金"
+        due_date: "支払日"
+        payment_type: "支払方法"
+        note: "備考欄"
+      user:
+        title: "タイトル"
+        name: "名前"
+        email: "メールアドレス"
+        content: "内容"
+        current_password: "現在のパスワード"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+      
