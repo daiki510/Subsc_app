@@ -19,6 +19,7 @@ class DetailsController < ApplicationController
   end
 
   def show
+    # @detail = Detail.find_by(user_id: current_user.id, subscription_id: params[:subscription_id])
     @subsc = Subscription.find_by(id: @detail.subscription_id) 
   end
 
@@ -42,7 +43,7 @@ class DetailsController < ApplicationController
   private
 
   def set_detail
-    @detail = Detail.find(params[:id])
+    @detail = Detail.find_by(user_id: current_user.id, subscription_id: params[:subscription_id])
   end
 
   def detail_params

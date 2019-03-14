@@ -40,13 +40,13 @@
             <%= subscription.summary %>
           </td>
           <td>
-            <% if %>
-            <%= link_to '詳細', detail_path(subscription.id) ,class: "btn btn-info mr-2" %>
-            <%# <%= link_to '詳細編集', edit_details_path(subscription.id) ,class: "btn btn-success mr-2" %>
-            <%# <% else %>
+            <% if Detail.find_by(user_id: current_user.id, subscription_id: subscription.id).present? %>
+            <%= link_to '詳細', detail_path(subscription_id: subscription.id) ,class: "btn btn-info mr-2" %>
+            <%= link_to '詳細編集', edit_detail_path(subscription_id: subscription.id) ,class: "btn btn-success mr-2" %>
+            <% else %>
             <%= link_to '詳細登録', new_detail_path(subscription_id: subscription.id) ,class: "btn btn-info mr-2" %>
             <% end %>
-            <%= link_to '解除', subscription_path(subscription), method: :delete, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger" %>
+            <%= link_to '解除', subscription_path(subscription), method: :delete, data: { confirm: '本当に解除してもいいですか?' } ,class: "btn btn-danger" %>
           </td>
         </tr>
       <% end %>
