@@ -26,9 +26,11 @@
         <th id="name">名前</th>
         <th id="icon">アイコン</th>
         <th id="summary">概要</th>
+        <th id="charge">利用料金</th>
+        <th id="due_date">支払日</th>
         <th id="menu" colspan="3">メニュー</th>
       </tr>
-      <% @user.added_subscriptions.each do |subscription| %>
+      <% @subscriptions.each do |subscription| %>
         <tr>
           <td>
             <%= subscription.name %>
@@ -39,19 +41,30 @@
           <td>
             <%= subscription.summary %>
           </td>
-          <td>
-            <% if Detail.find_by(user_id: current_user.id, subscription_id: subscription.id).present? %>
-            <%= link_to '詳細', detail_path(subscription_id: subscription.id) ,class: "btn btn-info mr-2" %>
-            <%= link_to '詳細編集', edit_detail_path(subscription_id: subscription.id) ,class: "btn btn-success mr-2" %>
-            <% else %>
-            <%= link_to '詳細登録', new_detail_path(subscription_id: subscription.id) ,class: "btn btn-info mr-2" %>
-            <% end %>
-            <%= link_to '解除', subscription_path(subscription), method: :delete, data: { confirm: '本当に解除してもいいですか?' } ,class: "btn btn-danger" %>
-          </td>
+
+          <% detail = subscription.details.find_by(user_id: current_user.id) %>
+          <% if detail %>
+            <td>
+              <%= detail.charge %>
+            </td>
+            <td>
+              <%= detail.due_date %>
+            </td>
+            <td>
+              <%= link_to '詳細', detail_path(detail.id, subscription_id: subscription.id) ,class: "btn btn-info mr-2" %>
+              <%= link_to '詳細編集', edit_detail_path(detail.id, subscription_id: subscription.id) ,class: "btn btn-success mr-2" %>
+              <%= link_to '解除', subscription_addition_path(subscription, id: current_user.id), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" %>
+            </td>
+          <% else %>
+            <td>未登録</td>
+            <td>未登録</td>
+            <td>
+              <%= link_to '詳細登録', new_detail_path(subscription_id: subscription.id) ,class: "btn btn-primary mr-2" %>
+              <%= link_to '解除', subscription_addition_path(subscription, id: current_user.id), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </table>
-    
-    
   </div>
 </div>
