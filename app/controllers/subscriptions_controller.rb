@@ -23,12 +23,11 @@ class SubscriptionsController < ApplicationController
 
   def show
     @addition = Addition.new
-    # raise
   end
-
+  
   def edit
   end
-
+  
   def update
     if @subscription.update(subscription_params)
       redirect_to subscriptions_path, notice: "「#{@subscription.name}」を更新しました"

@@ -7,7 +7,7 @@ class DetailsController < ApplicationController
   # end
 
   def new
-    @detail = current_user.details.new(subscription_id: params[:subscription_id])
+    @detail = Detail.new
   end
 
   def create
@@ -15,7 +15,7 @@ class DetailsController < ApplicationController
     if @detail.save
       redirect_to user_path(current_user.id), notice: "詳細情報を登録しました"
     else
-      render 'new'
+      render 'new',subscription_id: params[:subscription_id]
     end
   end
 
@@ -26,7 +26,7 @@ class DetailsController < ApplicationController
 
   def edit
   end
-
+  
   def update
     if @detail.update(detail_params)
       redirect_to user_path(current_user.id), notice: "詳細情報を更新しました"

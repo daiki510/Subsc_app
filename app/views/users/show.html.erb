@@ -51,15 +51,15 @@
               <%= detail.due_date %>
             </td>
             <td>
-              <%= link_to '詳細', detail_path(detail.id, subscription_id: subscription.id) ,class: "btn btn-info mr-2" %>
-              <%= link_to '詳細編集', edit_detail_path(detail.id, subscription_id: subscription.id) ,class: "btn btn-success mr-2" %>
+              <%= link_to '詳細', detail_path(subscription_id: subscription.id) ,class: "btn btn-info mr-2" %>
+              <%= link_to '詳細編集', edit_detail_path(subscription_id: subscription.id) ,class: "btn btn-success mr-2" %>
               <%= link_to '解除', subscription_addition_path(subscription, id: current_user.id), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" %>
             </td>
           <% else %>
             <td>未登録</td>
             <td>未登録</td>
             <td>
-              <%= link_to '詳細登録', new_detail_path(subscription_id: subscription.id) ,class: "btn btn-primary mr-2" %>
+              <%= link_to '詳細登録', new_detail_path(subscription) ,class: "btn btn-primary mr-2" %>
               <%= link_to '解除', subscription_addition_path(subscription, id: current_user.id), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" %>
             </td>
           <% end %>
