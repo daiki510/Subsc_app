@@ -21,4 +21,11 @@ class ApplicationController < ActionController::Base
       redirect_to user_path(current_user.id),notice: "権限がありません"
     end
   end
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    if current_user.id != @user.id
+      redirect_to user_path(current_user.id),notice: "権限がありません"
+    end
+  end
 end
