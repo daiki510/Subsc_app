@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_correct_user
     @user = User.find(params[:id])
-    if current_user.id != @user.id
+    if current_user.id != @user.id && current_user.admin == false
       redirect_to user_path(current_user.id),notice: "権限がありません"
     end
   end
