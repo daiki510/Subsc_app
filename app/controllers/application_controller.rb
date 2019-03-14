@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     subscriptions_path
   end
+
+  def required_admin
+    unless current_user.admin?
+      redirect_to user_path(current_user.id),notice: "権限がありません"
+    end
+  end
 end

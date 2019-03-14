@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :required_admin, only: [:edit, :update, :destroy]
 
   def index
     @subscriptions = Subscription.all

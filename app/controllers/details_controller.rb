@@ -1,6 +1,6 @@
 class DetailsController < ApplicationController
   before_action :set_detail, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user！
+  before_action :authenticate_user!
 
   # def index
   #   @details = Detail.all
