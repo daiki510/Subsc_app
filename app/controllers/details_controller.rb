@@ -1,5 +1,5 @@
 class DetailsController < ApplicationController
-  before_action :set_detail, only: [:show, :edit, :update, :destroy]
+  before_action :set_detail, only: [:show, :edit, :destroy]
   before_action :authenticate_user!
 
   # def index
@@ -15,12 +15,11 @@ class DetailsController < ApplicationController
     if @detail.save
       redirect_to user_path(current_user.id), notice: "詳細情報を登録しました"
     else
-      render 'new',subscription_id: params[:subscription_id]
+      render 'new'
     end
   end
 
   def show
-    # @detail = Detail.find_by(user_id: current_user.id, subscription_id: params[:subscription_id])
     @subsc = Subscription.find_by(id: @detail.subscription_id) 
   end
 
@@ -28,6 +27,7 @@ class DetailsController < ApplicationController
   end
   
   def update
+    @detail = Detail.find(params[:id])
     if @detail.update(detail_params)
       redirect_to user_path(current_user.id), notice: "詳細情報を更新しました"
     else
