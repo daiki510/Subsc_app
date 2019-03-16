@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_025652) do
+ActiveRecord::Schema.define(version: 2019_03_16_150659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,21 @@ ActiveRecord::Schema.define(version: 2019_03_13_025652) do
     t.datetime "updated_at", null: false
     t.index ["subscription_id"], name: "index_additions_on_subscription_id"
     t.index ["user_id"], name: "index_additions_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "category_subscs", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_subscs_on_category_id"
+    t.index ["subscription_id"], name: "index_category_subscs_on_subscription_id"
   end
 
   create_table "details", force: :cascade do |t|
@@ -67,6 +82,8 @@ ActiveRecord::Schema.define(version: 2019_03_13_025652) do
 
   add_foreign_key "additions", "subscriptions"
   add_foreign_key "additions", "users"
+  add_foreign_key "category_subscs", "categories"
+  add_foreign_key "category_subscs", "subscriptions"
   add_foreign_key "details", "subscriptions"
   add_foreign_key "details", "users"
 end
