@@ -1,5 +1,5 @@
 class DetailsController < ApplicationController
-  before_action :set_detail, only: [:show, :edit, :destroy]
+  before_action :set_detail, only: [:show, :edit]
   before_action :authenticate_user!
 
   # def index
@@ -7,10 +7,12 @@ class DetailsController < ApplicationController
   # end
 
   def new
-    @detail = Detail.new
+    @detail = current_user.details.new(subscription_id: params[:subscription_id])
+    # @detail = Detail.new
   end
 
   def create
+    # @detail = current_user.details.new(subscription_id: params[:subscription_id])
     @detail = Detail.new(detail_params)
     if @detail.save
       redirect_to user_path(current_user.id), notice: "詳細情報を登録しました"
@@ -36,10 +38,11 @@ class DetailsController < ApplicationController
   end
 
   # additionsを削除したと同時にdetailも削除されるようにする
-  # def destroy
-  #   @detail.destroy
-  #   redirect_to details_path, notice: "「#{@detail.name}」を削除しました"
-  # end
+  def destroy
+    @detail = Detail.find(params[:id])
+    @detail.destroy
+    redirect_to user_path(current_user.id), notice: "詳細情報を削除しました"
+  end
 
   private
 

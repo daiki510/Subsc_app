@@ -10,5 +10,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @subscriptions = @user.added_subscriptions
+    @details = @user.details
   end
 end
