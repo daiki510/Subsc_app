@@ -7,12 +7,10 @@ class DetailsController < ApplicationController
   # end
 
   def new
-    @detail = current_user.details.new(subscription_id: params[:subscription_id])
-    # @detail = Detail.new
+    @detail = Detail.new(subscription_id: params[:subscription_id])
   end
 
   def create
-    # @detail = current_user.details.new(subscription_id: params[:subscription_id])
     @detail = Detail.new(detail_params)
     if @detail.save
       redirect_to user_path(current_user.id), notice: "詳細情報を登録しました"
