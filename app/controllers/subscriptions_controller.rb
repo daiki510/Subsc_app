@@ -10,6 +10,7 @@ class SubscriptionsController < ApplicationController
 
   def new
     @subscription = Subscription.new
+    # @subscription.subscs_categories.build
   end
 
   def create
@@ -48,6 +49,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_params
-    params.require(:subscription).permit(:name, :icon, :summary, :status)
+    params.require(:subscription).permit(:name, :icon, :summary, :status, { category_ids: [] })
   end
 end
