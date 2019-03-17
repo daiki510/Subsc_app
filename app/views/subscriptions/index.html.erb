@@ -21,7 +21,7 @@
           <td><%= subscription.summary %></td>
           <td>
             <% subscription.categories.each do |category|%>
-              <%= category.name %>
+              <span class="badge badge-primary p-1"><%= category.name %></span>
             <% end %>
           </td>
           <td class="text-center"><%= subscription.additions.count %></td>
