@@ -15,6 +15,14 @@
         <td><%= @subsc.summary %></td>
       </tr>
       <tr>
+        <td>カテゴリー</td>
+        <td>
+          <% @subsc.categories.each do |category|%>
+            <span class="badge badge-primary p-1"><%= category.name %></span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
         <td>利用料金</td>
         <td><%= @detail.charge %></td>
       </tr>

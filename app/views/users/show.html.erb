@@ -26,6 +26,7 @@
         <th id="name">名前</th>
         <th id="icon">アイコン</th>
         <th id="summary">概要</th>
+        <th id="category">カテゴリー</th>
         <th id="charge">利用料金</th>
         <th id="due_date">支払日</th>
         <th id="menu" colspan="3">メニュー</th>
@@ -40,6 +41,11 @@
           </td>
           <td>
             <%= subscription.summary %>
+          </td>
+          <td>
+            <% subscription.categories.each do |category|%>
+              <span class="badge badge-primary p-1"><%= category.name %></span>
+            <% end %>
           </td>
 
           <% @detail = @details.find_by(subscription_id: subscription.id) %>

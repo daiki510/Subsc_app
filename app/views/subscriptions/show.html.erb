@@ -14,6 +14,14 @@
         <td>概要</td>
         <td><%= @subscription.summary %></td>
       </tr>
+      <tr>
+        <td>カテゴリー</td>
+        <td>
+          <% @subscription.categories.each do |category|%>
+            <span class="badge badge-primary p-1"><%= category.name %></span>
+          <% end %>
+        </td>
+      </tr>
     </table>
     
     <div class="form-footer">
