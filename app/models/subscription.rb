@@ -7,6 +7,9 @@ class Subscription < ApplicationRecord
   #enumの定義
   enum status: { open: 0, secret: 9, development: 5 }
 
+  #scope
+  scope :search_with_category, -> (category_id){ where(id: category_ids = CategorySubsc.where(category_id: category_id).pluck(:subscription_id))}
+  
   #アソシエーション
   has_many :additions, dependent: :destroy
   has_many :added_users, through: :additions, source: :user

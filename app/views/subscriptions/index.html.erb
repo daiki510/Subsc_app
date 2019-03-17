@@ -21,7 +21,8 @@
           <td><%= subscription.summary %></td>
           <td>
             <% subscription.categories.each do |category|%>
-              <span class="badge badge-primary p-1"><%= category.name %></span>
+              <%# <span class="badge badge-primary p-1"><%= category.name %>
+              <%= link_to category.name, subscriptions_path(category_id: category.id), class: "badge badge-primary p-1" %>
             <% end %>
           </td>
           <td class="text-center"><%= subscription.additions.count %></td>
