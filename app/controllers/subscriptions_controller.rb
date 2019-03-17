@@ -5,11 +5,13 @@ class SubscriptionsController < ApplicationController
 
   def index
     #カテゴリーで絞り込み
+    @subscriptions = Subscription.all
+
     if params[:category_id]
       @subscriptions = Subscription.search_with_category(params[:category_id])
     end
-    
-    @subscriptions = Subscription.all
+
+    @categories = Category.all
     @addition = Addition.new
   end
 
