@@ -28,9 +28,9 @@
           <%= f.label :due_date %>
           <%= f.date_field :due_date, class: "form-control w-50" %>
         </div>
-        <div class="form-item">
+        <div class="form-item my-3">
            <%= f.label :payment_type %>
-           <%= f.text_field :payment_type ,class: "form-control w-50" %> 
+           <%= f.select :payment_type, [['クレジットカード'],['口座振込'],['現金']], prompt: true ,class: "form-control w-50" %> 
         </div>
         <div class="form-item">
            <%= f.label :note %>
