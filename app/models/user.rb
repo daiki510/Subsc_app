@@ -17,4 +17,13 @@ class User < ApplicationRecord
   def already_added?(subscription)
     self.additions.exists?(subscription_id: subscription.id)
   end
+
+  #検索メソッド
+  def self.search(search)
+    if search
+      User.where(['name LIKE ?', "%#{search}%"])
+    else
+      User.all
+    end
+  end
 end

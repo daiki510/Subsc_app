@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @users = User.search(params[:search]) if params[:search]
   end
 
   def show
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
     not_has_detail_ids = subsc_ids - detail_ids #両方の配列にないidを算出する
     subscriptions.where(id: not_has_detail_ids)
   end
-  
+
   #料金順にソート
   def sort_charge(details)
     detail_ids = details.order(charge: :desc).map {|detail| detail.subscription_id}
