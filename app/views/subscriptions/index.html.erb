@@ -28,23 +28,9 @@
 
     <%# 要リファクタリング %>
     <div class="mb-4 pb-2 border-bottom">
-      <% if params[:sort_count] %>
-        <%= link_to 'ランキング', subscriptions_path(sort_count: "true"), class: "btn btn-light disabled" %>
-        <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-light ml-2 active" %>
-        <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-light ml-2 active" %>
-      <% elsif params[:sort_name] %>
-        <%= link_to 'ランキング', subscriptions_path(sort_count: "true"), class: "btn btn-light active" %>
-        <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-light ml-2 disabled" %>
-        <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-light ml-2 active" %>
-      <% elsif params[:sort_status] %>
-        <%= link_to 'ランキング', subscriptions_path(sort_count: "true"), class: "btn btn-light active" %>
-        <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-light ml-2 active" %>
-        <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-light ml-2 disabled" %>
-      <% else %>
-        <%= link_to 'ランキング', subscriptions_path(sort_count: "true"), class: "btn btn-light active" %>
-        <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-light ml-2 active" %>
-        <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-light ml-2 active" %>
-      <% end %>
+      <%= link_to '人気順', subscriptions_path(sort_count: "true"), class: "btn btn-outline-secondary #{params[:sort_count] ? 'disabled' : ''}" %>
+      <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_name] ? 'disabled' : ''}" %>
+      <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_status] ? 'disabled' : ''}" %>
     </div>
 
     <table class="table table-hover">
