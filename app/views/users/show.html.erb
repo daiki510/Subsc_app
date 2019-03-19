@@ -38,20 +38,20 @@
     <div class="mb-4 pb-2 border-bottom">
       <% if params[:sort_name] %>
         <%= link_to '名前順', user_path, class: "btn btn-light disabled" %>
-        <%= link_to '利用料金順', user_path(sort_count: "true"), class: "btn btn-light ml-2 active" %>
-        <%= link_to '支払日順', user_path(sort_status: "true"), class: "btn btn-light ml-2 active" %>
+        <%= link_to '利用料金順', user_path(sort_charge: "true"), class: "btn btn-light ml-2 active" %>
+        <%= link_to '支払日順', user_path(sort_date: "true"), class: "btn btn-light ml-2 active" %>
       <% elsif params[:sort_charge] %>
         <%= link_to '名前順', user_path(sort_name: "true"), class: "btn btn-light active" %>
         <%= link_to '利用料金順', user_path, class: "btn btn-light ml-2 disabled" %>
-        <%= link_to '支払日順', user_path(sort_status: "true"), class: "btn btn-light ml-2 active" %>
+        <%= link_to '支払日順', user_path(sort_date: "true"), class: "btn btn-light ml-2 active" %>
       <% elsif params[:sort_date] %>
         <%= link_to '名前順', user_path(sort_name: "true"), class: "btn btn-light active" %>
-        <%= link_to '利用料金順', user_path(sort_count: "true"), class: "btn btn-light ml-2 active" %>
+        <%= link_to '利用料金順', user_path(sort_charge: "true"), class: "btn btn-light ml-2 active" %>
         <%= link_to '支払日順', user_path, class: "btn btn-light ml-2 disabled" %>
       <% else %>
         <%= link_to '名前順', user_path(sort_name: "true"), class: "btn btn-light active" %>
-        <%= link_to '利用料金順', user_path(sort_count: "true"), class: "btn btn-light ml-2 active" %>
-        <%= link_to '支払日順', user_path(sort_status: "true"), class: "btn btn-light ml-2 active" %>
+        <%= link_to '利用料金順', user_path(sort_charge: "true"), class: "btn btn-light ml-2 active" %>
+        <%= link_to '支払日順', user_path(sort_date: "true"), class: "btn btn-light ml-2 active" %>
       <% end %>
       <%= link_to '未登録のみ', user_path(sort_not_has_detail: "true"), class: "btn btn-light ml-2 active" %>
     </div>

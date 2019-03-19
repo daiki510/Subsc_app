@@ -16,12 +16,11 @@ class UsersController < ApplicationController
     @subscriptions = @subscriptions.where(['name LIKE ?', "%#{params[:search]}%"]) if params[:search]
 
     #ソート機能
-    @subscriptions = @subscriptions.order(name: :asc) if params[:sort_name]
-    @subscriptions = only_not_has_detail(@subscriptions, @details) if params[:sort_not_has_detail]
-    
+    @subscriptions = @subscriptions.order(name: :asc) if params[:sort_name] #名前順
+    @subscriptions = only_not_has_detail(@subscriptions, @details) if params[:sort_not_has_detail] #詳細未登録のみ
+    @subscriptions = sort_charge(@details,@subscriptions) if params[:sort_charge] #利用料金順
     # @subscriptions = current_user.added_subscriptions if params[:sort_charge]
-    # @subscriptions = rank(params) if params[:sort_date]
-    
+
   end
 
   private
@@ -33,9 +32,13 @@ class UsersController < ApplicationController
     subscriptions.where(id: not_has_detail_ids)
   end
 
-  # def rank(params) 
-  #   subsc_user_count = Subscription.joins(:additions).group(:subscription_id).count
-  #   subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
-  #   Subscription.find(subsc_user_ids).sort_by{ |o| subsc_user_ids.index(o.id)}
-  # end
+  def sort_charge(details,subscriptions)
+    detail_ids = details.order(charge: :desc).map {|detail| detail.subscription_id}
+    Subscription.find(detail_ids).sort_by{ |o| detail_ids.index(o.id)}
+  end
+
+  def sort_date(details,subscriptions)
+    # detail_ids = details.order(charge: :desc).map {|detail| detail.subscription_id}
+    # Subscription.find(detail_ids).sort_by{ |o| detail_ids.index(o.id)}
+  end
 end
