@@ -1,4 +1,14 @@
 class Subscription < ApplicationRecord
+  #アソシエーション
+  has_many :additions, dependent: :destroy
+  has_many :added_users, through: :additions, source: :user
+
+  has_many :details, dependent: :destroy
+  has_many :detailed_users, through: :details, source: :user
+
+  has_many :category_subscs, dependent: :destroy
+  has_many :categories, through: :category_subscs, source: :category
+
   #バリデーション
   validates :name, presence: true, uniqueness: true, length: {maximum: 30}
   validates :icon, length: {maximum: 255}
@@ -10,19 +20,7 @@ class Subscription < ApplicationRecord
   #scope
   scope :search_with_category, -> (category_id){ where(id: category_ids = CategorySubsc.where(category_id: category_id).pluck(:subscription_id))}
   scope :sort_name, -> { order(name: :asc) }
-  # scope :sort_status, -> { order(status: :asc) }
-  # scope :sort_count, -> { order(count: :desc) }
   
-  #アソシエーション
-  has_many :additions, dependent: :destroy
-  has_many :added_users, through: :additions, source: :user
-
-  has_many :details, dependent: :destroy
-  has_many :detailed_users, through: :details, source: :user
-
-  has_many :category_subscs, dependent: :destroy
-  has_many :categories, through: :category_subscs, source: :category
-
   #検索メソッド
   def self.search(search)
     if search
@@ -31,6 +29,4 @@ class Subscription < ApplicationRecord
       Subscription.all
     end
   end
-
-
 end

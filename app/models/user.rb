@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :details, dependent: :destroy
   has_many :detailed_subscriptions, through: :details, source: :subscription
 
+  #スコープ
+  scope :sort_name, -> { order(name: :asc) }
+
+  #追加されたサブスクリプションかどうか
   def already_added?(subscription)
     self.additions.exists?(subscription_id: subscription.id)
   end

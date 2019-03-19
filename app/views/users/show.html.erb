@@ -17,10 +17,24 @@
     </table>
     <div class="form-footer mb-5">
       <%= link_to "編集", edit_user_registration_path, class: "btn btn-success mr-3" %>
+      <% if current_user.admin? %>
+        <%= link_to "一覧へ戻る", users_path, class: "btn btn-light" %>
+      <% end %>
     </div>
 
     <h2 class="">サブスク一覧</h2>
     <h4>合計利用料金：<%= total_charge %>円</h4>
+
+    <div class="mb-4">
+      <%= form_tag(user_path, method: 'get',class: "form-inline w-50" ) do %>
+        <%= text_field_tag :search ,"",class: "form-control"%>
+        <div class="input-group-append">
+          <%= submit_tag '検索', :name => nil, class: "btn btn-outline-secondary ml-2" %>
+          <%= link_to 'クリア', user_path, class: "btn btn-outline-secondary ml-2" %>
+        </div>
+      <% end %>
+    </div>
+
     <table class="table table-hover mt-3">
       <tr>
         <th id="name">名前</th>
