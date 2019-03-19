@@ -26,10 +26,25 @@
       <% end %>
     </div>
 
-    <div>
-      <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2" %>
-      <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2" %>
-      <%= link_to '利用者数順', subscriptions_path(sort_count: "true"), class: "btn btn-outline-secondary ml-2" %>
+    <%# 要リファクタリング %>
+    <div class="mb-4 pb-2 border-bottom">
+      <% if params[:sort_count] %>
+        <%= link_to 'ランキング', subscriptions_path(sort_count: "true"), class: "btn btn-light disabled" %>
+        <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-light ml-2 active" %>
+        <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-light ml-2 active" %>
+      <% elsif params[:sort_name] %>
+        <%= link_to 'ランキング', subscriptions_path(sort_count: "true"), class: "btn btn-light active" %>
+        <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-light ml-2 disabled" %>
+        <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-light ml-2 active" %>
+      <% elsif params[:sort_status] %>
+        <%= link_to 'ランキング', subscriptions_path(sort_count: "true"), class: "btn btn-light active" %>
+        <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-light ml-2 active" %>
+        <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-light ml-2 disabled" %>
+      <% else %>
+        <%= link_to 'ランキング', subscriptions_path(sort_count: "true"), class: "btn btn-light active" %>
+        <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-light ml-2 active" %>
+        <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-light ml-2 active" %>
+      <% end %>
     </div>
 
     <table class="table table-hover">
@@ -49,17 +64,21 @@
           <td><%= subscription.name %></td>
           <td><%= subscription.icon %></td>
           <td><%= subscription.summary %></td>
+          <%# カテゴリー一覧 %>
           <td>
             <% subscription.categories.each do |category|%>
               <%= link_to category.name, subscriptions_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
             <% end %>
           </td>
+          <%# 利用者数 %>
           <td class="text-center"><%= subscription.additions.count %></td>
+          <%# 利用状況 %>
           <td>
             <% if current_user.already_added?(subscription) %>
               利用中
             <% end %>
           </td>
+          <%# 追加or解除ボタン %>
           <td>
             <% if current_user.already_added?(subscription) %>
               <%= button_to '解除', subscription_addition_path(subscription, id: current_user.id), method: :delete, class: "btn btn-light" %>
@@ -67,7 +86,6 @@
               <%= button_to '追加', subscription_additions_path(subscription), class: "btn btn-secondary" %>
             <% end %>
           </td>
-
           <td>
             <%= link_to '詳細', subscription_path(subscription.id) ,class: "btn btn-info mr-2" %>
             <%= link_to '編集', edit_subscription_path(subscription.id) ,class: "btn btn-success mr-2" %>

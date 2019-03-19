@@ -17,7 +17,7 @@ class SubscriptionsController < ApplicationController
     #ソート機能
     @subscriptions = @subscriptions.sort_name if params[:sort_name]
     @subscriptions = current_user.added_subscriptions if params[:sort_status]
-    # @subscriptions = @subscriptions.sort_count if params[:sort_count]
+    @subscriptions = rank(params) if params[:sort_count]
   end
 
   def new
@@ -61,5 +61,11 @@ class SubscriptionsController < ApplicationController
 
   def subscription_params
     params.require(:subscription).permit(:name, :icon, :summary, :status, { category_ids: [] })
+  end
+
+  def rank(params) 
+    subsc_user_count = Subscription.joins(:additions).group(:subscription_id).count
+    subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
+    Subscription.find(subsc_user_ids).sort_by{ |o| subsc_user_ids.index(o.id)}
   end
 end
