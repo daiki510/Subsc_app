@@ -4,8 +4,15 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:show]
 
   def index
-    @users = User.all
+    @users = User.order(admin: :desc)
+    #検索
     @users = User.search(params[:search]) if params[:search]
+    #ソート機能
+    @users = @users.order(id: :asc) if params[:sort_id] #id順
+    @users = @users.order(name: :asc) if params[:sort_name] #名前順
+    @users = @users.order(email: :asc) if params[:sort_email] #メールアドレス順
+    @users = sort_admin(@users) if params[:sort_admin] #支払日順
+    @users = sort_general(@users) if params[:sort_general] #支払日順
   end
 
   def show
@@ -32,15 +39,24 @@ class UsersController < ApplicationController
     subscriptions.where(id: not_has_detail_ids)
   end
 
-  #料金順にソート
+  #料金順にソート(マイページ)
   def sort_charge(details)
     detail_ids = details.order(charge: :desc).map {|detail| detail.subscription_id}
     Subscription.find(detail_ids).sort_by{ |o| detail_ids.index(o.id)}
   end
 
-  #支払順にソート
+  #支払順にソート(マイページ)
   def sort_date(details)
     detail_ids = details.order(due_date: :asc).map {|detail| detail.subscription_id}
     Subscription.find(detail_ids).sort_by{ |o| detail_ids.index(o.id)}
+  end
+
+  #管理者or一般ユーザーに絞り込み(一緒にできないか検討する)
+  def sort_admin(users)
+    users.select {|user| user.admin?}
+  end
+
+  def sort_general(users)
+    users.select {|user| user.admin == false }
   end
 end

@@ -12,6 +12,14 @@
       <% end %>
     </div>
 
+    <div class="mb-4 pb-2 border-bottom">
+      <%= link_to 'ID順', users_path(sort_id: "true"), class: "btn btn-outline-secondary #{params[:sort_id] ? 'disabled' : ''}" %>
+      <%= link_to '名前順', users_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_name] ? 'disabled' : ''}" %>
+      <%= link_to 'メールアドレス順', users_path(sort_email: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_charge] ? 'disabled' : ''}" %>
+      <%= link_to '管理者のみ', users_path(sort_admin: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_date] ? 'disabled' : ''}" %>
+      <%= link_to '一般のみ', users_path(sort_general: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_date] ? 'disabled' : ''}" %>
+    </div>
+
     <%= link_to 'ユーザー新規登録', new_user_registration_path, class: "btn btn-primary my-3" %>
     <table class="table table-hover">
       <tr>
