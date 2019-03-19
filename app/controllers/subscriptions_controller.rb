@@ -5,19 +5,19 @@ class SubscriptionsController < ApplicationController
 
   def index  
     @subscriptions = Subscription.all
-
-    #カテゴリーで絞り込み
-    if params[:category_id]
-      @subscriptions = Subscription.search_with_category(params[:category_id])
-    end
-
-    #検索機能
-    if params[:search]
-      @subscriptions = Subscription.search(params[:search])
-    end
-
     @categories = Category.all
     @addition = Addition.new
+
+    #カテゴリーで絞り込み
+    @subscriptions = Subscription.search_with_category(params[:category_id]) if params[:category_id]
+
+    #検索機能
+    @subscriptions = Subscription.search(params[:search]) if params[:search]
+
+    #ソート機能
+    @subscriptions = @subscriptions.sort_name if params[:sort_name] == "true"
+    @subscriptions = @subscriptions.sort_status if params[:sort_status]
+    @subscriptions = @subscriptions.sort_count if params[:sort_count]
   end
 
   def new
