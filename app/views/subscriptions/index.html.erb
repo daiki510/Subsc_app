@@ -1,5 +1,13 @@
 <div class="container">
   <div class="index-box">
+    <ul class="nav nav-tabs my-4">
+      <li class="nav-item">
+        <%= link_to 'ユーザー一覧', users_path(users_page: "true"), class: "nav-link #{params[:users_page] ? 'active' : 'text-dark'}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'サブスクリプション一覧', subscriptions_path(subscs_page: "true"), class: "nav-link #{params[:subscs_page] ? 'active' : 'text-dark'}" %>
+      </li>
+    </ul>
     <h1>サブスク一覧</h1>
 
     <%= link_to 'サブスク新規登録', new_subscription_path, class: "btn btn-primary my-3" %>

@@ -1,6 +1,17 @@
 <div class="container">
   <div class="index-box">
+    <ul class="nav nav-tabs my-4">
+      <li class="nav-item">
+        <%= link_to 'ユーザー一覧', users_path(users_page: "true"), class: "nav-link #{params[:users_page] ? 'active' : 'text-dark'}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'サブスクリプション一覧', subscriptions_path(subscs_page: "true"), class: "nav-link #{params[:subscs_page] ? 'active' : 'text-dark'}" %>
+      </li>
+    </ul>
+
     <h1>ユーザー一覧</h1>
+
+    <%= link_to 'ユーザー新規登録', new_user_registration_path, class: "btn btn-primary my-3" %>
 
     <div class="my-4">
       <%= form_tag(users_path, method: 'get',class: "form-inline w-50" ) do %>
@@ -19,8 +30,6 @@
       <%= link_to '管理者のみ', users_path(sort_admin: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_date] ? 'disabled' : ''}" %>
       <%= link_to '一般のみ', users_path(sort_general: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_date] ? 'disabled' : ''}" %>
     </div>
-
-    <%= link_to 'ユーザー新規登録', new_user_registration_path, class: "btn btn-primary my-3" %>
 
     <table class="table table-hover">
       <tr>
