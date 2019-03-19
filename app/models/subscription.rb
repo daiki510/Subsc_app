@@ -19,4 +19,16 @@ class Subscription < ApplicationRecord
 
   has_many :category_subscs, dependent: :destroy
   has_many :categories, through: :category_subscs, source: :category
+
+  # def self.search(search)
+  #   return Subscription.all unless search
+  #   Subscription.where(['name LIKE ?', "%#{search}%"])
+  # end
+  def self.search(search)
+    if search
+      Subscription.where(['name LIKE ?', "%#{search}%"])
+    else
+      Subscription.all
+    end
+  end
 end

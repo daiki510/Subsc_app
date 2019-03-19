@@ -16,12 +16,23 @@
       </div>
     </div>
 
+    <div class="mb-4">
+      <%= form_tag(subscriptions_path, method: 'get',class: "form-inline w-50" ) do %>
+        <%= text_field_tag :search ,"",class: "form-control"%>
+        <div class="input-group-append">
+          <%= submit_tag '検索', :name => nil, class: "btn btn-outline-secondary ml-2" %>
+          <%= link_to 'クリア', subscriptions_path, class: "btn btn-outline-secondary ml-2" %>
+        </div>
+      <% end %>
+    </div>
+
     <table class="table table-hover">
       <tr>
         <th id="name">名前</th>
         <th id="icon">アイコン</th>
         <th id="summary">概要</th>
         <th id="category">カテゴリー</th>
+        <th id="count">利用者数</th>
         <th id="status">利用状況</th>
         <th id="addition">追加</th>
         <th id="menu" colspan="3">メニュー</th>
@@ -61,3 +72,4 @@
     </table>
   </div>
 </div>
+
