@@ -25,7 +25,7 @@
     <h2 class="">サブスク一覧</h2>
     <h4>合計利用料金：<%= total_charge %>円</h4>
 
-    <div class="mb-4">
+    <div class="my-4">
       <%= form_tag(user_path, method: 'get',class: "form-inline w-50" ) do %>
         <%= text_field_tag :search ,"",class: "form-control"%>
         <div class="input-group-append">
@@ -36,24 +36,10 @@
     </div>
 
     <div class="mb-4 pb-2 border-bottom">
-      <% if params[:sort_name] %>
-        <%= link_to '名前順', user_path, class: "btn btn-light disabled" %>
-        <%= link_to '利用料金順', user_path(sort_charge: "true"), class: "btn btn-light ml-2 active" %>
-        <%= link_to '支払日順', user_path(sort_date: "true"), class: "btn btn-light ml-2 active" %>
-      <% elsif params[:sort_charge] %>
-        <%= link_to '名前順', user_path(sort_name: "true"), class: "btn btn-light active" %>
-        <%= link_to '利用料金順', user_path, class: "btn btn-light ml-2 disabled" %>
-        <%= link_to '支払日順', user_path(sort_date: "true"), class: "btn btn-light ml-2 active" %>
-      <% elsif params[:sort_date] %>
-        <%= link_to '名前順', user_path(sort_name: "true"), class: "btn btn-light active" %>
-        <%= link_to '利用料金順', user_path(sort_charge: "true"), class: "btn btn-light ml-2 active" %>
-        <%= link_to '支払日順', user_path, class: "btn btn-light ml-2 disabled" %>
-      <% else %>
-        <%= link_to '名前順', user_path(sort_name: "true"), class: "btn btn-light active" %>
-        <%= link_to '利用料金順', user_path(sort_charge: "true"), class: "btn btn-light ml-2 active" %>
-        <%= link_to '支払日順', user_path(sort_date: "true"), class: "btn btn-light ml-2 active" %>
-      <% end %>
-      <%= link_to '未登録のみ', user_path(sort_not_has_detail: "true"), class: "btn btn-light ml-2 active" %>
+      <%= link_to '名前順', user_path(sort_name: "true"), class: "btn btn-outline-secondary #{params[:sort_name] ? 'disabled' : ''}" %>
+      <%= link_to '利用料金順', user_path(sort_charge: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_charge] ? 'disabled' : ''}" %>
+      <%= link_to '支払日順', user_path(sort_date: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_date] ? 'disabled' : ''}" %>
+      <%= link_to '未登録のみ', user_path(sort_not_has_detail: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_not_has_detail] ? 'disabled' : ''}" %>
     </div>
 
     <table class="table table-hover mt-3">
