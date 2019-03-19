@@ -22,7 +22,6 @@ class SubscriptionsController < ApplicationController
 
   def new
     @subscription = Subscription.new
-    # @subscription.subscs_categories.build
   end
 
   def create
