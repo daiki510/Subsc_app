@@ -28,7 +28,7 @@
 
     <div>
       <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2" %>
-      <%= link_to '利用状況', subscriptions_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2" %>
+      <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2" %>
       <%= link_to '利用者数順', subscriptions_path(sort_count: "true"), class: "btn btn-outline-secondary ml-2" %>
     </div>
 

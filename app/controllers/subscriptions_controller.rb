@@ -15,9 +15,9 @@ class SubscriptionsController < ApplicationController
     @subscriptions = Subscription.search(params[:search]) if params[:search]
 
     #ソート機能
-    @subscriptions = @subscriptions.sort_name if params[:sort_name] == "true"
-    @subscriptions = @subscriptions.sort_status if params[:sort_status]
-    @subscriptions = @subscriptions.sort_count if params[:sort_count]
+    @subscriptions = @subscriptions.sort_name if params[:sort_name]
+    @subscriptions = current_user.added_subscriptions if params[:sort_status]
+    # @subscriptions = @subscriptions.sort_count if params[:sort_count]
   end
 
   def new
@@ -38,8 +38,7 @@ class SubscriptionsController < ApplicationController
     @addition = Addition.new
   end
   
-  def edit
-  end
+  def edit; end
   
   def update
     if @subscription.update(subscription_params)
