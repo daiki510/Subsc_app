@@ -24,11 +24,19 @@ class SubscriptionsController < ApplicationController
 
   def new
     @subscription = Subscription.new
+    unless current_user.admin?
+      @subscription = Subscription.new(status: params[:status])
+    end
   end
 
   def create
     @subscription = Subscription.new(subscription_params)
     if @subscription.save
+      #一般ユーザーが新規登録する場合
+      if @subscription.status == "secret"
+        #登録時にadditionにも併せて登録
+        Addition.create(user_id: current_user.id, subscription_id: @subscription.id)
+      end
       redirect_to subscriptions_path, notice: "「#{@subscription.name}」を登録しました"
     else
       render 'new'
