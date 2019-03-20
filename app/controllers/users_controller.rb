@@ -11,8 +11,11 @@ class UsersController < ApplicationController
     @users = @users.order(id: :asc) if params[:sort_id] #id順
     @users = @users.order(name: :asc) if params[:sort_name] #名前順
     @users = @users.order(email: :asc) if params[:sort_email] #メールアドレス順
-    @users = sort_admin(@users) if params[:sort_admin] #支払日順
-    @users = sort_general(@users) if params[:sort_general] #支払日順
+    @users = sort_admin(@users) if params[:sort_admin] #管理者のみ
+    @users = sort_general(@users) if params[:sort_general] #一般ユーザーのみ
+
+    #ページネーション
+    @users = @users.paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -59,10 +62,10 @@ class UsersController < ApplicationController
 
   #管理者or一般ユーザーに絞り込み(一緒にできないか検討する)
   def sort_admin(users)
-    users.select {|user| user.admin?}
+    users.where(admin: "true")
   end
 
   def sort_general(users)
-    users.select {|user| user.admin == false }
+    users.where(admin: "false")
   end
 end
