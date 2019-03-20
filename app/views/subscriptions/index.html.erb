@@ -12,8 +12,11 @@
     <% end %>
 
     <h1>サブスク一覧</h1>
-
-    <%= link_to 'サブスク新規登録', new_subscription_path, class: "btn btn-primary my-3" %>
+    <% if current_user.admin? %>
+      <%= link_to 'サブスク新規登録(公開)', new_subscription_path, class: "btn btn-primary my-3" %>
+    <% else %>
+      <%= link_to 'サブスク新規登録(非公開)', new_subscription_path(status: "secret"), class: "btn btn-primary my-3" %>
+    <% end %>
 
     <div class="card mb-4">
       <div class="card-header p-0 pl-2 pt-2">

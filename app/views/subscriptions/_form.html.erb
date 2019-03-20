@@ -36,6 +36,9 @@
            <%= f.label :category_ids, 'カテゴリー'%>
            <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, prompt: true %>
         </div>
+        <% unless current_user.admin? %>
+          <%= f.hidden_field :status, value: params[:status] %>
+        <% end %>
         <div class="button-panel">
           <%= f.submit class: "btn btn-primary my-2" %>
         </div>

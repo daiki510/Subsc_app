@@ -4,10 +4,9 @@ class SubscriptionsController < ApplicationController
   before_action :required_admin, only: [:edit, :update, :destroy]
 
   def index  
-    @subscriptions = Subscription.all
+    @subscriptions = Subscription.where(status: 0)
     @categories = Category.all
     @addition = Addition.new
-
     #カテゴリーで絞り込み
     @subscriptions = @subscriptions.search_with_category(params[:category_id]) if params[:category_id]
 
