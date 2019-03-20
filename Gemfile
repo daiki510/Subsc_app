@@ -22,7 +22,8 @@ gem 'carrierwave'
 gem 'mini_magick', '~> 4.8'
 
 #ページネーション
-gem 'kaminari', '~> 0.17.0'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 #フロントエンド関連
 gem 'bootstrap'

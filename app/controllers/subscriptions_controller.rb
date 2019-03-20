@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   before_action :required_admin, only: [:edit, :update, :destroy]
 
   def index  
-    @subscriptions = Subscription.all
+    @subscriptions = Subscription.paginate(page: params[:page], per_page: 10)
     @categories = Category.all
     @addition = Addition.new
 
