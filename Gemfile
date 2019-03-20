@@ -28,6 +28,8 @@ gem 'bootstrap-will_paginate'
 #フロントエンド関連
 gem 'bootstrap'
 
+gem 'order_as_specified'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'

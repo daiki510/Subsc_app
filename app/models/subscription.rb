@@ -1,4 +1,5 @@
 class Subscription < ApplicationRecord
+  extend OrderAsSpecified
   #アソシエーション
   has_many :additions, dependent: :destroy
   has_many :added_users, through: :additions, source: :user
@@ -24,9 +25,15 @@ class Subscription < ApplicationRecord
   #検索メソッド
   def self.search(search)
     if search
-      Subscription.where(['name LIKE ?', "%#{search}%"])
+      self.where(['name LIKE ?', "%#{search}%"])
     else
-      Subscription.all
+      self.all
     end
+  end
+
+  def self.sort_with_rank
+    subsc_user_count = self.joins(:additions).group(:subscription_id).count
+    subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
+    self.where(id: subsc_user_ids).order_as_specified(id: subsc_user_ids)
   end
 end
