@@ -86,8 +86,10 @@
           </td>
           <td>
             <%= link_to '詳細', subscription_path(subscription.id) ,class: "btn btn-info mr-2" %>
-            <%= link_to '編集', edit_subscription_path(subscription.id) ,class: "btn btn-success mr-2" %>
-            <%= link_to '削除', subscription_path(subscription), method: :delete, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger" %>
+            <% if current_user.admin? %>
+              <%= link_to '編集', edit_subscription_path(subscription.id) ,class: "btn btn-success mr-2" %>
+              <%= link_to '削除', subscription_path(subscription), method: :delete, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger" %>
+            <% end %>
           </td>
         </tr>
       <% end %>
