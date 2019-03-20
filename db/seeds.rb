@@ -6,16 +6,25 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Category.create([
-  {name: '音楽'},
-  {name: '映画'},
-  {name: '動画'},
-  {name: 'ファッション'},
-  {name: '生活'},
-  {name: '本'},
-  {name: 'ゲーム'},
-  {name: '学習'},
-  {name: 'ツール'},
-  {name: 'クラウド'},
-  {name: '飲食'}
-])
+# Category.create([
+#   {name: '音楽'},
+#   {name: '映画'},
+#   {name: '動画'},
+#   {name: 'ファッション'},
+#   {name: '生活'},
+#   {name: '本'},
+#   {name: 'ゲーム'},
+#   {name: '学習'},
+#   {name: 'ツール'},
+#   {name: 'クラウド'},
+#   {name: '飲食'}
+# ])
+
+50.times do |i|
+  User.create(
+    name: "user-#{i}",
+    email: "user-#{i}@user.com",
+    password:  "000000",
+    password_confirmation:  "000000"
+  )
+end
