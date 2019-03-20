@@ -26,8 +26,14 @@ class UsersController < ApplicationController
     #ソート機能
     @subscriptions = @subscriptions.order(name: :asc) if params[:sort_name] #名前順
     @subscriptions = only_not_has_detail(@subscriptions, @details) if params[:sort_not_has_detail] #詳細未登録のみ
+    
+    # @detail_ids = @details.order(charge: :desc).pluck(:subscription_id)
     @subscriptions = sort_charge(@details) if params[:sort_charge] #利用料金順
+    
     @subscriptions = sort_date(@details) if params[:sort_date] #支払日順
+    
+    #ページネーション
+    @subscriptions = @subscriptions.paginate(page: params[:page], per_page: 10)
   end
 
   private
