@@ -6,7 +6,11 @@ class AdditionsController < ApplicationController
 
   def destroy
     @addition = Addition.find_by(subscription_id: params[:subscription_id], user_id: current_user.id)
+    @subscription = Subscription.find_by(id: @addition.subscription_id)
     @addition.destroy
-    redirect_to subscriptions_path, notice: "「#{@addition.subscription.name}」を利用一覧から外しました"
+    if @subscription.status = "secret"
+      @subscription.destroy
+    end
+    redirect_to subscriptions_path, notice: "サブスクリプションを利用一覧から外しました"
   end
 end
