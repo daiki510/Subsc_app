@@ -35,11 +35,12 @@ class DetailsController < ApplicationController
     end
   end
 
-  # additionsを削除したと同時にdetailも削除されるようにする
   def destroy
     @detail = Detail.find(params[:id])
+    @addition = Addition.find_by(user_id: current_user.id, subscription_id: @detail.subscription_id)
     @detail.destroy
-    redirect_to user_path(current_user.id), notice: "詳細情報を削除しました"
+    @addition.destroy
+    redirect_to user_path(current_user.id), notice: "マイページから削除しました"
   end
 
   private
