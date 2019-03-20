@@ -1,5 +1,7 @@
 class Subscription < ApplicationRecord
+  #gem:OrderAsSpecifiedの読み込み
   extend OrderAsSpecified
+
   #アソシエーション
   has_many :additions, dependent: :destroy
   has_many :added_users, through: :additions, source: :user
@@ -18,7 +20,7 @@ class Subscription < ApplicationRecord
   #enumの定義
   enum status: { open: 0, secret: 9, development: 5 }
 
-  #scope
+  #スコープ
   scope :search_with_category, -> (category_id){ where(id: category_ids = CategorySubsc.where(category_id: category_id).pluck(:subscription_id))}
   scope :sort_name, -> { order(name: :asc) }
   
@@ -31,6 +33,7 @@ class Subscription < ApplicationRecord
     end
   end
 
+  #ランキングメソッド
   def self.sort_with_rank
     subsc_user_count = self.joins(:additions).group(:subscription_id).count
     subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
