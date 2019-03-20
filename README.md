@@ -64,7 +64,7 @@ https://docs.google.com/spreadsheets/d/1kWLZ5_rrjU3MG7BgFCa_ZDRlWnGTrGcJVC5ldbRV
 - omniauth
 - line_bot_app
 - activerecord-import
-- ransack
-- kaminari
+- order_as_specified
+- will_paginate
 - carrierwave
 - mini_magick
