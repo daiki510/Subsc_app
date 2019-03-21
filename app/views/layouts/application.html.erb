@@ -18,11 +18,11 @@
               <%= link_to current_user.email, user_path(current_user.id), class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "親サブスク一覧", subscriptions_path, class: "nav-link" %>
+              <%= link_to "サブスクリプション一覧", subscriptions_path, class: "nav-link" %>
             </li>
             <% if current_user.admin? %>
               <li class="nav-item">
-                <%= link_to "管理者メニュー", users_path, class: "nav-link" %>
+                <%= link_to "管理者メニュー", rails_admin_path, class: "nav-link" %>
               </li>
             <% end %>
             <li class="nav-item">
