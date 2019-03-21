@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2>ユーザー編集画面</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -19,32 +19,32 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :current_password %> <i></i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password",class: "w-25"  %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %> <i>(変更の場合のみ、新しいパスワードを入力)</i><br />
       <%= f.password_field :password, autocomplete: "new-password",class: "w-25"  %>
       <% if @minimum_password_length %>
         <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
+        <em><%= @minimum_password_length %> 文字以上</em>
       <% end %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation %><i>(新しいパスワードを入力)</i><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "w-25"  %>
     </div>
 
-    <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "current-password",class: "w-25"  %>
-    </div>
-
     <div class="actions">
-      <%= f.submit "Update" ,class: "btn btn-primary my-3"%>
+      <%= f.submit "更新" ,class: "btn btn-primary my-3"%>
     </div>
   <% end %>
 
-  <h3>Cancel my account</h3>
+  <%# <h5>アカウントの削除</h5> %>
 
-  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <p><%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当に削除してよろしいですか？ 全てのデータが削除されます" }, method: :delete, class: "btn btn-sm btn-outline-secondary" %></p>
 
-  <%= link_to "Back", :back %>
+  <%= link_to "戻る", :back , class: "btn btn-light"%>
 </div>
