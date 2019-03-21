@@ -10,30 +10,30 @@
   </head>
 
   <body>
-    <header class="mb-4">
+    <header class="">
       <nav class="navbar navbar-expand-sm bg-light">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav text-dark">
           <% if user_signed_in? %>
             <li class="nav-item" >
-              <%= link_to current_user.email, user_path(current_user.id), class: "nav-link" %>
+              <%= link_to current_user.email, user_path(current_user.id), class: "nav-link text-dark" %>
             </li>
             <li class="nav-item">
-              <%= link_to "サブスクリプション一覧", subscriptions_path, class: "nav-link" %>
+              <%= link_to "サブスクリプション一覧", subscriptions_path, class: "nav-link text-dark" %>
             </li>
             <% if current_user.admin? %>
               <li class="nav-item">
-                <%= link_to "管理者メニュー", rails_admin_path, class: "nav-link" %>
+                <%= link_to "管理者メニュー", rails_admin_path, class: "nav-link text-dark" %>
               </li>
             <% end %>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"  %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-dark"  %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: "nav-link"  %>
+              <%= link_to "ログイン", new_user_session_path, class: "nav-link text-dark"  %>
             </li>
             <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: "nav-link"  %>
+              <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-dark"  %>
             </li>
           <% end %>
         </ul>
@@ -47,7 +47,9 @@
       <p class="alert alert-denger text-center" ><%= alert %></p>
     <% end %>
 
-    <%= yield %>
+    <div class="mt-4">
+      <%= yield %>
+    </div>
 
     <footer class="footer mt-5 py-3 text-center bg-light">
       <p>subsc_app</p>

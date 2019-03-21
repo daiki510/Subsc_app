@@ -6,12 +6,12 @@
     
     <div class="field">
       <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "name",class: "w-25" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name",class: "form-control w-25 mb-2" %>
     </div>
 
     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "w-25" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control w-25 mb-2" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -20,21 +20,20 @@
 
     <div class="field">
       <%= f.label :current_password %> <i></i><br />
-      <%= f.password_field :current_password, autocomplete: "current-password",class: "w-25"  %>
+      <%= f.password_field :current_password, autocomplete: "current-password",class: "form-control w-25 mb-2"  %>
     </div>
 
     <div class="field">
-      <%= f.label :password %> <i>(変更の場合のみ、新しいパスワードを入力)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password",class: "w-25"  %>
+      <%= f.label :password, "新しいパスワード" %> <i>(変更の場合のみ)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password",class: "form-control w-25"  %>
       <% if @minimum_password_length %>
-        <br />
         <em><%= @minimum_password_length %> 文字以上</em>
       <% end %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><i>(新しいパスワードを入力)</i><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "w-25"  %>
+      <%= f.label :password_confirmation %><i>(変更の場合のみ)</i><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control w-25 mb-2"  %>
     </div>
 
     <div class="actions">
