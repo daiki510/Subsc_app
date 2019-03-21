@@ -16,6 +16,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 #ログイン機能
 gem 'devise'
+gem 'rails_admin', '~> 1.3'
+gem 'cancancan'
 
 #画像アップロード用
 gem 'carrierwave'
