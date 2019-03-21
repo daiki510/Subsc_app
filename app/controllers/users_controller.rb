@@ -1,22 +1,22 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :required_admin, only: [:index]
+  # before_action :required_admin, only: [:index]
   before_action :ensure_correct_user, only: [:show]
 
-  def index
-    @users = User.order(admin: :desc)
-    #検索
-    @users = User.search(params[:search]) if params[:search]
-    #ソート機能
-    @users = @users.order(id: :asc) if params[:sort_id] #id順
-    @users = @users.order(name: :asc) if params[:sort_name] #名前順
-    @users = @users.order(email: :asc) if params[:sort_email] #メールアドレス順
-    @users = sort_admin(@users) if params[:sort_admin] #管理者のみ
-    @users = sort_general(@users) if params[:sort_general] #一般ユーザーのみ
+  # def index
+  #   @users = User.order(admin: :desc)
+  #   #検索
+  #   @users = User.search(params[:search]) if params[:search]
+  #   #ソート機能
+  #   @users = @users.order(id: :asc) if params[:sort_id] #id順
+  #   @users = @users.order(name: :asc) if params[:sort_name] #名前順
+  #   @users = @users.order(email: :asc) if params[:sort_email] #メールアドレス順
+  #   @users = sort_admin(@users) if params[:sort_admin] #管理者のみ
+  #   @users = sort_general(@users) if params[:sort_general] #一般ユーザーのみ
 
-    #ページネーション
-    @users = @users.paginate(page: params[:page], per_page: 10)
-  end
+  #   #ページネーション
+  #   @users = @users.paginate(page: params[:page], per_page: 10)
+  # end
 
   def show
     @user = User.find(params[:id])
@@ -60,12 +60,12 @@ class UsersController < ApplicationController
     Subscription.find(detail_ids).sort_by{ |o| detail_ids.index(o.id)}
   end
 
-  #管理者or一般ユーザーに絞り込み(一緒にできないか検討する)
-  def sort_admin(users)
-    users.where(admin: "true")
-  end
+  # #管理者or一般ユーザーに絞り込み(一緒にできないか検討する)
+  # def sort_admin(users)
+  #   users.where(admin: "true")
+  # end
 
-  def sort_general(users)
-    users.where(admin: "false")
-  end
+  # def sort_general(users)
+  #   users.where(admin: "false")
+  # end
 end
