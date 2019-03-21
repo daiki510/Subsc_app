@@ -3,10 +3,10 @@
     <% if current_user.admin? %>
       <ul class="nav nav-tabs my-4">
         <li class="nav-item">
-          <%= link_to 'ユーザー一覧', users_path(users_page: "true"), class: "nav-link #{params[:users_page] ? 'active' : 'text-dark'}" %>
+          <%= link_to 'ユーザー一覧', users_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'サブスクリプション一覧', subscriptions_path(subscs_page: "true"), class: "nav-link #{params[:subscs_page] ? 'active' : 'text-dark'}" %>
+          <%= link_to 'サブスクリプション一覧', subscriptions_path, class: "nav-link active" %>
         </li>
       </ul>
     <% end %>
