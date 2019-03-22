@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
   root 'subscriptions#index'
 
-  resources :details
-
+  #ユーザー関連
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
   resources :users, only: [:show]
-
+  
+  #サブスクリプション
   resources :subscriptions do
     resources :additions, only: [:create, :destroy]
   end
+  resources :details
+
+  #問い合わせ
+  resources :contacts, only: [:new, :create]
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
