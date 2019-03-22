@@ -4,23 +4,48 @@ ja:
       subscription: "サブスクリプション"
       user: "ユーザー"
       detail: "詳細"
+      category: "カテゴリー"
+      addition: "追加"
+      category_subsc: "カテゴリーサブスクリプション"
     attributes:
       subscription:
         name: "名前"
         icon: "アイコン"
         summary: "概要"
+        status: "公開範囲"
+        created_at: "作成日時"
+        updated_at: "更新日時"
       detail:
+        user: "ユーザー"
+        subscription: "サブスクリプション"
         charge: "利用料金"
         due_date: "支払日"
         payment_type: "支払方法"
         note: "備考欄"
+        created_at: "作成日時"
+        updated_at: "更新日時"
       user:
-        title: "タイトル"
         name: "名前"
         email: "メールアドレス"
-        content: "内容"
+        admin: "管理者権限"
         current_password: "現在のパスワード"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      category:
+        name: カテゴリー名
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      addition:
+        user: "ユーザー"
+        subscription: "サブスクリプション"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      category_subsc:
+        category: "カテゴリー"
+        subscription: "サブスクリプション"
+        created_at: "作成日時"
+        updated_at: "更新日時"
       
