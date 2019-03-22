@@ -24,19 +24,14 @@ class SubscriptionsController < ApplicationController
 
   def new
     @subscription = Subscription.new
-    unless current_user.admin?
-      @subscription = Subscription.new(status: params[:status])
-    end
   end
 
   def create
     @subscription = Subscription.new(subscription_params)
+    @subscription.status = "secret" unless current_user.admin?  
     if @subscription.save
-      #一般ユーザーが新規登録する場合
-      if @subscription.status == "secret"
-        #登録時にadditionにも併せて登録
-        Addition.create(user_id: current_user.id, subscription_id: @subscription.id)
-      end
+      #一般ユーザーが新規登録する場合、additionにも併せて登録
+      Addition.create(user_id: current_user.id, subscription_id: @subscription.id) if @subscription.status == "secret"   
       redirect_to subscriptions_path, notice: "「#{@subscription.name}」を登録しました"
     else
       render 'new'
@@ -73,11 +68,9 @@ class SubscriptionsController < ApplicationController
   end
 
   def rank(subsc_user_ids)
-    # subsc_user_count = self.joins(:additions).group(:subscription_id).count
-    # subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
-    raise
+    subsc_user_count = self.joins(:additions).group(:subscription_id).count
+    subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
     self.where(id: subsc_user_ids).order_as_specified(id: subsc_user_ids)
-
     # subscriptions = Subscription.find(subsc_user_ids).sort_by{ |o| subsc_user_ids.index(o.id)}
   end
 
