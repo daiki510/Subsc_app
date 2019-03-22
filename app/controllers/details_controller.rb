@@ -34,14 +34,14 @@ class DetailsController < ApplicationController
       render 'edit'
     end
   end
-
+  
   def destroy
     @detail = Detail.find(params[:id])
     @addition = Addition.find_by(user_id: current_user.id, subscription_id: @detail.subscription_id)
     @subscription = Subscription.find_by(id: @detail.subscription_id)
     @detail.destroy
     @addition.destroy
-    if @subscription.status = "secret"
+    if @subscription.status == "secret"
       @subscription.destroy
     end
     redirect_to user_path(current_user.id), notice: "マイページから削除しました"
