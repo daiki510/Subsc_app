@@ -1,5 +1,11 @@
-<h1>Contact#contact_mail</h1>
+<p>お問い合わせがありました。</p>
+<p>下記の内容を確認してください。</p>
+<br>
+----------------------------------------------------------------------
+<p><strong>返信先メールアドレス:</strong> <%= @contact.email %><p> 
 
-<p>
-  <%= @greeting %>, find me in app/views/contact_mailer/contact_mail.html.erb
-</p>
+<p><strong>タイトル:</strong> <%= @contact.title %><p> 
+
+<p><strong>内容</strong><br>
+<%= @contact.message %></p>
+----------------------------------------------------------------------
