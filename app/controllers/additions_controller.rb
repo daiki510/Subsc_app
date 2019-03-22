@@ -11,7 +11,7 @@ class AdditionsController < ApplicationController
     if @subscription.status == "secret"
       @subscription.destroy
       redirect_to user_path(current_user.id), notice: "サブスクリプションを利用一覧から外しました"
-    elsif params[:back_to_mypage]
+    elsif params[:back_to_mypage] #共有サブスクリプションは削除しない場合
       redirect_to user_path(current_user.id), notice: "サブスクリプションを利用一覧から外しました"
     else
       redirect_to subscriptions_path, notice: "サブスクリプションを利用一覧から外しました"
