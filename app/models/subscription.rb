@@ -14,8 +14,11 @@ class Subscription < ApplicationRecord
 
   #バリデーション
   validates :name, presence: true, uniqueness: true, length: {maximum: 30}
-  validates :icon, length: {maximum: 255}
+  validates :icon, presence: true
   validates :summary, presence: true, length: {maximum: 255}
+
+  #画像アップロード
+  mount_uploader :icon, IconUploader
   
   #enumの定義
   enum status: { open: 0, secret: 9, development: 5 }
