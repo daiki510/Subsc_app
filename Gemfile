@@ -22,7 +22,7 @@ gem 'cancancan'
 #画像アップロード用
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.8'
-gem 'fog'
+gem "aws-sdk-s3", require: false
 
 #ページネーション
 gem 'will_paginate'
