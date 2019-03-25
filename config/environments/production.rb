@@ -91,7 +91,7 @@ Rails.application.configure do
 
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'subsc-app' }
+  config.action_mailer.default_url_options = { host: 'subsc-app.heroku.com' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
