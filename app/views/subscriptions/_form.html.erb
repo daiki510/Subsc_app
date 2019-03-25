@@ -25,9 +25,16 @@
          <%= f.text_field :name, class: "form-control w-50" %>
         </div>
         <div class="form-item">
+          <% if @subscription.icon? %>
+            <div class="thumbnail">
+              <%= image_tag @subscription.icon.url %>
+            </div>
+          <% end  %>
           <%= f.label :icon %>
           <%= f.file_field :icon, class: "form-control w-50" %>
+          <%= f.hidden_field :icon_cache %>
         </div>
+
         <div class="form-item">
            <%= f.label :summary %>
            <%= f.text_area :summary ,class: "form-control w-50" ,rows: 5 %> 
