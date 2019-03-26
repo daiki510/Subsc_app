@@ -18,7 +18,7 @@ CarrierWave.configure do |config|
   config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }
 
   case Rails.env
-  when 'production'
+    when 'production'
       config.fog_directory = 'subsc-production'
       config.asset_host = 'https://subsc-production.s3-ap-northeast-1.amazonaws.com'
     when 'development'
