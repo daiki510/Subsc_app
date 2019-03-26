@@ -55,9 +55,11 @@
           <td>
             <%= subscription.name %>
           </td>
-          <td>
-            <%= subscription.icon %>
-          </td>
+          <% if subscription.icon.present? %>
+            <td><%= image_tag subscription.icon.thumb.url %></td>
+          <% else %>
+            <td><%= subscription.icon %></td>
+          <% end %>
           <td>
             <%= subscription.summary %>
           </td>
