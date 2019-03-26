@@ -8,7 +8,7 @@
       </tr>
       <tr>
         <td>アイコン</td>
-        <td><%= image_tag(@subscription.icon_url) if @subscription.icon.present? %></td>
+        <td><%= image_tag @subscription.icon.url if @subscription.icon.present? %></td>
       </tr>
       <tr>
         <td>概要</td>

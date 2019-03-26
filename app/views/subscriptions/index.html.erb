@@ -34,8 +34,8 @@
     <table class="table table-hover">
       <%= will_paginate @subscriptions,:previous_label => ' &lt 前へ', :next_label => '次へ &gt', :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer %>
       <tr>
-        <th id="name">名前</th>
         <th id="icon">アイコン</th>
+        <th id="name">名前</th>
         <th id="summary">概要</th>
         <th id="category">カテゴリー</th>
         <th id="count">利用者数</th>
@@ -46,8 +46,12 @@
 
       <% @subscriptions.each do |subscription| %>
         <tr>
+          <% if subscription.icon.present? %>
+            <td><%= image_tag subscription.icon.thumb.url %></td>
+          <% else %>
+            <td><%= subscription.icon %></td>
+          <% end %>
           <td><%= subscription.name %></td>
-          <td><%= subscription.icon %></td>
           <td><%= subscription.summary %></td>
           <%# カテゴリー一覧 %>
           <td>
