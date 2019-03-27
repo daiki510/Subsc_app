@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_27_065841) do
+ActiveRecord::Schema.define(version: 2019_03_27_073252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_03_27_065841) do
     t.bigint "user_id"
     t.bigint "subscription_id"
     t.integer "charge", null: false
-    t.date "due_date", null: false
+    t.string "due_date", null: false
     t.string "payment_type", default: "", null: false
     t.text "note", default: "", null: false
     t.datetime "created_at", null: false
