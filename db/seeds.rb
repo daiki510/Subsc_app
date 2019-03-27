@@ -14,7 +14,6 @@ Category.create([
 20.times do |i|
   Subscription.create(
     name: "サブスクリプション-#{i}",
-    icon: "アイコン-#{i}",
     summary: "サマリー-#{i}"
   )
 end
