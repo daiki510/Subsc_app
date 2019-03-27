@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <td>URL</td>
-        <td><%= @subsc.link %></td>
+        <td><%= auto_link(@subsc.link, html: { target: '_blank' }) %></td>
       </tr>
       <tr>
         <td>概要</td>

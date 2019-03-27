@@ -36,6 +36,8 @@ gem 'order_as_specified'
 
 gem 'dotenv-rails'
 
+gem 'rails_autolink'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
