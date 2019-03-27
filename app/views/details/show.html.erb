@@ -4,28 +4,28 @@
     <table class="table table-hover w-50 mb-5">
       <tr>
         <td>名前</td>
-        <td><%= @subsc.name %></td>
+        <td><%= @subscription.name %></td>
       </tr>
       <tr>
         <td>アイコン</td>
-        <% if @subsc.icon.present? %>
-          <td><%= image_tag @subsc.icon.thumb.url %></td>
+        <% if @subscription.icon.present? %>
+          <td><%= image_tag @subscription.icon.thumb.url %></td>
         <% else %>
           <td>No-Icon</td>
         <% end %>
       </tr>
       <tr>
         <td>URL</td>
-        <td><%= auto_link(@subsc.link, html: { target: '_blank' }) %></td>
+        <td><%= auto_link(@subscription.link, html: { target: '_blank' }) %></td>
       </tr>
       <tr>
         <td>概要</td>
-        <td><%= @subsc.summary %></td>
+        <td><%= @subscription.summary %></td>
       </tr>
       <tr>
         <td>カテゴリー</td>
         <td>
-          <% @subsc.categories.each do |category|%>
+          <% @subscription.categories.each do |category|%>
             <span class="badge badge-primary py-1 px-2"><%= category.name %></span>
           <% end %>
         </td>

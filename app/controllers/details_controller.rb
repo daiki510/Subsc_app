@@ -8,6 +8,7 @@ class DetailsController < ApplicationController
 
   def new
     @detail = Detail.new(subscription_id: params[:subscription_id])
+    @subscription = Subscription.find_by(id: @detail.subscription_id)
   end
 
   def create
@@ -20,10 +21,11 @@ class DetailsController < ApplicationController
   end
 
   def show
-    @subsc = Subscription.find_by(id: @detail.subscription_id) 
+    @subscription = Subscription.find_by(id: @detail.subscription_id) 
   end
 
   def edit
+    @subscription = Subscription.find_by(id: @detail.subscription_id)
   end
   
   def update
