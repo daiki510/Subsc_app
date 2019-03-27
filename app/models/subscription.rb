@@ -15,6 +15,7 @@ class Subscription < ApplicationRecord
   #バリデーション
   validates :name, presence: true, uniqueness: true, length: {maximum: 30}
   validates :summary, presence: true, length: {maximum: 255}
+  validates :link, format: /\A#{URI::regexp(%w(http https))}\z/
 
   #画像アップロード
   mount_uploader :icon, IconUploader
