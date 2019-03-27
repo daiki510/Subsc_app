@@ -1,22 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  # before_action :required_admin, only: [:index]
   before_action :ensure_correct_user, only: [:show]
-
-  # def index
-  #   @users = User.order(admin: :desc)
-  #   #検索
-  #   @users = User.search(params[:search]) if params[:search]
-  #   #ソート機能
-  #   @users = @users.order(id: :asc) if params[:sort_id] #id順
-  #   @users = @users.order(name: :asc) if params[:sort_name] #名前順
-  #   @users = @users.order(email: :asc) if params[:sort_email] #メールアドレス順
-  #   @users = sort_admin(@users) if params[:sort_admin] #管理者のみ
-  #   @users = sort_general(@users) if params[:sort_general] #一般ユーザーのみ
-
-  #   #ページネーション
-  #   @users = @users.paginate(page: params[:page], per_page: 10)
-  # end
 
   def show
     @user = User.find(params[:id])
@@ -32,11 +16,13 @@ class UsersController < ApplicationController
     
     # @detail_ids = @details.order(charge: :desc).pluck(:subscription_id)
     @subscriptions = sort_charge(@details) if params[:sort_charge] #利用料金順
-    
     @subscriptions = sort_date(@details) if params[:sort_date] #支払日順
     
     #ページネーション
     @subscriptions = @subscriptions.paginate(page: params[:page], per_page: 10)
+
+    #詳細情報の未登録がある場合は、警告メッセージ表示
+    flash[:alert] = "詳細情報が未登録のサブスクリプションがあります" if check_not_register?(@subscriptions,@details)
   end
 
   private
@@ -60,12 +46,8 @@ class UsersController < ApplicationController
     Subscription.find(detail_ids).sort_by{ |o| detail_ids.index(o.id)}
   end
 
-  # #管理者or一般ユーザーに絞り込み(一緒にできないか検討する)
-  # def sort_admin(users)
-  #   users.where(admin: "true")
-  # end
-
-  # def sort_general(users)
-  #   users.where(admin: "false")
-  # end
+  #詳細情報の未登録があるかどうか
+  def check_not_register?(subscriptions,details)
+    (subscriptions.pluck(:subscription_id) - details.pluck(:subscription_id)).present?
+  end
 end
