@@ -64,7 +64,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_params
-    params.require(:subscription).permit(:name, :icon, :icon_cache, :summary, :status, { category_ids: [] })
+    params.require(:subscription).permit(:name, :icon, :icon_cache, :link, :summary, :status, { category_ids: [] })
   end
 
   def rank(subsc_user_ids)
