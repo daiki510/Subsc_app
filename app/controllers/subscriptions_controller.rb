@@ -28,7 +28,7 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription = Subscription.new(subscription_params)
-    @subscription.status = "secret" unless current_user.admin?  
+    @subscription.status = "secret" unless current_user.admin?
     if @subscription.save
       #一般ユーザーが新規登録する場合、additionにも併せて登録
       Addition.create(user_id: current_user.id, subscription_id: @subscription.id) if @subscription.status == "secret"   

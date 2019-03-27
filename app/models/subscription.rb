@@ -14,7 +14,6 @@ class Subscription < ApplicationRecord
 
   #バリデーション
   validates :name, presence: true, uniqueness: true, length: {maximum: 30}
-  validates :icon, presence: true
   validates :summary, presence: true, length: {maximum: 255}
 
   #画像アップロード

@@ -8,7 +8,11 @@
       </tr>
       <tr>
         <td>アイコン</td>
-        <td><%= image_tag @subscription.icon.url if @subscription.icon.present? %></td>
+        <% if @subscription.icon.present? %>
+          <td><%= image_tag @subscription.icon.thumb.url %></td>
+        <% else %>
+          <td>No-Icon</td>
+        <% end %>
       </tr>
       <tr>
         <td>概要</td>
