@@ -1,1 +1,3 @@
 <h1>Hello, <%= @user.name %>!!</h1>
+
+<h3>合計利用料金：<%= @user.details.map { |detail| detail.charge}.sum %>円</h3>

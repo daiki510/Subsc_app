@@ -20,7 +20,7 @@
     </div>
 
     <h2 class="">サブスク一覧</h2>
-    <h4>合計利用料金：<%= total_charge %>円</h4>
+    <h4>合計利用料金：<%= total_charge(@user) %>円</h4>
 
     <div class="my-4">
       <%= form_tag(user_path, method: 'get',class: "form-inline w-50" ) do %>
