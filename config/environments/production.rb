@@ -94,12 +94,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: '13.115.66.205' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
-    domain: "13.115.66.205",
-    address: "smtp.SendGrid.net",
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
+    domain: 'gmail.com',
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
     port: 587,
-    authentication: :plain,
+    authentication: 'plain',
     enable_starttls_auto: true
   }
 end
