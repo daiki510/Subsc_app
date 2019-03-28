@@ -32,17 +32,26 @@ gem 'bootstrap-will_paginate'
 #フロントエンド関連
 gem 'bootstrap'
 
+#ツール系
+gem 'rails_autolink'
 gem 'order_as_specified'
-
 gem 'dotenv-rails'
 
-gem 'rails_autolink'
+#AWS関連
+gem 'unicorn' # アプリケーションサーバのunicorn
+gem 'mini_racer', platforms: :ruby # デプロイ時に必要
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  # capistrano一式
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
