@@ -38,8 +38,8 @@ gem 'order_as_specified'
 gem 'dotenv-rails'
 
 #AWS関連
-gem 'unicorn' # アプリケーションサーバのunicorn
-gem 'mini_racer', platforms: :ruby # デプロイ時に必要
+gem 'unicorn'
+gem 'mini_racer', platforms: :ruby
 gem 'ed25519' ,'>= 1.2', '< 2.0'
 gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 
