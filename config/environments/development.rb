@@ -38,12 +38,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # config.action_mailer.delivery_method = :letter_opener_web
-  email = ENV['GMAIL_USERNAME']
-  password = ENV['GMAIL_PASSWORD']
+  # email = ENV['GMAIL_USERNAME']
+  # password = ENV['GMAIL_PASSWORD']
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    user_name: email,
-    password: password,
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
     address: 'smtp.gmail.com',
     domain: 'gmail.com',
     port: 587,
