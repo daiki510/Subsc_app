@@ -92,13 +92,14 @@ Rails.application.configure do
 
   config.active_record.dump_schema_after_migration = false
 
-  email = ENV['GMAIL_USERNAME']
-  password = ENV['GMAIL_PASSWORD']
+  set :whenever_roles, :batch # 対象ロール
+  set :whenever_environment, :production # 対象環境
+
   config.action_mailer.default_url_options = { host: '13.115.66.205' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    user_name: email,
-    password: password,
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
     address: 'smtp.gmail.com',
     domain: 'gmail.com',
     port: 587,

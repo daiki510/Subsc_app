@@ -23,6 +23,10 @@ set :rbenv_type, :system
 #出力するログのレベル
 set :log_level, :info
 
+#whenever用の設定
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+set :whenever_roles,        ->{ :batch }
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
