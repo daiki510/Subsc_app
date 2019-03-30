@@ -25,7 +25,6 @@ set :log_level, :info
 
 #whenever用の設定
 set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
 
 namespace :deploy do
   desc 'Restart application'
