@@ -8,7 +8,7 @@ set :output, { :error => 'log/whenever.log', :standard => 'log/cron.log' }
 # end
 
 set :environment, :production
-every 1.day, at: ['9:00 am', '11:10 pm'] do
+every 1.day, at: ['9:00 am', '11:25 pm'] do
   rake "notifying:notification"
 end
 
