@@ -12,6 +12,10 @@ every 1.day, at: ['9:00 am', '11:25 pm'] do
   rake "notifying:notification"
 end
 
+every 1.day do
+  rake "notifying:notification"
+end
+
 # every 1.minute do
 #   rake "notifying:notification"
 # end
