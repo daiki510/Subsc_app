@@ -24,7 +24,6 @@ set :rbenv_type, :system
 set :log_level, :info
 
 #whenever用の設定
-# set :whenever_command, "bundle exec whenever"
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 
