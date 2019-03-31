@@ -7,7 +7,7 @@ set :output, { :error => 'log/whenever.log', :standard => 'log/cron.log' }
 #   rake "notifying:notification"
 # end
 
-set :environment, :production
-every 1.minute do
-  rake "notifying:notification"
-end
+# set :environment, :production
+# every 1.minute do
+#   rake "notifying:notification"
+# end
