@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @subscriptions = @user.added_subscriptions
     @details = @user.details
-
     #検索機能
     @subscriptions = @subscriptions.where(['name LIKE ?', "%#{params[:search]}%"]) if params[:search]
 
