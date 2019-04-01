@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :details, dependent: :destroy
   has_many :detailed_subscriptions, through: :details, source: :subscription
 
+  #enumの定義
+  enum notification_status: { off: 0, one: 1, two: 2 }
+
   #スコープ
   scope :search_with_category, -> (category_id){ where(id: category_ids = CategorySubsc.where(category_id: category_id).pluck(:subscription_id))}
   scope :sort_name, -> { order(name: :asc) }
@@ -32,6 +35,12 @@ class User < ApplicationRecord
       User.where(['name LIKE ?', "%#{search}%"])
     else
       User.all
+    end
+  end
+
+  def localed_statuses
+    notification_statuses.keys.map do |s|
+      [ApplicationController.helpers.t("status.article.#{s}"), s]
     end
   end
 

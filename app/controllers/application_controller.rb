@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    # 登録時にnameのストロングパラメータを追加
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:admin])
-    # 編集時にnameのストロングパラメータを追加
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name,:admin])
+    # 登録時のストロングパラメータを追加
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:admin,:notification_status])
+    # 編集時のストロングパラメータを追加
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name,:admin,:notification_status])
   end
 
   def after_sign_in_path_for(resource)
