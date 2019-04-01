@@ -57,19 +57,27 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
+
+  #Rspec
+  gem "rspec-rails"
+  gem 'spring-commands-rspec'
+  gem "factory_bot_rails"
+  gem 'capybara', '>= 2.15'
+  gem 'faker'
+  gem "database_cleaner"
+  gem "launchy"
+  gem 'selenium-webdriver'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener_web'
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end
 
