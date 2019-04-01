@@ -6,18 +6,18 @@
     
     <div class="field">
       <span class="text-danger">*</span>
-      <%= f.label :name %>
+      <%= f.label :name %><br />
       <%= f.text_field :name, autofocus: true, autocomplete: "name",class: "form-control w-25 mb-2" %>
     </div>
 
     <div class="field">
       <span class="text-danger">*</span>
-      <%= f.label :email %>
+      <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control w-25 mb-2" %>
     </div>
 
-    <div class="field">
-      <%= f.label :notification_status %>
+    <div class="field mb-2">
+      <%= f.label :notification_status %><br />
       <%# 通知頻度を日本語で選べるようにする %>
       <%= f.select :notification_status, User.notification_statuses.keys { |k, v| [t("enums.user.notification_status.#{k}"), v] }, class: "form-control w-25 mb-2" %>
     </div>
@@ -28,20 +28,20 @@
 
     <div class="field">
       <span class="text-danger">*</span>
-      <%= f.label :current_password %> <i></i>
+      <%= f.label :current_password %><br />
       <%= f.password_field :current_password, autocomplete: "current-password",class: "form-control w-25 mb-2"  %>
     </div>
 
     <div class="field">
-      <%= f.label :password, "新しいパスワード" %> <i>(変更の場合のみ)</i>
+      <%= f.label :password, "新しいパスワード" %> <i>(変更の場合のみ)</i><br />
       <%= f.password_field :password, autocomplete: "new-password",class: "form-control w-25"  %>
       <% if @minimum_password_length %>
-        <em><%= @minimum_password_length %> 文字以上</em>
+        <small><%= @minimum_password_length %> 文字以上</small>
       <% end %>
     </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><i>(変更の場合のみ)</i>
+    <div class="field mt-2">
+      <%= f.label :password_confirmation %><i>(変更の場合のみ)</i><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control w-25 mb-2"  %>
     </div>
 
