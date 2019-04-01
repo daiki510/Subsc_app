@@ -20,35 +20,37 @@
          <h1>サブスク登録</h1>
       <% end %>
       
-        <div class="form-item">
-         <%= f.label :name %>
-         <%= f.text_field :name, class: "form-control w-50" %>
-        </div>
-        <div class="form-item">
-          <% if @subscription.icon? %>
-            <div class="thumbnail">
-              <%= image_tag @subscription.icon.url %>
-            </div>
-          <% end  %>
-          <%= f.label :icon %>
-          <%= f.file_field :icon, class: "form-control w-50" %>
-          <%= f.hidden_field :icon_cache %>
-        </div>
-        <div class="form-item">
-           <%= f.label :link %>
-           <%= f.text_field :link ,class: "form-control w-50" %> 
-        </div>
-        <div class="form-item">
-           <%= f.label :summary %>
-           <%= f.text_area :summary ,class: "form-control w-50" ,rows: 5 %>
-        </div>
-        <div class="form-item my-2 checkbox-inline">
-           <%= f.label :category_ids, 'カテゴリー'%>
-           <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, prompt: true %>
-        </div>
-        <div class="button-panel">
-          <%= f.submit class: "btn btn-primary my-2" %>
-        </div>
+      <div class="form-item">
+        <span class="text-danger">*</span>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control w-50" %>
+      </div>
+      <div class="form-item">
+        <% if @subscription.icon? %>
+          <div class="thumbnail">
+            <%= image_tag @subscription.icon.url %>
+          </div>
+        <% end  %>
+        <%= f.label :icon %>
+        <%= f.file_field :icon, class: "form-control w-50" %>
+        <%= f.hidden_field :icon_cache %>
+      </div>
+      <div class="form-item">
+        <%= f.label :link %>
+        <%= f.text_field :link ,class: "form-control w-50" %> 
+      </div>
+      <div class="form-item">
+        <span class="text-danger">*</span>
+        <%= f.label :summary %>
+        <%= f.text_area :summary ,class: "form-control w-50" ,rows: 5 %>
+      </div>
+      <div class="form-item my-2 checkbox-inline">
+        <%= f.label :category_ids, 'カテゴリー'%>
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, prompt: true %>
+      </div>
+      <div class="button-panel">
+        <%= f.submit class: "btn btn-primary my-2" %>
+      </div>
       
       <div class="form-footer">
         <%= link_to "一覧へ戻る", subscriptions_path, class: "btn btn-light" %>

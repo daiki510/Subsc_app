@@ -19,13 +19,15 @@
       <% end %>
 
       <div class="form-item">
-        <h3><%= @subscription.name%></h3>
+        <h3><%= subsc_name(@detail) %></h3>
       </div>
       <div class="form-item">
+        <span class="text-danger">*</span>
         <%= f.label :charge %>
         <%= f.number_field :charge, class: "form-control w-50 mb-4" %>
       </div>
       <div class="form-item">
+        <span class="text-danger">*</span>
         <%= f.label :due_date %>
         <%= f.select :due_date, (1..31).map{|i| "#{i}日"}, class: "form-control w-50" %>
       </div>
