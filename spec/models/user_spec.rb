@@ -5,8 +5,8 @@ RSpec.describe User, type: :model do
     @user1 = FactoryBot.create(:user1)
     @user2 = FactoryBot.create(:user2)
   end
+  # factory_botが有効かどうかを検査。
   context "check factorybot of validation" do
-    # factory_botが有効かどうかを検査。
     it "has a valid factory of user1" do
       user = @user1
       expect(user).to be_valid
