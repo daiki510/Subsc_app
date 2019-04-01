@@ -22,26 +22,26 @@ end
     name: "test",
     email: "test@test.com",
     admin: true,
-    password:  "000000",
-    password_confirmation:  "000000"
+    password: ENV['TEST_PASSWORD'],
+    password_confirmation: ENV['TEST_PASSWORD']
   )
 end
 
-10.times do |i|
+1.times do |i|
   User.create(
-    name: "admin-#{i}",
-    email: "admin-#{i}@admin.com",
+    name: "daiki",
+    email: ENV['GMAIL'],
     admin: true,
-    password:  "000000",
-    password_confirmation:  "000000"
+    password: ENV['TEST_PASSWORD'],
+    password_confirmation:  ENV['TEST_PASSWORD']
   )
 end
 
-50.times do |i|
-  User.create(
-    name: "user-#{i}",
-    email: "user-#{i}@user.com",
-    password:  "000000",
-    password_confirmation:  "000000"
-  )
-end
+# 50.times do |i|
+#   User.create(
+#     name: "user-#{i}",
+#     email: "user-#{i}@user.com",
+#     password:  "000000",
+#     password_confirmation:  "000000"
+#   )
+# end
