@@ -7,6 +7,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # バリデーション
+  validates :name, presence: true, length: {maximum: 30}
+
   #アソシエーション
   has_many :contacts, dependent: :destroy
 
