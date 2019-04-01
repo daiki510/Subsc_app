@@ -1,3 +1,12 @@
-Contact#contact_mail
+お問い合わせがありました。
+下記の内容を確認してください。
 
-<%= @contact %>, find me in app/views/contact_mailer/contact_mail.text.erb
+----------------------------------------------------------------------
+ユーザー: id <%= @contact.user_id %>
+返信先メールアドレス: <%= @contact.email %> 
+
+タイトル: <%= @contact.title %> 
+
+内容
+<%= @contact.message %>
+----------------------------------------------------------------------

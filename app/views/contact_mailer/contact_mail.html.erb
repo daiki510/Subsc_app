@@ -2,10 +2,13 @@
 <p>下記の内容を確認してください。</p>
 <br>
 ----------------------------------------------------------------------
-<p><strong>返信先メールアドレス:</strong> <%= @contact.email %><p> 
+<p><strong>ユーザー:</strong> id <%= @contact.user_id %></p>
+<p><strong>返信先メールアドレス:</strong> <%= @contact.email %></p> 
 
-<p><strong>タイトル:</strong> <%= @contact.title %><p> 
+<p><strong>タイトル:</strong> <%= @contact.title %></p> 
 
-<p><strong>内容</strong><br>
-<%= @contact.message %></p>
+<p>
+  <strong>内容</strong><br>
+  <%= @contact.message %>
+</p>
 ----------------------------------------------------------------------
