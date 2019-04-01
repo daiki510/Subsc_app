@@ -18,7 +18,8 @@
 
     <div class="field">
       <%= f.label :notification_status %>
-      <%= f.select :notification_status, User.notification_statuses.map { |k, v| [t("enums.user.notification_status.#{k}"), v] }, class: "form-control w-25 mb-2" %>
+      <%# 通知頻度を日本語で選べるようにする %>
+      <%= f.select :notification_status, User.notification_statuses.keys { |k, v| [t("enums.user.notification_status.#{k}"), v] }, class: "form-control w-25 mb-2" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
