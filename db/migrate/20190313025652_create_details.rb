@@ -4,7 +4,7 @@ class CreateDetails < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.references :subscription, foreign_key: true
       t.integer :charge, default: "", null: false
-      t.date :due_date, default: "", null: false
+      t.integer :due_date, default: "", null: false
       t.string :payment_type, default: "", null: false
       t.text :note, default: "", null: false
 

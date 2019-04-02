@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_054955) do
     t.bigint "user_id"
     t.bigint "subscription_id"
     t.integer "charge", null: false
-    t.string "due_date", null: false
+    t.integer "due_date", null: false
     t.string "payment_type", default: "", null: false
     t.text "note", default: "", null: false
     t.datetime "created_at", null: false
