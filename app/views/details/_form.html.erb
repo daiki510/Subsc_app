@@ -29,7 +29,7 @@
       <div class="form-item">
         <span class="text-danger">*</span>
         <%= f.label :due_date %>
-        <%= f.select :due_date, (1..31).map{|i| "#{i}日"}, class: "form-control w-50" %>
+        毎月<%= f.select :due_date, (1..31).map, class: "form-control w-50" %>日
       </div>
       <div class="form-item my-3">
         <%= f.label :payment_type %>
