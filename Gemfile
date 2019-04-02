@@ -47,6 +47,7 @@ gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 gem 'whenever', require: false
 
 group :development, :test do
+  # デバッグ関連
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
   gem 'better_errors'
@@ -58,15 +59,6 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
 
-  #Rspec
-  gem "rspec-rails"
-  gem 'spring-commands-rspec'
-  gem "factory_bot_rails"
-  gem 'capybara', '>= 2.15'
-  gem 'faker'
-  gem "database_cleaner"
-  gem "launchy"
-  gem 'selenium-webdriver'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
@@ -74,11 +66,20 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  # メール確認用
   gem 'letter_opener_web'
 end
 
 group :test do
+  # Rspecに必要なgem
+  gem "rspec-rails"
+  gem 'spring-commands-rspec'
+  gem "factory_bot_rails"
+  gem 'capybara', '>= 2.15'
   gem 'chromedriver-helper'
+  gem "database_cleaner"
+  gem "launchy"
+  gem 'selenium-webdriver'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

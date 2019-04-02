@@ -154,8 +154,6 @@ GEM
     factory_bot_rails (4.11.1)
       factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
-    faker (1.9.1)
-      i18n (>= 0.7)
     ffi (1.10.0)
     fog-aws (3.3.0)
       fog-core (~> 2.1)
@@ -432,7 +430,6 @@ DEPENDENCIES
   dotenv-rails
   ed25519 (>= 1.2, < 2.0)
   factory_bot_rails
-  faker
   fog-aws
   jbuilder (~> 2.5)
   launchy
