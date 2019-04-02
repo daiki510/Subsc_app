@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @subscriptions = @subscriptions.page(params[:page]).per(PER)
 
     #詳細情報の未登録がある場合は、警告メッセージ表示
-    flash[:alert] = "詳細情報が未登録のサブスクリプションがあります" if check_not_register?(@subscriptions,@details)
+    flash.now[:alert] = "詳細情報が未登録のサブスクリプションがあります" if check_not_register?(@subscriptions,@details)
   end
 
   private
