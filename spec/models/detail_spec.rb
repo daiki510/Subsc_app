@@ -43,4 +43,10 @@ RSpec.describe Detail, type: :model do
     detail.valid?
     expect(detail.errors[:note]).to include("は255文字以内で入力してください")
   end
+  # 料金が6桁以上なら無効な状態であること
+  it "is invalid with charge which has 6 figure or more figures" do
+    detail = FactoryBot.build(:detail1, charge: 10000*10000, user: @user1, subscription: @subscription )
+    detail.valid?
+    expect(detail.errors[:charge]).to include("は1000000より小さい値にしてください")
+  end
 end
