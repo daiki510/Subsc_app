@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Subscription, type: :model do
   before do
-    @subscription1 = FactoryBot.create(:subscription1)
     @subscription2 = FactoryBot.create(:subscription2)
   end
   # factory_botが有効かどうかを検査。
