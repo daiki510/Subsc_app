@@ -62,9 +62,11 @@ https://docs.google.com/spreadsheets/d/1kWLZ5_rrjU3MG7BgFCa_ZDRlWnGTrGcJVC5ldbRV
 ## 使用予定Gem
 - devise
 - omniauth
+- whenever
 - line_bot_app
 - activerecord-import
 - order_as_specified
-- will_paginate
+- rails_autolink
+- kaminari
 - carrierwave
 - mini_magick
