@@ -26,8 +26,7 @@ gem 'fog-aws'
 gem 'aws-sdk-s3'
 
 #ページネーション
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'kaminari'
 
 #フロントエンド関連
 gem 'bootstrap'
