@@ -24,7 +24,6 @@
       <% end %>
     </div>
 
-    <%# 要リファクタリング %>
     <div class="mb-4 pb-2 border-bottom">
       <%= link_to '人気順', subscriptions_path(sort_with_rank: "true"), class: "btn btn-outline-secondary #{params[:sort_with_rank] ? 'disabled' : ''}" %>
       <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_name] ? 'disabled' : ''}" %>
