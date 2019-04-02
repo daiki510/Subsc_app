@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     @details = @user.details
     @subscriptions = @user.added_subscriptions
 
+    #詳細情報の未登録がある場合は、警告メッセージ表示
+    if only_has_no_detail(@subscriptions, @details).present?
+      flash.now[:alert] = "詳細情報が未登録のサブスクリプションがあります" 
+    end
+
     #検索機能
     @subscriptions = @subscriptions.where(['name LIKE ?', "%#{params[:search]}%"]) if params[:search]
 
@@ -19,9 +24,6 @@ class UsersController < ApplicationController
     
     #ページネーション
     @subscriptions = @subscriptions.page(params[:page]).per(PER)
-
-    #詳細情報の未登録がある場合は、警告メッセージ表示
-    flash.now[:alert] = "詳細情報が未登録のサブスクリプションがあります" if check_not_register?(@subscriptions,@details)
   end
 
   private
@@ -43,10 +45,5 @@ class UsersController < ApplicationController
   def sort_date(details)
     detail_ids = details.order(due_date: :asc).map {|detail| detail.subscription_id}
     Subscription.find(detail_ids).sort_by{ |o| detail_ids.index(o.id)}
-  end
-
-  #詳細情報の未登録があるかどうか
-  def check_not_register?(subscriptions,details)
-    (subscriptions.pluck(:subscription_id) - details.pluck(:subscription_id)).present?
   end
 end
