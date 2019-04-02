@@ -2,6 +2,7 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :required_admin, only: [:edit, :update, :destroy]
+  PER = 10
 
   def index  
     @subscriptions = Subscription.where(status: 0)
@@ -19,7 +20,7 @@ class SubscriptionsController < ApplicationController
     @subscriptions = Subscription.sort_with_rank if params[:sort_with_rank] #人気順
    
     #ページネーション
-    @subscriptions = @subscriptions.paginate(page: params[:page], per_page: 10)
+    @subscriptions = @subscriptions.page(params[:page]).per(PER)
   end
 
   def new

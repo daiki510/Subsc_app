@@ -43,8 +43,8 @@
       <%= link_to '未登録のみ', user_path(sort_not_has_detail: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_not_has_detail] ? 'disabled' : ''}" %>
     </div>
 
+    <%= paginate @subscriptions %>
     <table class="table table-hover mt-3">
-      <%= will_paginate @subscriptions,:previous_label => ' &lt 前へ', :next_label => '次へ &gt', :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer %>
       <tr>
         <th id="name">名前</th>
         <th id="icon">アイコン</th>

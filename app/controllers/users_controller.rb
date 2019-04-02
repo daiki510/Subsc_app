@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:show]
+  PER = 10
 
   def show
     @user = User.find(params[:id])
-    @subscriptions = @user.added_subscriptions
     @details = @user.details
+    @subscriptions = @user.added_subscriptions
+
     #検索機能
     @subscriptions = @subscriptions.where(['name LIKE ?', "%#{params[:search]}%"]) if params[:search]
 
@@ -15,10 +17,11 @@ class UsersController < ApplicationController
     
     # @detail_ids = @details.order(charge: :desc).pluck(:subscription_id)
     @subscriptions = sort_charge(@details) if params[:sort_charge] #利用料金順
+    # raise
     @subscriptions = sort_date(@details) if params[:sort_date] #支払日順
     
     #ページネーション
-    @subscriptions = @subscriptions.paginate(page: params[:page], per_page: 10)
+    @subscriptions = @subscriptions.page(params[:page]).per(PER)
 
     #詳細情報の未登録がある場合は、警告メッセージ表示
     flash[:alert] = "詳細情報が未登録のサブスクリプションがあります" if check_not_register?(@subscriptions,@details)

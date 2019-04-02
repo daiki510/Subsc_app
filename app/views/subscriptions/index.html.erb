@@ -31,8 +31,8 @@
       <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_status] ? 'disabled' : ''}" %>
     </div>
 
+    <%= paginate @subscriptions %>
     <table class="table table-hover">
-      <%= will_paginate @subscriptions,:previous_label => ' &lt 前へ', :next_label => '次へ &gt', :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer %>
       <tr>
         <th id="icon">アイコン</th>
         <th id="name">名前</th>
