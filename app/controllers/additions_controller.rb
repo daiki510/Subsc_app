@@ -1,7 +1,8 @@
 class AdditionsController < ApplicationController
   def create
     @addition = current_user.additions.create(subscription_id: params[:subscription_id])
-    redirect_to subscriptions_path, notice: "「#{@addition.subscription.name}」を追加しました"
+    head :no_content
+    # redirect_to subscriptions_path, notice: "「#{@addition.subscription.name}」を追加しました"
   end
 
   def destroy

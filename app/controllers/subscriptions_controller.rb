@@ -55,7 +55,8 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription.destroy
-    redirect_to subscriptions_path, notice: "「#{@subscription.name}」を削除しました"
+    head :no_content
+    # redirect_to subscriptions_path, notice: "「#{@subscription.name}」を削除しました"
   end
 
   private
