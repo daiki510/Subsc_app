@@ -68,11 +68,9 @@
           </td>
           <%# 追加or解除ボタン %>
           <td>
-            <% if current_user.already_added?(subscription) %>
-              <%= button_to '解除', subscription_addition_path(subscription, id: current_user.id), method: :delete, remote: true, class: "btn btn-light" %>
-            <% else %>
-              <%= button_to '追加', subscription_additions_path(subscription), remote: true, class: "btn btn-secondary" %>
-            <% end %>
+            <div id="add_buttons_<%= subscription.id %>">
+              <%= render partial: 'additions/addition', locals: { subscription: subscription} %>
+            </div>
           </td>
           <td>
             <%= link_to '詳細', subscription_path(subscription.id) ,class: "btn btn-info mr-2" %>
