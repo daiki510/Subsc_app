@@ -55,6 +55,7 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription.destroy
+    #Ajax対応
     head :no_content
     # redirect_to subscriptions_path, notice: "「#{@subscription.name}」を削除しました"
   end
@@ -73,30 +74,5 @@ class SubscriptionsController < ApplicationController
     subsc_user_count = self.joins(:additions).group(:subscription_id).count
     subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
     self.where(id: subsc_user_ids).order_as_specified(id: subsc_user_ids)
-    # subscriptions = Subscription.find(subsc_user_ids).sort_by{ |o| subsc_user_ids.index(o.id)}
   end
-
-  # def rank
-  #   subsc_user_count = Subscription.joins(:additions).group(:subscription_id).count
-  #   subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
-  #   Subscription.where(id: subsc_user_ids).order_by_ids(subsc_user_ids).map(&:id) 
-  #   # Subscription.find(subsc_user_ids).sort_by{ |o| subsc_user_ids.index(o.id)}
-  #   # raise
-  #   # Subscription.where(id: subsc_user_ids).order_as_specified(id: subsc_user_ids)
-  #   # Subscription.where(id: subscriptions.map{ |subscription| subscription.id })
-  # end
-
-  # def order_by_ids(ids)
-  #   order_by = ["case"]
-  #   ids.each_with_index.map do |id, index|
-  #     order_by << "WHEN id='#{id}' THEN #{index}"
-  #   end
-  #   order_by << "end"
-  #   order(order_by.join(" "))
-  # end
-
-  # def rank
-  #   subscriptions =Subscription.joins(:additions).select('subscriptions.id, count(additions.id) as additions_count').group(:id).order('additions_count desc')
-  #   raise
-  # end
 end
