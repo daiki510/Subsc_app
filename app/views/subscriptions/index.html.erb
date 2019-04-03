@@ -61,11 +61,7 @@
           <%# 利用者数 %>
           <td class="text-center"><%= subscription.additions.count %></td>
           <%# 利用状況 %>
-          <td>
-            <% if current_user.already_added?(subscription) %>
-              利用中
-            <% end %>
-          </td>
+          <td class="add_status_<%= subscription.id %>"></td>
           <%# 追加or解除ボタン %>
           <td>
             <div id="add_buttons_<%= subscription.id %>">
