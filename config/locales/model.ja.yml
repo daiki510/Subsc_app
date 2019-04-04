@@ -39,7 +39,7 @@ ja:
         updated_at: "更新日時"
         notification_status: "通知頻度"
       category:
-        name: カテゴリー名
+        name: "カテゴリー名"
         created_at: "作成日時"
         updated_at: "更新日時"
       addition:
@@ -60,7 +60,6 @@ ja:
   enums:
     user:
       notification_status:
-        off: 'オフ'
-        one: '月1'
-        two: '月2'
-      
+        notifications_off: "オフ"
+        notifications_one: "月１"
+        notifications_two: "月２"

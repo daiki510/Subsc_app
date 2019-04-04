@@ -35,6 +35,7 @@ gem 'bootstrap'
 gem 'rails_autolink'
 gem 'order_as_specified'
 gem 'dotenv-rails'
+gem 'enum_help'
 
 #AWS関連
 gem 'unicorn'
@@ -67,6 +68,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # メール確認用
   gem 'letter_opener_web'
+  gem 'rb-readline'
 end
 
 group :test do
