@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google]
 
   # バリデーション
   validates :name, presence: true, length: {maximum: 30}
@@ -38,5 +38,20 @@ class User < ApplicationRecord
     else
       User.all
     end
+  end
+
+  def self.from_omniauth(auth)
+    user = User.find_by(email: auth.info.email)
+
+    unless user
+      user = User.new(email: auth.info.email,
+                      provider: auth.provider,
+                      uid:      auth.uid,
+                      name:     auth.info.name,
+                      password: Devise.friendly_token[0, 20]
+                    )
+    end
+    user.save
+    user
   end
 end

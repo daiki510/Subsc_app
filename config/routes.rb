@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   #ユーザー関連
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
   resources :users, only: [:show]
   

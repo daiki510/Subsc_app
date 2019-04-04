@@ -18,6 +18,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'rails_admin', '~> 1.3'
 gem 'cancancan'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
 
 #画像アップロード用
 gem 'carrierwave'
