@@ -1,3 +1,42 @@
 // Place all the styles related to the subscriptions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// ================================================================
+// アイコン
+// ================================================================
+
+#icon_field {
+  font-size: 15px;
+  margin-top: 10px;
+  padding: 5px 8px;
+  border: solid 1px rgb(206, 205, 205);
+  color: #666;
+  position: relative;
+  padding: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+}
+
+#icon_field:hover {
+  background-color: rgb(122, 122, 122);
+  transition: 0.3s ease;
+  opacity: 0.9;
+  border: none;
+}
+
+#icon_field .caption {
+  font-size: １em;
+  text-align: center;
+  padding-top: 35px;
+  color: #fff;
+}
