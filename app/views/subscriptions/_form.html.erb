@@ -44,9 +44,9 @@
         <%= f.label :summary %>
         <%= f.text_area :summary ,class: "form-control w-50" ,rows: 5 %>
       </div>
-      <div class="form-item my-2 checkbox-inline">
-        <%= f.label :category_ids, 'カテゴリー'%>
-        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, prompt: true %>
+      <div class="form-check my-2 checkbox-inline">
+        <%= f.label :category_ids, 'カテゴリー', class: "form-check-label"%>
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, prompt: true , class: "form-check-input"%>
       </div>
       <div class="button-panel">
         <%= f.submit class: "btn btn-primary my-2" %>
