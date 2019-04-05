@@ -18,15 +18,15 @@ class SubscriptionsController < ApplicationController
     @subscriptions = @subscriptions.sort_name if params[:sort_name] #名前順
     @subscriptions = current_user.added_subscriptions if params[:sort_status] #利用中のみ
     @subscriptions = Subscription.sort_with_rank if params[:sort_with_rank] #人気順
-   
-    #ページネーション
-    @subscriptions = @subscriptions.page(params[:page]).per(PER)
-
+    
     #CSV出力
     respond_to do |format|
       format.html
       format.csv { send_data @subscriptions.generate_csv, filename: "subscription-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
     end
+
+    #ページネーション
+    @subscriptions = @subscriptions.page(params[:page]).per(PER)
   end
 
   def new
