@@ -2,11 +2,7 @@
   <div class="index-box">
     <%= link_to 'サブスク新規登録', new_subscription_path, class: "btn btn-primary my-3" %>
     <% if current_user.admin? %>
-      <%= link_to 'CSVエクスポート', subscriptions_path(format: :csv), class: "btn btn-success my-3 ml-2" %>
-      <%= form_tag import_subscriptions_path, multipart: true do %>
-        <%= file_field_tag :file %>
-        <%= submit_tag "CSVインポート", class: "btn btn-info" %>
-      <% end %>
+      <%= render 'csv' %>
     <% end %>
 
     <div class="card mb-4">
