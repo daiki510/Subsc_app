@@ -92,7 +92,7 @@ Rails.application.configure do
 
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: '13.115.66.205' }
+  config.action_mailer.default_url_options = { host: 'subsc-app.tk' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['GMAIL_USERNAME'],
