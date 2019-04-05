@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'subscriptions#index'
+  # get 'home/top'
+  root 'home#top'
 
   #ユーザー関連
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
