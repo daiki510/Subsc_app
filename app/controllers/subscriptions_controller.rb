@@ -21,6 +21,12 @@ class SubscriptionsController < ApplicationController
    
     #ページネーション
     @subscriptions = @subscriptions.page(params[:page]).per(PER)
+
+    #CSV出力
+    respond_to do |format|
+      format.html
+      format.csv { send_data @subscriptions.generate_csv, filename: "subscription-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+    end
   end
 
   def new

@@ -42,4 +42,18 @@ class Subscription < ApplicationRecord
     subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
     self.where(id: subsc_user_ids).order_as_specified(id: subsc_user_ids)
   end
+
+  #CSV出力
+  def self.csv_attributes
+    ["name", "summary", "link", "created_at", "updated_at"]
+  end
+
+  def self.generate_csv
+    CSV.generate(headers: true) do |csv|
+      csv << csv_attributes
+      all.each do |subscription|
+        csv << csv_attributes.map {|attr| subscription.send(attr)}
+      end
+    end
+  end
 end
