@@ -25,21 +25,21 @@
         <%= f.label :name %>
         <%= f.text_field :name, class: "form-control w-100" %>
       </div>
+
       <div class="form-item mb-2">
         <%= f.label :icon %>
-          <div id="icon_field" onClick="$('#file').click()" >
-            <div class="mask">
-              <div class="caption">画像を選択</div>
-            </div>
-            <% if @subscription.icon? %>
-              <div class="thumbnail">
-                <%= image_tag @subscription.icon.url %>
-              </div>
-            <% end %>
+        <div id="icon_field" onClick="$('#file').click()" >
+          <% if @subscription.icon.url.present? %>
+            <%= image_tag(@subscription.icon.url) %>
+          <% end %>
+          <div class="mask">
+            <div class="caption">画像を選択</div>
           </div>
-        <%= f.file_field :icon, class: "icon", style: "display:none;", id: "file"%>
+        </div>
+        <%= f.file_field :icon, class: "icon", style: "display:none;", id: "file" %>
         <%= f.hidden_field :icon_cache %>
       </div>
+
       <div class="form-item mb-2">
         <%= f.label :link %>
         <%= f.text_field :link ,class: "form-control w-100" %> 

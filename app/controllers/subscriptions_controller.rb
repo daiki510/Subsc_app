@@ -26,7 +26,7 @@ class SubscriptionsController < ApplicationController
     end
 
     #ページネーション
-    @subscriptions = @subscriptions.page(params[:page]).per(PER)
+    @subscriptions = @subscriptions.page(params[:page]).per(PER).sort_name
   end
 
   def new
