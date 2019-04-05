@@ -43,7 +43,7 @@ class Subscription < ApplicationRecord
     self.where(id: subsc_user_ids).order_as_specified(id: subsc_user_ids)
   end
 
-  #CSV出力
+  #CSVエクスポート
   def self.csv_attributes
     ["name", "summary", "link", "created_at", "updated_at"]
   end
@@ -54,6 +54,15 @@ class Subscription < ApplicationRecord
       all.each do |subscription|
         csv << csv_attributes.map {|attr| subscription.send(attr)}
       end
+    end
+  end
+
+  #CSVインポート
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      subscription = Subscription.new
+      subscription.attributes = row.to_hash.slice(*csv_attributes)
+      subscription.save!
     end
   end
 end

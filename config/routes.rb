@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   #サブスクリプション
   resources :subscriptions do
     resources :additions, only: [:create, :destroy]
+    post :import, on: :collection
   end
   resources :details
 
