@@ -19,6 +19,10 @@
 // ======================================================================
 // 共通項目
 // ======================================================================
+
+// theme-color : #50bfa4;
+// hover: #32a789;
+
 .container {
   min-height: 100vh;
 }
@@ -31,12 +35,12 @@
 }
 
 .btn-primary {
-  background-color: #51cbce;
+  background-color: #50bfa4;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #25b2b4;
+  background-color: #32a789;
   border: none;
 }
 
@@ -80,6 +84,18 @@
   border: none;
 }
 
+.btn-google {
+  color: #fff;
+  background-color: #eb6036;
+  border-color: #eb6036;
+}
+
+.btn-google:hover {
+  color: #fff;
+  background-color: #e4400f;
+  border-color: #e4400f;
+}
+
 // ======================================================================
 // バッジ
 // ======================================================================
@@ -89,12 +105,12 @@
 }
 
 .badge-primary {
-  background-color: #41cdcf;
+  background-color: #50bfa4;
   border: none;
 }
 
 a.badge-primary:hover {
-  background-color: #0ba7aa;
+  background-color: #32a789;
   border: none;
 }
 
@@ -110,11 +126,11 @@ a.badge-primary:hover {
   border-radius: 2em;
   margin-right: 5px;
   text-align: center;
-  color: #25b2b4;
+  color: #50bfa4;
 }
 
 .page-item.active .page-link {
-  background-color: #25b2b4;
-  border-color: #25b2b4;
+  background-color: #50bfa4;
+  border-color: #50bfa4;
   color: #fff;
 }
