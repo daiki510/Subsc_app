@@ -22,3 +22,78 @@
 .container {
   min-height: 100vh;
 }
+
+// ======================================================================
+// ボタン
+// ======================================================================
+.btn {
+  border-radius: 0.70rem;
+}
+
+.btn-primary {
+  background-color: #51cbce;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #25b2b4;
+  border: none;
+}
+
+.btn-info {
+  background-color: #51bcda;
+  border: none;
+}
+
+.btn-info:hover {
+  background-color: #109092;
+  border: none;
+}
+
+.btn-success {
+  background-color: #6bd098;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #33a566;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #f5593d;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #dd3c20;
+  border: none;
+}
+
+.btn-warning {
+  background-color: #fbc658;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #e0a020;
+  border: none;
+}
+
+// ======================================================================
+// バッジ
+// ======================================================================
+
+.badge {
+  border-radius: 0.60rem;
+}
+
+.badge-primary {
+  background-color: #41cdcf;
+  border: none;
+}
+
+a.badge-primary:hover {
+  background-color: #0ba7aa;
+  border: none;
+}
