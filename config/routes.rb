@@ -18,5 +18,4 @@ Rails.application.routes.draw do
 
   #問い合わせ
   resources :contacts, only: [:new, :create]
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

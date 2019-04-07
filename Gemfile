@@ -68,8 +68,6 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  # メール確認用
-  gem 'letter_opener_web'
   gem 'rb-readline'
 end
 
