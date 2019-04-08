@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require rails-ujs
+//= require popper
 //= require bootstrap
 //= require activestorage
 //= require turbolinks
@@ -37,5 +38,12 @@ $(function () {
       };
     })(file);
     reader.readAsDataURL(file);
+  });
+});
+
+// ポップオーバー
+$(function () {
+  $('.detail-info').popover({
+    trigger: 'hover',
   });
 });
