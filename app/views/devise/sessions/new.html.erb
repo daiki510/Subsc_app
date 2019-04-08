@@ -26,7 +26,9 @@
           <%= f.submit "ログイン", class: "btn btn-primary my-3" %>
         </div>
         <div class="actions">
-          <%= link_to 'Googleログイン', user_google_omniauth_authorize_path, class: "btn btn-google my-1" %>
+          <%= link_to user_google_omniauth_authorize_path, class: "btn btn-google my-1" do %>
+            <span><%= fa_icon "google" %>　Googleログイン</span>
+          <% end %>
         </div>
 
       <% end %>
