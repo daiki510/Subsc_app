@@ -62,7 +62,6 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription.destroy
     head :no_content
-    # redirect_to subscriptions_path, notice: "「#{@subscription.name}」を削除しました"
   end
 
   #CSVインポート
@@ -78,9 +77,12 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_params
-    params.require(:subscription).permit(:name, :icon, :icon_cache, :link, :summary, :status, { category_ids: [] })
+    params.require(:subscription).permit(
+      :name, :icon, :icon_cache, :link, :summary, :status, { category_ids: [] }
+      )
   end
 
+  #利用者数順にソート
   def rank(subsc_user_ids)
     subsc_user_count = self.joins(:additions).group(:subscription_id).count
     subsc_user_ids = Hash[subsc_user_count.sort_by{ |_, v| -v }].keys
