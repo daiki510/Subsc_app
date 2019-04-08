@@ -1,0 +1,22 @@
+<h1 class="mb-5">ユーザー詳細画面</h1>
+<table class="table table-hover w-50 mb-5">
+  <tr>
+    <td>ID</td>
+    <td><%= @user.id %></td>
+  </tr>
+  <tr>
+    <td>名前</td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td>メールアドレス</td>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td>通知頻度</td>
+    <td><%= @user.notification_status_i18n %></td>
+  </tr>
+</table>
+<div class="form-footer mb-5">
+  <%= link_to "編集", edit_user_registration_path, class: "btn btn-success mr-3" %>
+</div>
