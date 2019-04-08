@@ -451,6 +451,8 @@ DEPENDENCIES
   fog-aws
   font-awesome-sass (~> 5.8.1)
   jbuilder (~> 2.5)
+  jquery-rails
+  jquery-ui-rails
   kaminari
   launchy
   listen (>= 3.0.5, < 3.2)

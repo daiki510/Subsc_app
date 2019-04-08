@@ -32,6 +32,8 @@ gem 'kaminari'
 
 #フロントエンド関連
 gem 'bootstrap'
+gem 'jquery-rails' 
+gem 'jquery-ui-rails'
 gem 'font-awesome-sass', '~> 5.8.1'
 
 #ツール系
