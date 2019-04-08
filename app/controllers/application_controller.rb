@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
     user_path(resource)
   end
 
+  def after_sign_out_path_for(resource)
+    flash[:alert] = "ログアウトしました"
+    root_path
+  end
+
   def required_admin
     unless current_user.admin?
       redirect_to user_path(current_user.id),notice: "権限がありません"

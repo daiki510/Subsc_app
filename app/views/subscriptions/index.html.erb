@@ -1,6 +1,8 @@
 <div class="container">
-  <%= link_to 'サブスク新規登録', new_subscription_path, class: "btn btn-primary my-3" %>
-  <% if current_user.admin? %>
+  <% if current_user %>
+    <%= link_to 'サブスク新規登録', new_subscription_path, class: "btn btn-primary my-3" %>
+  <% end %>
+  <% if current_user.try(:admin?) %>
     <%= render 'csv' %>
   <% end %>
 
@@ -29,12 +31,18 @@
   <div class="mb-4 pb-2 border-bottom">
     <%= link_to '人気順', subscriptions_path(sort_with_rank: "true"), class: "btn btn-outline-secondary #{params[:sort_with_rank] ? 'disabled' : ''}" %>
     <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_name] ? 'disabled' : ''}" %>
-    <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_status] ? 'disabled' : ''}" %>
+    <% if current_user %>
+      <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_status] ? 'disabled' : ''}" %>
+    <% end %>
   </div>
 
   <div class="subscriptions">
     <%= paginate @subscriptions %>
-    <%= render 'index' %>
+    <% if current_user %>
+      <%= render 'index_with_login' %>
+    <% else %>
+      <%= render 'index_with_logout' %>
+    <% end %>
   </div>
 </div>
 
