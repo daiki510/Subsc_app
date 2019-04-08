@@ -30,7 +30,9 @@
       <%# 利用者数 %>
       <td class="text-center"><%= subscription.additions.count %></td>
       <td>
-        <%= link_to '詳細', subscription_path(subscription.id) ,class: "btn btn-info mr-2 disabled" %>
+        <%= link_to subscription_path(subscription.id) ,class: "btn btn-info mr-2 disabled" do %>
+          <%= fa_icon "info" %>
+        <% end %>
       </td>
     </tr>
   <% end %>

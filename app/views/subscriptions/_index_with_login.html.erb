@@ -40,16 +40,26 @@
       <%# 追加or解除ボタン %>
       <td>
         <% if current_user.already_added?(subscription) %>
-          <%= button_to '解除', subscription_addition_path(subscription, id: current_user.id), method: :delete, remote: true, class: "btn btn-light" %>
+          <%= button_to subscription_addition_path(subscription, id: current_user.id), method: :delete, remote: true, class: "btn btn-light" do %>
+            <%= fa_icon "minus" %>
+          <% end %>
         <% else %>
-          <%= button_to '追加', subscription_additions_path(subscription), remote: true, class: "btn btn-secondary" %>
+          <%= button_to subscription_additions_path(subscription), remote: true, class: "btn btn-secondary" do %>
+            <%= fa_icon "plus" %>
+          <% end %>
         <% end %>
       </td>
       <td>
-        <%= link_to '詳細', subscription_path(subscription.id) ,class: "btn btn-info mr-2" %>
+        <%= link_to subscription_path(subscription.id) ,class: "btn btn-info mr-2" do %>
+          <%= fa_icon "info" %>
+        <% end %>
         <% if current_user.admin? %>
-          <%= link_to '編集', edit_subscription_path(subscription.id) ,class: "btn btn-success mr-2" %>
-          <%= link_to '削除', subscription_path(subscription), method: :delete, remote: true, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger delete" %>
+          <%= link_to edit_subscription_path(subscription.id) ,class: "btn btn-success mr-2" do %>
+            <%= fa_icon "edit" %>
+          <% end %>
+          <%= link_to subscription_path(subscription), method: :delete, remote: true, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger delete" do %>
+            <%= fa_icon "trash" %>
+          <% end %>
         <% end %>
       </td>
     </tr>
