@@ -14,6 +14,7 @@
  *= require_self
  */
 @import "bootstrap";
+@import 'font-awesome-sprockets';
 @import "font-awesome";
 
 
@@ -26,6 +27,11 @@
 
 .container {
   min-height: 100vh;
+}
+
+.big {
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 // ======================================================================
