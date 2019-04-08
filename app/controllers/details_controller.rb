@@ -2,13 +2,8 @@ class DetailsController < ApplicationController
   before_action :set_detail, only: [:show, :edit]
   before_action :authenticate_user!
 
-  # def index
-  #   @details = Detail.all
-  # end
-
   def new
     @detail = Detail.new(subscription_id: params[:subscription_id])
-    # @subscription = Subscription.find_by(id: @detail.subscription_id)
   end
 
   def create
