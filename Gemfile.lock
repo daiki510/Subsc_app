@@ -447,6 +447,7 @@ DEPENDENCIES
   enum_help
   factory_bot_rails
   fog-aws
+  font-awesome-rails
   jbuilder (~> 2.5)
   kaminari
   launchy

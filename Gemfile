@@ -32,6 +32,7 @@ gem 'kaminari'
 
 #フロントエンド関連
 gem 'bootstrap'
+gem "font-awesome-rails"
 
 #ツール系
 gem 'rails_autolink'
