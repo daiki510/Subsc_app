@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table table-hover mt-3">
   <tr class="thead-light">
     <th id="icon">アイコン</th>
     <th id="name">名前</th>
@@ -7,6 +7,10 @@
     <th id="count">利用者数</th>
     <th id="menu"></th>
   </tr>
+
+  <% if @subscriptions.blank? %>
+    <tr>一致する結果はありません</tr>
+  <% end %>
 
   <% @subscriptions.each do |subscription| %>
     <tr>
