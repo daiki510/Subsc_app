@@ -42,16 +42,21 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     user = User.find_by(email: auth.info.email)
-
     unless user
-      user = User.new(email: auth.info.email,
-                      provider: auth.provider,
-                      uid:      auth.uid,
-                      name:     auth.info.name,
-                      password: Devise.friendly_token[0, 20]
-                    )
+      user = User.new(
+        email: auth.info.email,
+        provider: auth.provider,
+        uid:      auth.uid,
+        name:     auth.info.name,
+        password: Devise.friendly_token[0, 20]
+      )
     end
     user.save
     user
+  end
+
+  #新規登録時にuidカラムをランダムに自動生成
+  def self.create_unique_string
+    SecureRandom.uuid
   end
 end
