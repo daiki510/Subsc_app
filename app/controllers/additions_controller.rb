@@ -1,4 +1,6 @@
 class AdditionsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @addition = current_user.additions.create(subscription_id: params[:subscription_id])
     redirect_to subscriptions_path, notice: "「#{@addition.subscription.name}」を追加しました"
