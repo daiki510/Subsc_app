@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @subscriptions = current_user.added_subscriptions
 
     # 詳細情報の未登録がある場合は、警告メッセージ表示
-    flash.now[:alert] = '詳細情報が未登録のサブスクリプションがあります' if has_no_detail?(@subscriptions, @details)
+    flash.now[:alert] = '詳細情報が未登録のサブスクリプションがあります' if unregistered_detail?(@subscriptions, @details)
 
     # 検索機能
     @subscriptions = @subscriptions.search(params[:search]) if params[:search]
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   private
 
   # 未登録のサブスクリプションを抽出
-  def has_no_detail?(subscriptions, details)
+  def unregistered_detail?(subscriptions, details)
     (subscriptions.pluck(:id) - details.pluck(:subscription_id)).present?
   end
 
