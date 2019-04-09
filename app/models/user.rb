@@ -13,23 +13,15 @@ class User < ApplicationRecord
   # アソシエーション
   has_many :contacts, dependent: :destroy
 
-  has_many :s, dependent: :destroy
-  has_many :added_services, through: :s, source: :service
-
-  has_many :services, dependent: :destroy
-  has_many :subscripted_services, through: :services, source: :service
+  has_many :subscriptions, dependent: :destroy
+  has_many :services, through: :subscriptions, source: :service
 
   # enumの定義
   enum notification_status: { notifications_off: 0, notifications_one: 1, notifications_two: 2 }
 
   # スコープ
-  scope :search_with_category, ->(category_id) { where(id: category_ids = CategorySubsc.where(category_id: category_id).pluck(:service_id)) }
+  scope :search_with_category, ->(category_id) { where(id: category_ids = Categorizing.where(category_id: category_id).pluck(:service_id)) }
   scope :sort_name, -> { order(name: :asc) }
-
-  # 追加されたサブスクリプションかどうか
-  def already_added?(service)
-    s.exists?(service_id: service.id)
-  end
 
   # 検索メソッド
   def self.search(search)

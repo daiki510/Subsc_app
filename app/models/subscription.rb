@@ -1,13 +1,18 @@
-class Service < ApplicationRecord
+class Subscription < ApplicationRecord
   # バリデーション
   validates :charge, presence: true, length: { maximum: 10 }, numericality: { less_than: 1_000_000 }
   validates :due_date, presence: true, length: { maximum: 10 }
   validates :payment_type, length: { maximum: 20 }
   validates :note, length: { maximum: 255 }
+  validates :service_id, uniqueness: { scope: :user_id }
 
   # アソシエーション
   belongs_to :user
   belongs_to :service
 
-  validates :service_id, uniqueness: { scope: :user_id }
+  # 追加されたサブスクリプションかどうか
+  def already_added?(service)
+    subsc = Subscription.find(service_id: service.id)
+    subsc.present?
+  end
 end

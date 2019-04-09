@@ -29,17 +29,18 @@
           <%= link_to category.name, services_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
         <% end %>
       </td>
+      <td></td>
       <%# 利用者数 %>
-      <td class="text-center"><%= service.subscriptions.count %></td>
+      <%# <td class="text-center"><%= service.subscriptions.count %>
       <%# 利用状況 %>
       <td>
-        <% if current_user.already_added?(service) %>
-          利用中
-        <% end %>
+        <%# <% if current_user.already_added?(service) %> %>
+          <%# 利用中 %>
+        <%# <% end %> %>
       </td>
       <%# 追加or解除ボタン %>
       <td>
-        <% if current_user.already_added?(service) %>
+        <% if current_user %>
           <%= button_to subscription_path(service, id: current_user.id), method: :delete, remote: true, class: "btn btn-light" do %>
             <%= fa_icon "minus" %>
           <% end %>

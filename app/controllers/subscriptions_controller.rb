@@ -1,4 +1,4 @@
-class ServicesController < ApplicationController
+class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: %i[show edit]
   before_action :authenticate_user!
 

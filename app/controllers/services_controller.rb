@@ -58,6 +58,7 @@ class ServicesController < ApplicationController
 
   def destroy
     @service.destroy
+    # redirect_to services_path, notice: 'CSVをインポートしました'
     head :no_content
   end
 

@@ -3,8 +3,8 @@ class Service < ApplicationRecord
   extend OrderAsSpecified
 
   # アソシエーション
-  has_many :services, dependent: :destroy
-  has_many :subscripted_users, through: :services, source: :user
+  has_many :subscriptions, dependent: :destroy
+  has_many :users, through: :subscriptions, source: :user
 
   has_many :categorizings, dependent: :destroy
   has_many :categories, through: :categorizings, source: :category
@@ -21,7 +21,7 @@ class Service < ApplicationRecord
   enum status: { open: 0, secret: 9, development: 5 }
 
   # スコープ
-  scope :search_with_category, ->(category_id) { where(id: category_ids = CategorySubsc.where(category_id: category_id).pluck(:service_id)) }
+  scope :search_with_category, ->(category_id) { where(id: category_ids = Categorizing.where(category_id: category_id).pluck(:service_id)) }
   scope :sort_name, -> { order(name: :asc) }
 
   # 検索メソッド

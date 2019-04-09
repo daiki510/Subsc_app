@@ -28,7 +28,7 @@
         <% end %>
       </td>
       <%# 利用者数 %>
-      <td class="text-center"><%= service.subscripions.count %></td>
+      <%# <td class="text-center"><%= service.subscripions.count %>
       <td>
         <%= link_to service_path(service.id) ,class: "btn btn-info mr-2 disabled" do %>
           <%= fa_icon "info" %>
