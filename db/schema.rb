@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_054541) do
     t.text "link", default: "", null: false
   end
 
-  create_table "services", force: :cascade do |t|
+  create_table "subscriptions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "service_id"
     t.integer "charge", null: false
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 2019_04_04_054541) do
     t.text "note", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["service_id"], name: "index_services_on_service_id"
-    t.index ["user_id"], name: "index_services_on_user_id"
+    t.index ["service_id"], name: "index_subscriptions_on_service_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,6 +89,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_054541) do
   add_foreign_key "categorizings", "categories"
   add_foreign_key "categorizings", "services"
   add_foreign_key "contacts", "users"
-  add_foreign_key "services", "services"
-  add_foreign_key "services", "users"
+  add_foreign_key "subscriptions", "services"
+  add_foreign_key "subscriptions", "users"
 end

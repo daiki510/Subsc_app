@@ -1,6 +1,6 @@
-class CreateServices < ActiveRecord::Migration[5.2]
+class CreateSubscriptions < ActiveRecord::Migration[5.2]
   def change
-    create_table :services do |t|
+    create_table :subscriptions do |t|
       t.references :user, foreign_key: true
       t.references :service, foreign_key: true
       t.integer :charge, default: "", null: false
