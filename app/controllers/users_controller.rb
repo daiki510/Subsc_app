@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   PER_PAGE = 10
 
   def show
-    # @services = current_user.services
-    # @services = current_user.added_services
+    @services = current_user.subscriptions
+    # @subscription = current_user.added_services
 
     # # 詳細情報の未登録がある場合は、警告メッセージ表示
     # flash.now[:alert] = '詳細情報が未登録のサブスクリプションがあります' if unregistered_service?(@services, @services)
@@ -19,8 +19,8 @@ class UsersController < ApplicationController
     # @services = Kaminari.paginate_array(sort_charge(@services)) if params[:sort_charge] # 利用料金順
     # @services = Kaminari.paginate_array(sort_date(@services)) if params[:sort_date] # 支払日順
 
-    # # ページネーション
-    # @services = @services.page(params[:page]).per(PER_PAGE)
+    # ページネーション
+    @services = @services.page(params[:page]).per(PER_PAGE)
   end
 
   private

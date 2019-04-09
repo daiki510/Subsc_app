@@ -5,7 +5,11 @@ module SubscriptionsHelper
   end
 
   # 登録したサブスクリプションの合計件数を算出
-  def subsc_count(subscriptions)
-    subscriptions.map { |subscription| Subscription.find_by(service_id: subscription.id) }.count
+  def total_subscriptions(services)
+    services.count
+  end
+
+  def total_charge(user)
+    Subscription.where(user_id: user.id).sum(:charge)
   end
 end

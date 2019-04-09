@@ -9,7 +9,7 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(subscription_params)
     if @subscription.save
-      redirect_to user_path(current_user.id), notice: '詳細情報を登録しました'
+      redirect_to user_path(current_user.id), notice: 'サブスクリプションを登録しました'
     else
       render 'new'
     end
