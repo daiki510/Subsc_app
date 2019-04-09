@@ -1,68 +1,63 @@
-<table class="table table-hover mt-3">
-  <tr class="thead-light">
-    <th id="name">名前</th>
-    <th id="icon">アイコン</th>
-    <th id="summary">概要</th>
-    <th id="category">カテゴリー</th>
-    <th id="charge">利用料金</th>
-    <th id="due_date">支払日</th>
-    <th id="menu" colspan="3">メニュー</th>
-  </tr>
-
-  <% if @subscriptions.blank? %>
-    <tr>一致する結果はありません</tr>
-  <% end %>
-
+<div class="row">
   <% @subscriptions.each do |subscription| %>
-    <tr>
-      <td>
-        <%= subscription.name %>
-      </td>
-      <% if subscription.icon.present? %>
-        <td><%= image_tag subscription.icon.thumb.url %></td>
-      <% else %>
-        <td>No-Icon</td>
-      <% end %>
-      <td>
-        <%= subscription.summary %>
-      </td>
-      <td>
-        <% subscription.categories.each do |category|%>
-          <span class="badge badge-primary p-1 px-2"><%= category.name %></span>
-        <% end %>
-      </td>
+    <div class="col-12 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2 img-height">
+              <% if subscription.icon.present? %>
+                <%= image_tag subscription.icon.thumb.url %>
+              <% else %>
+                No-Icon
+              <% end %>
+            </div>
+            <div class="col-md-4 subsc-title">
+              <p>
+                <% subscription.categories.each do |category|%>
+                  <span class="badge badge-primary p-1 px-2"><%= category.name %></span>
+                <% end %>
+              </p>
+              <h5><%= subscription.name %></h5>
+            </div>
 
-      <% @detail = @details.find_by(subscription_id: subscription.id) %>
-      <% if @detail %>
-        <td>
-          <%= @detail.charge %>
-        </td>
-        <td>
-          <%= @detail.due_date %>日
-        </td>
-        <td>
-          <%= link_to detail_path(subscription_id: subscription.id), class: "btn btn-info mr-2" do %>
-            <%= fa_icon "info" %>
-          <% end %>
-          <%= link_to edit_detail_path(subscription_id: subscription.id) ,class: "btn btn-success mr-2" do %>
-            <%= fa_icon "pencil" %>
-          <% end %>
-          <%= link_to detail_path(@detail,back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" do %>
-            <%= fa_icon "minus" %>
-          <% end %>
-        </td>
-      <% else %>
-        <td>未登録</td>
-        <td>未登録</td>
-        <td>
-          <%= link_to new_detail_path(subscription_id: subscription.id), 'data-toggle' => "popover", 'data-content' => "詳細登録" ,'data-placement'=> "bottom" ,class: "detail-info btn btn-primary mr-2" do %>
-            <%= fa_icon "plus" %>
-          <% end %>
-          <%= link_to subscription_addition_path(subscription, id: current_user.id, back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" do %>
-            <%= fa_icon "minus" %>
-          <% end %>
-        </td>
-      <% end %>
-    </tr>
+            <% @detail = @details.find_by(subscription_id: subscription.id) %>
+            <% if @detail %>
+              <div class="col-md-2">
+                <%= @detail.charge %>
+              </div>
+              <div class="col-md-2">
+                <%= @detail.due_date %>日
+              </div>
+              <div class="col-md-2">
+                <%= link_to detail_path(subscription_id: subscription.id), class: "btn btn-info mr-2" do %>
+                  <%= fa_icon "info" %>
+                <% end %>
+                <%= link_to edit_detail_path(subscription_id: subscription.id) ,class: "btn btn-success mr-2" do %>
+                  <%= fa_icon "pencil" %>
+                <% end %>
+                <%= link_to detail_path(@detail,back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" do %>
+                  <%= fa_icon "minus" %>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="col-md-2">未登録</div>
+              <div class="col-md-2">未登録</div>
+              <div class="col-md-2">
+                <%= link_to new_detail_path(subscription_id: subscription.id), 'data-toggle' => "popover", 'data-content' => "詳細登録" ,'data-placement'=> "bottom" ,class: "detail-info btn btn-primary mr-2" do %>
+                  <%= fa_icon "plus" %>
+                <% end %>
+                <%= link_to subscription_addition_path(subscription, id: current_user.id, back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" do %>
+                  <%= fa_icon "minus" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <%# .card-body %>
+      </div>
+      <%# .card %>
+    </div>
+    <%# .col %>
   <% end %>
-</table>
+</div>
+<%# .row %>

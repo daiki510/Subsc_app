@@ -1,31 +1,31 @@
 <div class="container">
-  <div class="show-wrapper pb-5">
-    <%# ユーザー詳細 %>
-    <%= render 'user' %>
-
-    <h2 class="">サブスク一覧</h2>
-    <h4>合計利用料金：<%= total_charge(@user) %>円</h4>
-
-    <div class="my-4">
-      <%= form_tag(user_path, method: 'get',class: "form-inline w-50" ) do %>
-        <%= text_field_tag :search ,"",placeholder: "サブスクリプション名",class: "form-control"%>
-        <div class="input-group-append">
-          <%= submit_tag '検索', :name => nil, class: "btn btn-outline-secondary ml-2" %>
-          <%= link_to 'クリア', user_path, class: "btn btn-outline-secondary ml-2" %>
+  <div class="row">
+    <div class="col-md-12">
+      <%# 検索・ソート %>
+      <%= render 'search' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-4 counter">
+          <p>登録件数 <%= subsc_count(@subscriptions) %>件</p>
         </div>
-      <% end %>
+        <div class="col-md-6 col-md-offset-3">
+          <%= paginate @subscriptions %>
+        </div>
+      </div>
     </div>
-
-    <div class="mb-4 pb-2 border-bottom">
-      <%= link_to '名前順', user_path(sort_name: "true"), class: "btn btn-outline-secondary #{params[:sort_name] ? 'disabled' : ''}" %>
-      <%= link_to '利用料金順', user_path(sort_charge: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_charge] ? 'disabled' : ''}" %>
-      <%= link_to '支払日順', user_path(sort_date: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_date] ? 'disabled' : ''}" %>
-      <%= link_to '未登録のみ', user_path(sort_not_has_detail: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_not_has_detail] ? 'disabled' : ''}" %>
+  </div>
+  <div class="row">
+    <%# ユーザー詳細 %>
+    <div class="col-md-3">
+      <%= render 'user' %>
     </div>
-
-    <%= paginate @subscriptions %>
-    <p>登録件数 <%= subsc_count(@subscriptions) %>件</p>
     <%# サブスクリプション一覧 %>
-    <%= render 'subscriptions' %>
+    <div class="col-md-9">
+      <%= render 'subscriptions' %>
+    </div>
   </div>
 </div>
