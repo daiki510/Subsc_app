@@ -13,6 +13,6 @@
     <%= link_to '名前順', user_path(sort_name: "true"), class: "btn btn-outline-secondary #{params[:sort_name] ? 'disabled' : ''}" %>
     <%= link_to '利用料金順', user_path(sort_charge: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_charge] ? 'disabled' : ''}" %>
     <%= link_to '支払日順', user_path(sort_date: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_date] ? 'disabled' : ''}" %>
-    <%= link_to '未登録のみ', user_path(sort_not_has_detail: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_not_has_detail] ? 'disabled' : ''}" %>
+    <%= link_to '未登録のみ', user_path(sort_not_has_subscription: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_not_has_subscription] ? 'disabled' : ''}" %>
   </div>
 </div>

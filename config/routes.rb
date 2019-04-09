@@ -9,12 +9,11 @@ Rails.application.routes.draw do
   }
   resources :users, only: [:show]
   
-  #サブスクリプション
-  resources :subscriptions do
-    resources :additions, only: [:create, :destroy]
+  resources :services do
     post :import, on: :collection
   end
-  resources :details
+  
+  resources :subscriptions
 
   #問い合わせ
   resources :contacts, only: [:new, :create]

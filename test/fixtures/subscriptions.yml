@@ -2,7 +2,7 @@
 
 one:
   user: one
-  subscription: one
+  service: one
   charge: 1
   due_date: 2019-03-13
   payment_type: MyString
@@ -10,7 +10,7 @@ one:
 
 two:
   user: two
-  subscription: two
+  service: two
   charge: 1
   due_date: 2019-03-13
   payment_type: MyString

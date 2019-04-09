@@ -1,6 +1,6 @@
 <div class="container">
   <% if current_user %>
-    <%= link_to 'サブスク新規登録', new_subscription_path, class: "btn btn-primary my-3" %>
+    <%= link_to 'サブスク新規登録', new_service_path, class: "btn btn-primary my-3" %>
   <% end %>
   <% if current_user.try(:admin?) %>
     <%= render 'csv' %>
@@ -11,34 +11,34 @@
       <h5>カテゴリー</h5>
     </div>
     <div class="card-body">
-      <span><%= link_to 'All', subscriptions_path, class: "badge badge-light py-1 px-2" %></span>
+      <span><%= link_to 'All', services_path, class: "badge badge-light py-1 px-2" %></span>
       <% @categories.each do |category| %>
-        <span><%= link_to category.name, subscriptions_path(category_id: category.id), class: "badge badge-light py-1 px-2" %></span>
+        <span><%= link_to category.name, services_path(category_id: category.id), class: "badge badge-light py-1 px-2" %></span>
       <% end %>
     </div>
   </div>
 
   <div class="mb-4">
-    <%= form_tag(subscriptions_path, method: 'get',class: "form-inline w-50" ) do %>
+    <%= form_tag(services_path, method: 'get',class: "form-inline w-50" ) do %>
       <%= text_field_tag :search ,"",placeholder: "サブスクリプション名",class: "form-control"%>
       <div class="input-group-append">
         <%= submit_tag '検索', :name => nil, class: "btn btn-outline-secondary ml-2" %>
-        <%= link_to 'クリア', subscriptions_path, class: "btn btn-outline-secondary ml-2" %>
+        <%= link_to 'クリア', services_path, class: "btn btn-outline-secondary ml-2" %>
       </div>
     <% end %>
   </div>
 
   <div class="mb-4 pb-2 border-bottom">
-    <%= link_to '人気順', subscriptions_path(sort_with_rank: "true"), class: "btn btn-outline-secondary #{params[:sort_with_rank] ? 'disabled' : ''}" %>
-    <%= link_to '名前順', subscriptions_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_name] ? 'disabled' : ''}" %>
+    <%= link_to '人気順', services_path(sort_with_rank: "true"), class: "btn btn-outline-secondary #{params[:sort_with_rank] ? 'disabled' : ''}" %>
+    <%= link_to '名前順', services_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_name] ? 'disabled' : ''}" %>
     <% if current_user %>
-      <%= link_to '利用中のみ', subscriptions_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_status] ? 'disabled' : ''}" %>
+      <%= link_to '利用中のみ', services_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_status] ? 'disabled' : ''}" %>
     <% end %>
   </div>
 
-  <div class="subscriptions">
-    <p>件数: <%= total_subsc(@subscriptions) %>件</p>
-    <%= paginate @subscriptions %>
+  <div class="services">
+    <p>件数: <%= total_subsc(@services) %>件</p>
+    <%= paginate @services %>
     <% if current_user %>
       <%= render 'index_with_login' %>
     <% else %>

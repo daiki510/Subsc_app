@@ -10,9 +10,9 @@ describe 'サブスクリプション管理機能', type: :system do
       # 一般ユーザー2の作成
       user2 = FactoryBot.create(:user2)
       # 管理者がサブスクリプションを作成
-      FactoryBot.create(:subscription1)
+      FactoryBot.create(:service1)
       # 一般ユーザー1がサブスクリプションを作成
-      FactoryBot.create(:subscription2, status: 'secret')
+      FactoryBot.create(:service2, status: 'secret')
     end
 
     context 'ユーザー１がログインしている時' do

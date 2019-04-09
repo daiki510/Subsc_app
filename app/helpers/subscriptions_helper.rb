@@ -1,11 +1,11 @@
-module DetailsHelper
+module SubscriptionsHelper
   # 詳細登録画面に紐づいているサブスクリプション名を表示
-  def subsc_name(detail)
-    Subscription.find_by(id: detail.subscription_id).name
+  def subsc_name(subscription)
+    Subscription.find_by(id: subscription.service_id).name
   end
 
   # 登録したサブスクリプションの合計件数を算出
   def subsc_count(subscriptions)
-    subscriptions.map { |subscription| Detail.find_by(subscription_id: subscription.id) }.count
+    subscriptions.map { |subscription| Subscription.find_by(service_id: subscription.id) }.count
   end
 end

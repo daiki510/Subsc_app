@@ -12,7 +12,7 @@ Category.create([
   {name: '飲食'}
 ])
 20.times do |i|
-  Subscription.create(
+  Service.create(
     name: "サブスクリプション-#{i}",
     summary: "サマリー-#{i}"
   )

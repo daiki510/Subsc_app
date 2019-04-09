@@ -1,4 +1,4 @@
-class Subscription < ApplicationRecord
+class Service < ApplicationRecord
   # バリデーション
   validates :charge, presence: true, length: { maximum: 10 }, numericality: { less_than: 1_000_000 }
   validates :due_date, presence: true, length: { maximum: 10 }

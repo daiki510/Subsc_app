@@ -10,54 +10,54 @@
     <th id="menu" colspan="3">メニュー</th>
   </tr>
 
-  <% if @subscriptions.blank? %>
+  <% if @services.blank? %>
     <tr>一致する結果はありません</tr>
   <% end %>
 
-  <% @subscriptions.each do |subscription| %>
+  <% @services.each do |service| %>
     <tr>
-      <% if subscription.icon.present? %>
-        <td><%= image_tag subscription.icon.thumb.url %></td>
+      <% if service.icon.present? %>
+        <td><%= image_tag service.icon.thumb.url %></td>
       <% else %>
         <td>No-Icon</td>
       <% end %>
-      <td><%= subscription.name %></td>
-      <td><%= subscription.summary %></td>
+      <td><%= service.name %></td>
+      <td><%= service.summary %></td>
       <%# カテゴリー一覧 %>
       <td>
-        <% subscription.categories.each do |category|%>
-          <%= link_to category.name, subscriptions_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
+        <% service.categories.each do |category|%>
+          <%= link_to category.name, services_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
         <% end %>
       </td>
       <%# 利用者数 %>
-      <td class="text-center"><%= subscription.additions.count %></td>
+      <td class="text-center"><%= service.subscriptions.count %></td>
       <%# 利用状況 %>
       <td>
-        <% if current_user.already_added?(subscription) %>
+        <% if current_user.already_added?(service) %>
           利用中
         <% end %>
       </td>
       <%# 追加or解除ボタン %>
       <td>
-        <% if current_user.already_added?(subscription) %>
-          <%= button_to subscription_addition_path(subscription, id: current_user.id), method: :delete, remote: true, class: "btn btn-light" do %>
+        <% if current_user.already_added?(service) %>
+          <%= button_to subscription_path(service, id: current_user.id), method: :delete, remote: true, class: "btn btn-light" do %>
             <%= fa_icon "minus" %>
           <% end %>
         <% else %>
-          <%= button_to subscription_additions_path(subscription), remote: true, class: "btn btn-secondary" do %>
+          <%= button_to subscription_path(service), remote: true, class: "btn btn-secondary" do %>
             <%= fa_icon "plus" %>
           <% end %>
         <% end %>
       </td>
       <td>
-        <%= link_to subscription_path(subscription.id) ,class: "btn btn-info mr-2" do %>
+        <%= link_to service_path(service.id) ,class: "btn btn-info mr-2" do %>
           <%= fa_icon "info" %>
         <% end %>
         <% if current_user.admin? %>
-          <%= link_to edit_subscription_path(subscription.id) ,class: "btn btn-success mr-2" do %>
+          <%= link_to edit_service_path(service.id) ,class: "btn btn-success mr-2" do %>
             <%= fa_icon "pencil" %>
           <% end %>
-          <%= link_to subscription_path(subscription), method: :delete, remote: true, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger delete" do %>
+          <%= link_to service_path(service), method: :delete, remote: true, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger delete" do %>
             <%= fa_icon "trash" %>
           <% end %>
         <% end %>

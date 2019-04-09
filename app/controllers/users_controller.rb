@@ -4,41 +4,41 @@ class UsersController < ApplicationController
   PER_PAGE = 10
 
   def show
-    @details = current_user.details
-    @subscriptions = current_user.added_subscriptions
+    @services = current_user.services
+    @services = current_user.added_services
 
     # 詳細情報の未登録がある場合は、警告メッセージ表示
-    flash.now[:alert] = '詳細情報が未登録のサブスクリプションがあります' if unregistered_detail?(@subscriptions, @details)
+    flash.now[:alert] = '詳細情報が未登録のサブスクリプションがあります' if unregistered_service?(@services, @services)
 
     # 検索機能
-    @subscriptions = @subscriptions.search(params[:search]) if params[:search]
+    @services = @services.search(params[:search]) if params[:search]
 
     # ソート機能
-    @subscriptions = @subscriptions.order(name: :asc) if params[:sort_name] # 名前順
-    @subscriptions = only_has_no_detail(@subscriptions, @details) if params[:sort_not_has_detail] # 詳細未登録のみ
-    @subscriptions = Kaminari.paginate_array(sort_charge(@details)) if params[:sort_charge] # 利用料金順
-    @subscriptions = Kaminari.paginate_array(sort_date(@details)) if params[:sort_date] # 支払日順
+    @services = @services.order(name: :asc) if params[:sort_name] # 名前順
+    @services = only_has_no_service(@services, @services) if params[:sort_not_has_service] # 詳細未登録のみ
+    @services = Kaminari.paginate_array(sort_charge(@services)) if params[:sort_charge] # 利用料金順
+    @services = Kaminari.paginate_array(sort_date(@services)) if params[:sort_date] # 支払日順
 
     # ページネーション
-    @subscriptions = @subscriptions.page(params[:page]).per(PER_PAGE)
+    @services = @services.page(params[:page]).per(PER_PAGE)
   end
 
   private
 
   # 未登録のサブスクリプションを抽出
-  def unregistered_detail?(subscriptions, details)
-    (subscriptions.pluck(:id) - details.pluck(:subscription_id)).present?
+  def unregistered_service?(services, services)
+    (services.pluck(:id) - services.pluck(:service_id)).present?
   end
 
   # 料金順にソート(マイページ)
-  def sort_charge(details)
-    detail_ids = details.order(charge: :desc).map(&:subscription_id)
-    Subscription.find(detail_ids).sort_by { |o| detail_ids.index(o.id) }
+  def sort_charge(services)
+    service_ids = services.order(charge: :desc).map(&:service_id)
+    Service.find(service_ids).sort_by { |o| service_ids.index(o.id) }
   end
 
   # 支払順にソート(マイページ)
-  def sort_date(details)
-    detail_ids = details.order(due_date: :asc).map(&:subscription_id)
-    Subscription.find(detail_ids).sort_by { |o| detail_ids.index(o.id) }
+  def sort_date(services)
+    service_ids = services.order(due_date: :asc).map(&:service_id)
+    Service.find(service_ids).sort_by { |o| service_ids.index(o.id) }
   end
 end

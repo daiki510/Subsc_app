@@ -1,4 +1,4 @@
-<%= form_tag import_subscriptions_path, multipart: true do %>
+<%= form_tag import_services_path, multipart: true do %>
   <div class=”input-inline”>
     <div class="input-group">
       <label class="input-group-prepend">
@@ -13,4 +13,4 @@
     </div>
   </div>
 <% end %>
-<%= link_to 'CSVエクスポート', subscriptions_path(format: :csv), class: "btn btn-success mb-3" %>
+<%= link_to 'CSVエクスポート', services_path(format: :csv), class: "btn btn-success mb-3" %>

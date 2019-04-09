@@ -1,23 +1,23 @@
 require 'test_helper'
 
-class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
+class ServicesControllerTest < ActionDispatch::IntegrationTest
   test 'should get new' do
-    get subscriptions_new_url
+    get services_new_url
     assert_response :success
   end
 
   test 'should get index' do
-    get subscriptions_index_url
+    get services_index_url
     assert_response :success
   end
 
   test 'should get show' do
-    get subscriptions_show_url
+    get services_show_url
     assert_response :success
   end
 
   test 'should get edit' do
-    get subscriptions_edit_url
+    get services_edit_url
     assert_response :success
   end
 end

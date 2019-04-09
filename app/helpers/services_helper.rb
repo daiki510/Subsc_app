@@ -1,5 +1,5 @@
-module SubscriptionsHelper
-  def total_subsc(subscriptions)
-    subscriptions.count
+module ServicesHelper
+  def total_subsc(services)
+    services.count
   end
 end

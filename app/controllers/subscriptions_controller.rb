@@ -1,14 +1,14 @@
-class SubscriptionsController < ApplicationController
-  before_action :set_detail, only: %i[show edit]
+class ServicesController < ApplicationController
+  before_action :set_subscription, only: %i[show edit]
   before_action :authenticate_user!
 
   def new
-    @detail = Detail.new(subscription_id: params[:subscription_id])
+    @subscription = Subscription.new(service_id: params[:service_id])
   end
 
   def create
-    @detail = Detail.new(detail_params)
-    if @detail.save
+    @subscription = Subscription.new(subscription_params)
+    if @subscription.save
       redirect_to user_path(current_user.id), notice: '詳細情報を登録しました'
     else
       render 'new'
@@ -16,16 +16,16 @@ class SubscriptionsController < ApplicationController
   end
 
   def show
-    @subscription = Subscription.find_by(id: @detail.subscription_id)
+    @service = Service.find_by(id: @subscription.service_id)
   end
 
   def edit
-    @subscription = Subscription.find_by(id: @detail.subscription_id)
+    @service = Service.find_by(id: @subscription.service_id)
   end
 
   def update
-    @detail = Detail.find(params[:id])
-    if @detail.update(detail_params)
+    @subscription = Subscription.find(params[:id])
+    if @subscription.update(subscription_params)
       redirect_to user_path(current_user.id), notice: '詳細情報を更新しました'
     else
       render 'edit'
@@ -33,22 +33,22 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @detail = Detail.find(params[:id])
-    @addition = Addition.find_by(user_id: current_user.id, subscription_id: @detail.subscription_id)
-    @subscription = Subscription.find_by(id: @detail.subscription_id)
-    @detail.destroy
-    @addition.destroy
-    @subscription.destroy if @subscription.status == 'secret'
+    @subscription = Subscription.find(params[:id])
+    # @model = Model.find_by(user_id: current_user.id, service_id: @subscription.service_id)
+    @service = Service.find_by(id: @subscription.service_id)
+    @subscription.destroy
+    # @model.destroy
+    @service.destroy if @service.status == 'secret'
     redirect_to user_path(current_user.id), notice: 'マイページから削除しました'
   end
 
   private
 
-  def set_detail
-    @detail = Detail.find_by(user_id: current_user.id, subscription_id: params[:subscription_id])
+  def set_subscription
+    @subscription = Subscription.find_by(user_id: current_user.id, service_id: params[:service_id])
   end
 
-  def detail_params
-    params.require(:detail).permit(:charge, :due_date, :payment_type, :note, :user_id, :subscription_id)
+  def subscription_params
+    params.require(:subscription).permit(:charge, :due_date, :payment_type, :note, :user_id, :service_id)
   end
 end

@@ -2,8 +2,8 @@
 
 one:
   category: one
-  subscription: one
+  service: one
 
 two:
   category: two
-  subscription: two
+  service: two

@@ -1,15 +1,14 @@
 ja:
   activerecord:
     models:
-      subscription: "サブスクリプション"
+      service: "サービス"
       user: "ユーザー"
-      detail: "詳細"
+      subscription: "サブスクリプション"
       category: "カテゴリー"
-      addition: "追加"
-      category_subsc: "カテゴリーサブスクリプション"
+      categorizing: "カテゴライジング"
       contact: "問い合わせ"
     attributes:
-      subscription:
+      service:
         name: "名前"
         icon: "アイコン"
         summary: "概要"
@@ -17,9 +16,9 @@ ja:
         link: "関連リンク"
         created_at: "作成日時"
         updated_at: "更新日時"
-      detail:
+      subscription:
         user: "ユーザー"
-        subscription: "サブスクリプション"
+        service: "サービス"
         charge: "利用料金"
         due_date: "支払日"
         payment_type: "支払方法"
@@ -42,14 +41,9 @@ ja:
         name: "カテゴリー名"
         created_at: "作成日時"
         updated_at: "更新日時"
-      addition:
-        user: "ユーザー"
-        subscription: "サブスクリプション"
-        created_at: "作成日時"
-        updated_at: "更新日時"
-      category_subsc:
+      categorizing:
         category: "カテゴリー"
-        subscription: "サブスクリプション"
+        service: "サービス"
         created_at: "作成日時"
         updated_at: "更新日時"
       contact:

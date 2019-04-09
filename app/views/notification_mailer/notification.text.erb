@@ -1,12 +1,12 @@
 <%= @user.name %>さん
 
-合計利用料金：<%= @user.details.map { |detail| detail.charge}.sum %>円
+合計利用料金：<%= @user.subscriptions.map { |subscription| subscription.charge}.sum %>円
 
 利用サブスクリプション一覧
-<% @user.details.each do |detail| %>
+<% @user.subscriptions.each do |subscription| %>
   <%# どこかで変数定義するかメソッド化する %>
-  <% subscription = Subscription.find_by(id: detail.subscription_id) %>
-    サブスクリプション：<%= subscription.name %>
-    利用料金：<%= detail.charge %>円
-    支払日：毎月<%= detail.due_date %>
+  <% service = Service.find_by(id: subscription.service_id) %>
+    サブスクリプション：<%= service.name %>
+    利用料金：<%= subscription.charge %>円
+    支払日：毎月<%= subscription.due_date %>
 <% end %>

@@ -1,9 +1,9 @@
 module UsersHelper
   def total_charge(user)
-    user.details.map(&:charge).sum
+    user.services.map(&:charge).sum
   end
 
-  def detail(subscription)
-    current_user.details.find_by(subscription_id: subscription.id)
+  def service(service)
+    current_user.services.find_by(service_id: service.id)
   end
 end
