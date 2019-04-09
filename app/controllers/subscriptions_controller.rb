@@ -2,7 +2,7 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: :index
   before_action :required_admin, only: %i[edit update destroy]
-  PER = 10
+  PER_PAGE = 10
 
   def index
     @subscriptions = Subscription.where(status: 0)
@@ -26,7 +26,7 @@ class SubscriptionsController < ApplicationController
     end
 
     # ページネーション
-    @subscriptions = @subscriptions.page(params[:page]).per(PER).sort_name
+    @subscriptions = @subscriptions.page(params[:page]).per(PER_PAGE).sort_name
   end
 
   def new

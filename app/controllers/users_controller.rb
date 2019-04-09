@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:show]
-  PER = 10
+  PER_PAGE = 10
 
   def show
     @user = User.find(params[:id])
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @subscriptions = Kaminari.paginate_array(sort_date(@details)) if params[:sort_date] # 支払日順
 
     # ページネーション
-    @subscriptions = @subscriptions.page(params[:page]).per(PER)
+    @subscriptions = @subscriptions.page(params[:page]).per(PER_PAGE)
   end
 
   private
