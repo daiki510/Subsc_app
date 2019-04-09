@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @subscriptions = current_user.added_subscriptions
 
     # 詳細情報の未登録がある場合は、警告メッセージ表示
-    flash.now[:alert] = '詳細情報が未登録のサブスクリプションがあります' if only_has_no_detail(@subscriptions, @details).present?
+    flash.now[:alert] = '詳細情報が未登録のサブスクリプションがあります' if has_no_detail?(@subscriptions, @details)
 
     # 検索機能
     @subscriptions = @subscriptions.search(params[:search]) if params[:search]
@@ -26,11 +26,8 @@ class UsersController < ApplicationController
   private
 
   # 未登録のサブスクリプションを抽出
-  def only_has_no_detail(subscriptions, details)
-    subsc_ids = subscriptions.map(&:id) # ユーザーが追加したサブスクリプションのidを抽出
-    detail_ids = details.map(&:subscription_id) # 詳細が登録されているサブスクリプションのidを抽出
-    not_has_detail_ids = subsc_ids - detail_ids # 両方の配列にないidを算出する
-    subscriptions.where(id: not_has_detail_ids)
+  def has_no_detail?(subscriptions, details)
+    (subscriptions.pluck(:id) - details.pluck(:subscription_id)).present?
   end
 
   # 料金順にソート(マイページ)
