@@ -13,7 +13,7 @@ Category.create([
 ])
 20.times do |i|
   Service.create(
-    name: "サブスクリプション-#{i}",
+    name: "サービス-#{i}",
     summary: "サマリー-#{i}"
   )
 end
@@ -27,21 +27,13 @@ end
   )
 end
 
-1.times do |i|
-  User.create(
-    name: "daiki",
-    email: ENV['GMAIL'],
-    admin: true,
-    password: ENV['TEST_PASSWORD'],
-    password_confirmation:  ENV['TEST_PASSWORD']
-  )
-end
-
-# 50.times do |i|
+# 1.times do |i|
 #   User.create(
-#     name: "user-#{i}",
-#     email: "user-#{i}@user.com",
-#     password:  "000000",
-#     password_confirmation:  "000000"
+#     name: "daiki",
+#     email: ENV['GMAIL'],
+#     admin: true,
+#     password: ENV['TEST_PASSWORD'],
+#     password_confirmation:  ENV['TEST_PASSWORD']
 #   )
 # end
+
