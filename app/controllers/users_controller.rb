@@ -4,15 +4,14 @@ class UsersController < ApplicationController
   PER_PAGE = 10
 
   def show
-    @user = User.find(params[:id])
-    @details = @user.details
-    @subscriptions = @user.added_subscriptions
+    @details = current_user.details
+    @subscriptions = current_user.added_subscriptions
 
     # 詳細情報の未登録がある場合は、警告メッセージ表示
     flash.now[:alert] = '詳細情報が未登録のサブスクリプションがあります' if only_has_no_detail(@subscriptions, @details).present?
 
     # 検索機能
-    @subscriptions = @subscriptions.where(['name LIKE ?', "%#{params[:search]}%"]) if params[:search]
+    @subscriptions = @subscriptions.search(params[:search]) if params[:search]
 
     # ソート機能
     @subscriptions = @subscriptions.order(name: :asc) if params[:sort_name] # 名前順

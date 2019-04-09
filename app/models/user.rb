@@ -33,11 +33,9 @@ class User < ApplicationRecord
 
   # 検索メソッド
   def self.search(search)
-    if search
-      User.where(['name LIKE ?', "%#{search}%"])
-    else
-      User.all
-    end
+    return where(['name LIKE ?', "%#{search}%"]) if search
+
+    all
   end
 
   def self.from_omniauth(auth)
