@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CategorySubsc, type: :model do
+RSpec.describe Categorizing, type: :model do
   before do
     @service = FactoryBot.create(:service1)
     @category1 = FactoryBot.create(:category1)
