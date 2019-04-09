@@ -19,7 +19,7 @@
 //= require_tree .
 
 // サブスクリプション登録時のアイコン設定
-$(function () {
+$(document).on("turbolinks:load", function () {
   $fileField = $('#file')
 
   $($fileField).on('change', $fileField, function (e) {
