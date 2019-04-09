@@ -29,7 +29,6 @@
           <%= link_to category.name, services_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
         <% end %>
       </td>
-      <td></td>
       <%# 利用者数 %>
       <td class="text-center"><%= service.subscriptions.count %></td>
       <%# 利用状況 %>
