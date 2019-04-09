@@ -1,0 +1,70 @@
+<div class="form">
+  <%= form_with model: @subscription, local: true do |f| %>
+
+    <% if @subscription.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @subscription.errors.count %>件のエラーがあります。</h2>
+
+        <ul>
+          <% @subscription.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-wrapper w-50">
+      <% if params[:id] %>
+         <h1>サブスク編集</h1>
+      <% else %>
+         <h1>サブスク登録</h1>
+      <% end %>
+      
+      <div class="form-item mb-2">
+        <span class="text-danger">*</span>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control w-100" %>
+      </div>
+
+      <div class="form-item mb-2">
+        <%= f.label :icon %>
+        <div id="icon_field" onClick="$('#file').click()" >
+          <% if @subscription.icon.url.present? %>
+            <%= image_tag(@subscription.icon.url) %>
+          <% end %>
+          <div class="mask">
+            <div class="caption">画像を選択</div>
+          </div>
+        </div>
+        <%= f.file_field :icon, class: "icon", style: "display:none;", id: "file" %>
+        <%= f.hidden_field :icon_cache %>
+      </div>
+
+      <div class="form-item mb-2">
+        <%= f.label :link %>
+        <%= f.text_field :link ,class: "form-control w-100" %> 
+      </div>
+      <div class="form-item mb-2">
+        <span class="text-danger">*</span>
+        <%= f.label :summary %>
+        <%= f.text_area :summary ,class: "form-control w-100" ,rows: 5 %>
+      </div>
+      <div class="form-item my-2">
+        <%= f.label :category_ids, 'カテゴリー(複数可)' %><br>
+        <div class="border rounded p-2">
+          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, prompt: true do |l| %>
+            <span class="mx-1"><%= l.label { l.check_box + l.text } %></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="button-panel">
+        <%= f.submit class: "btn btn-primary my-2" %>
+      </div>
+      
+      <div class="form-footer">
+        <%= link_to "一覧へ戻る", subscriptions_path, class: "btn btn-light" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

@@ -15,33 +15,24 @@ ActiveRecord::Schema.define(version: 2019_04_04_054541) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "additions", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "subscription_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subscription_id"], name: "index_additions_on_subscription_id"
-    t.index ["user_id"], name: "index_additions_on_user_id"
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "category_subscs", force: :cascade do |t|
+  create_table "categorizings", force: :cascade do |t|
     t.bigint "category_id"
-    t.bigint "subscription_id"
+    t.bigint "service_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_category_subscs_on_category_id"
-    t.index ["subscription_id"], name: "index_category_subscs_on_subscription_id"
+    t.index ["category_id"], name: "index_categorizings_on_category_id"
+    t.index ["service_id"], name: "index_categorizings_on_service_id"
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "title", default: "", null: false
     t.string "email", default: "", null: false
+    t.string "title", default: "", null: false
     t.text "message", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,20 +40,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_054541) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
-  create_table "details", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "subscription_id"
-    t.integer "charge", null: false
-    t.integer "due_date", null: false
-    t.string "payment_type", default: "", null: false
-    t.text "note", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subscription_id"], name: "index_details_on_subscription_id"
-    t.index ["user_id"], name: "index_details_on_user_id"
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
+  create_table "services", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "icon", default: "", null: false
     t.text "summary", default: "", null: false
@@ -70,6 +48,19 @@ ActiveRecord::Schema.define(version: 2019_04_04_054541) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "link", default: "", null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "service_id"
+    t.integer "charge", null: false
+    t.integer "due_date", null: false
+    t.string "payment_type", default: "", null: false
+    t.text "note", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_subscriptions_on_service_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,11 +86,9 @@ ActiveRecord::Schema.define(version: 2019_04_04_054541) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "additions", "subscriptions"
-  add_foreign_key "additions", "users"
-  add_foreign_key "category_subscs", "categories"
-  add_foreign_key "category_subscs", "subscriptions"
+  add_foreign_key "categorizings", "categories"
+  add_foreign_key "categorizings", "services"
   add_foreign_key "contacts", "users"
-  add_foreign_key "details", "subscriptions"
-  add_foreign_key "details", "users"
+  add_foreign_key "subscriptions", "services"
+  add_foreign_key "subscriptions", "users"
 end

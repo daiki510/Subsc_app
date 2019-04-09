@@ -1,68 +1,13 @@
 class Subscription < ApplicationRecord
-  # gem:OrderAsSpecifiedの読み込み
-  extend OrderAsSpecified
+  # バリデーション
+  validates :charge, presence: true, length: { maximum: 10 }, numericality: { less_than: 1_000_000 }
+  validates :due_date, presence: true, length: { maximum: 10 }
+  validates :payment_type, length: { maximum: 20 }
+  validates :note, length: { maximum: 255 }
 
   # アソシエーション
-  has_many :additions, dependent: :destroy
-  has_many :added_users, through: :additions, source: :user
+  belongs_to :user
+  belongs_to :service
 
-  has_many :details, dependent: :destroy
-  has_many :detailed_users, through: :details, source: :user
-
-  has_many :category_subscs, dependent: :destroy
-  has_many :categories, through: :category_subscs, source: :category
-
-  # バリデーション
-  validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
-  validates :summary, presence: true, length: { maximum: 255 }
-  validates :link, format: /\A#{URI.regexp(%w[http https])}\z/, allow_blank: true
-
-  # 画像アップロード
-  mount_uploader :icon, IconUploader
-
-  # enumの定義
-  enum status: { open: 0, secret: 9, development: 5 }
-
-  # スコープ
-  scope :search_with_category, ->(category_id) { where(id: category_ids = CategorySubsc.where(category_id: category_id).pluck(:subscription_id)) }
-  scope :sort_name, -> { order(name: :asc) }
-
-  # 検索メソッド
-  def self.search(search)
-    if search
-      where(['name LIKE ?', "%#{search}%"])
-    else
-      all
-    end
-  end
-
-  # ランキングメソッド
-  def self.sort_with_rank
-    subsc_user_count = joins(:additions).group(:subscription_id).count
-    subsc_user_ids = Hash[subsc_user_count.sort_by { |_, v| -v }].keys
-    where(id: subsc_user_ids).order_as_specified(id: subsc_user_ids)
-  end
-
-  # CSVエクスポート
-  def self.csv_attributes
-    %w[name summary link created_at updated_at]
-  end
-
-  def self.generate_csv
-    CSV.generate(headers: true) do |csv|
-      csv << csv_attributes
-      all.find_each do |subscription|
-        csv << csv_attributes.map { |attr| subscription.send(attr) }
-      end
-    end
-  end
-
-  # CSVインポート
-  def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      subscription = Subscription.new
-      subscription.attributes = row.to_hash.slice(*csv_attributes)
-      subscription.save!
-    end
-  end
+  validates :service_id, uniqueness: { scope: :user_id }
 end

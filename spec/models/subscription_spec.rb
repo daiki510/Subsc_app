@@ -1,60 +1,52 @@
 require 'rails_helper'
 
-RSpec.describe Subscription, type: :model do
+RSpec.describe Detail, type: :model do
   before do
-    @subscription1 = FactoryBot.create(:subscription1)
-    @subscription2 = FactoryBot.create(:subscription2)
+    @user1 = FactoryBot.create(:user1)
+    @user2 = FactoryBot.create(:user2)
+    @subscription = FactoryBot.create(:subscription1)
+    @detail1 = FactoryBot.create(:detail1, user: @user1, subscription: @subscription)
+    @detail2 = FactoryBot.create(:detail2, user: @user2, subscription: @subscription)
   end
   # factory_botが有効かどうかを検査。
   context 'check factorybot of validation' do
-    it 'has a valid factory of subscription1' do
-      subscription = @subscription1
-      expect(subscription).to be_valid
+    it 'has a valid factory of detail1' do
+      detail = @detail1
+      expect(detail).to be_valid
     end
-    it 'has a valid factory of subscription2' do
-      subscription = @subscription2
-      expect(subscription).to be_valid
+    it 'has a valid factory of detail2' do
+      detail = @detail2
+      expect(detail).to be_valid
     end
   end
 
-  # 名前と概要があれば有効な状態であること
-  it 'is valid with a name, summary' do
-    subscription = @subscription1
-    expect(subscription).to be_valid
+  # 料金、支払日があれば有効な状態であること
+  it 'is valid with a charge, due_date' do
+    detail = @detail1
+    expect(detail).to be_valid
   end
-  # 名前がなければ無効な状態であること
-  it 'is invalid without a name' do
-    subscription = FactoryBot.build(:subscription1, name: nil)
-    subscription.valid?
-    expect(subscription.errors[:name]).to include('を入力してください')
+  # 料金がなければ無効な状態であること
+  it 'is invalid without a charge' do
+    detail = FactoryBot.build(:detail1, charge: nil, user: @user1, subscription: @subscription)
+    detail.valid?
+    expect(detail.errors[:charge]).to include('を入力してください')
   end
-  # 重複した名前なら無効な状態であること
-  it 'is invalid with a duplicate name' do
-    subscription = FactoryBot.build(:subscription2, name: 'test_name1')
-    subscription.valid?
-    expect(subscription.errors[:name]).to include('はすでに存在します')
+  # 料金が11文字以上なら無効な状態であること
+  it 'is invalid with charge which has 11 or more characters' do
+    detail = FactoryBot.build(:detail1, charge: 10_000_000_000, user: @user1, subscription: @subscription)
+    detail.valid?
+    expect(detail.errors[:charge]).to include('は10文字以内で入力してください')
   end
-  # 名前が31文字以上なら無効な状態であること
-  it 'is invalid with name which has 31 or more characters' do
-    subscription = FactoryBot.build(:subscription1, name: 'test' * 10)
-    subscription.valid?
-    expect(subscription.errors[:name]).to include('は30文字以内で入力してください')
+  # 備考欄が256文字以上なら無効な状態であること
+  it 'is invalid with note which has 256 or more characters' do
+    detail = FactoryBot.build(:detail1, note: 'test' * 100, user: @user1, subscription: @subscription)
+    detail.valid?
+    expect(detail.errors[:note]).to include('は255文字以内で入力してください')
   end
-  # 概要が256文字以上なら無効な状態であること
-  it 'is invalid with summary which has 256 or more characters' do
-    subscription = FactoryBot.build(:subscription1, summary: 'test' * 100)
-    subscription.valid?
-    expect(subscription.errors[:summary]).to include('は255文字以内で入力してください')
-  end
-  # URLの書式が有効な状態であること
-  it 'is valid with link which is collect format' do
-    subscription = FactoryBot.create(:subscription1, name: 'test_name3', link: 'https://www.amazon.co.jp/')
-    expect(subscription).to be_valid
-  end
-  # URLの書式が無効な状態であること
-  it 'is invalid with link which is incollect format' do
-    subscription = FactoryBot.build(:subscription1, name: 'test_name3', link: 'amazon')
-    subscription.valid?
-    expect(subscription.errors[:link]).to include('は不正な値です')
+  # 料金が6桁以上なら無効な状態であること
+  it 'is invalid with charge which has 6 figure or more figures' do
+    detail = FactoryBot.build(:detail1, charge: 10_000 * 10_000, user: @user1, subscription: @subscription)
+    detail.valid?
+    expect(detail.errors[:charge]).to include('は1000000より小さい値にしてください')
   end
 end

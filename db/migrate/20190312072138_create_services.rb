@@ -1,8 +1,8 @@
-class CreateSubscriptions < ActiveRecord::Migration[5.2]
+class CreateServices < ActiveRecord::Migration[5.2]
   def change
-    create_table :subscriptions do |t|
+    create_table :services do |t|
       t.string :name, default: "", null: false
-      t.text :icon
+      t.text :icon, default: "", null: false
       t.text :summary, default: "",null: false
       t.integer :status, default: 0, null: false
 
