@@ -1,3 +1,87 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// ================================================================
+// マイページ ユーザー情報
+// ================================================================
+.gradient-card-header {
+  background: #50bfa4;
+  background: linear-gradient(to right, rgb(4, 155, 122), rgb(73, 206, 155));
+}
+
+.user-info .card-header {
+  color: #fff;
+  text-align: center;
+  padding: 1.5em 1.25em;
+}
+
+.total-box {
+  position: relative;
+  margin: 2em 0;
+  padding: 0.5em 1em;
+  border: solid 3px #50bfa4;
+  border-radius: 8px;
+}
+
+.total-box .total-title {
+  position: absolute;
+  display: inline-block;
+  top: -13px;
+  left: 10px;
+  padding: 0 9px;
+  line-height: 1;
+  font-size: 19px;
+  background: #FFF;
+  color: #50bfa4;
+  font-weight: bold;
+}
+
+.total-box p {
+  margin: 0;
+  padding: 0;
+}
+
+.total-box h4 {
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0.5em;
+}
+
+// ================================================================
+// マイページ サブスクリプション情報
+// ================================================================
+
+.subsc-title h5 {
+  position: relative;
+  padding: 0.25em 0;
+}
+
+.subsc-title h5:after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: -webkit-linear-gradient(to right, rgb(5, 190, 144), transparent);
+  background: linear-gradient(to right, rgb(97, 218, 187), transparent);
+  margin-top: 0.4em;
+}
+
+.img-height {
+  height: 50px;
+}
+
+// ================================================================
+// マイページ 検索・ソート・ページネーション
+// ================================================================
+
+.counter {
+  position: relative;
+  padding-left: 2em;
+}
+
+.counter p {
+  position: absolute;
+  bottom: 0;
+  padding-left: 2em;
+  margin-bottom: 0.5em;
+}
