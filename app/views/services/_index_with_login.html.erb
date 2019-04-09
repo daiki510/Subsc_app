@@ -34,13 +34,13 @@
       <td class="text-center"><%= service.subscriptions.count %></td>
       <%# 利用状況 %>
       <td>
-        <%# <% if current_user.already_added?(service) %> %>
-          <%# 利用中 %>
-        <%# <% end %> %>
+        <% if already_added?(service) %>
+          利用中
+        <% end %>
       </td>
       <%# 追加or解除ボタン %>
       <td>
-        <% if current_user %>
+        <% if already_added?(service) %>
           <%= button_to subscription_path(service, id: current_user.id), method: :delete, remote: true, class: "btn btn-light" do %>
             <%= fa_icon "minus" %>
           <% end %>

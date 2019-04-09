@@ -9,10 +9,4 @@ class Subscription < ApplicationRecord
   # アソシエーション
   belongs_to :user
   belongs_to :service
-
-  # 追加されたサブスクリプションかどうか
-  def already_added?(service)
-    subsc = Subscription.find(service_id: service.id)
-    subsc.present?
-  end
 end
