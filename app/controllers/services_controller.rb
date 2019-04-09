@@ -6,7 +6,6 @@ class ServicesController < ApplicationController
 
   def index
     @services = Service.where(status: 0)
-    @categories = Category.all
     # カテゴリーで絞り込み
     @services = @services.search_with_category(params[:category_id]) if params[:category_id]
 
@@ -15,8 +14,8 @@ class ServicesController < ApplicationController
 
     # ソート機能
     @services = @services.sort_name if params[:sort_name] # 名前順
-    @services = current_user.added_services if params[:sort_status] # 利用中のみ
-    @services = Service.sort_with_rank if params[:sort_with_rank] # 人気順
+    @services = Service.sort_with_user_count if params[:sort_with_rank] # 人気順
+    @services = Service.using_services(current_user) if params[:sort_status] # 利用中のみ
 
     # CSV出力
     respond_to do |format|
@@ -58,7 +57,6 @@ class ServicesController < ApplicationController
 
   def destroy
     @service.destroy
-    # redirect_to services_path, notice: 'CSVをインポートしました'
     head :no_content
   end
 
@@ -79,11 +77,4 @@ class ServicesController < ApplicationController
       :name, :icon, :icon_cache, :link, :summary, :status, category_ids: []
     )
   end
-
-  # 利用者数順にソート
-  # def rank(subsc_user_ids)
-  #   subsc_user_count = joins(:models).group(:service_id).count
-  #   subsc_user_ids = Hash[subsc_user_count.sort_by { |_, v| -v }].keys
-  #   where(id: subsc_user_ids).order_as_specified(id: subsc_user_ids)
-  # end
 end

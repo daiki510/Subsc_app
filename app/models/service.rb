@@ -33,12 +33,18 @@ class Service < ApplicationRecord
     end
   end
 
-  # ランキングメソッド
-  # def self.sort_with_rank
-  #   subsc_user_count = joins(:models).group(:service_id).count
-  #   subsc_user_ids = Hash[subsc_user_count.sort_by { |_, v| -v }].keys
-  #   where(id: subsc_user_ids).order_as_specified(id: subsc_user_ids)
-  # end
+  # 利用中のサービスを抽出
+  def self.using_services(user)
+    service_ids = user.subscriptions.map(&:service_id)
+    where(id: service_ids)
+  end
+
+  # 利用者数順にソート
+  def self.sort_with_user_count
+    using_count = Subscription.group(:service_id).count
+    servise_ids = Hash[using_count.sort_by { |_, v| -v }].keys
+    where(id: servise_ids).order_as_specified(id: servise_ids)
+  end
 
   # CSVエクスポート
   def self.csv_attributes
