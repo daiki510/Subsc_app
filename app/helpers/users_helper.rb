@@ -1,5 +1,5 @@
 module UsersHelper
   def total_charge(user)
-    user.details.map { |detail| detail.charge}.sum
+    user.details.map(&:charge).sum
   end
 end

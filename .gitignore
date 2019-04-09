@@ -25,8 +25,8 @@
 .byebug_history
 
 .env
-.env.development
-.env.production
+
+.rubocop.yml
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

@@ -3,15 +3,15 @@ require 'rails_helper'
 describe 'サブスクリプション管理機能', type: :system do
   describe '一覧表示機能' do
     before do
-      #管理者ユーザーの作成
+      # 管理者ユーザーの作成
       admin = FactoryBot.create(:admin_user)
-      #一般ユーザー1の作成
+      # 一般ユーザー1の作成
       user1 = FactoryBot.create(:user1)
-      #一般ユーザー2の作成
+      # 一般ユーザー2の作成
       user2 = FactoryBot.create(:user2)
-      #管理者がサブスクリプションを作成
+      # 管理者がサブスクリプションを作成
       FactoryBot.create(:subscription1)
-      #一般ユーザー1がサブスクリプションを作成
+      # 一般ユーザー1がサブスクリプションを作成
       FactoryBot.create(:subscription2, status: 'secret')
     end
 
@@ -23,7 +23,7 @@ describe 'サブスクリプション管理機能', type: :system do
         fill_in 'パスワード', with: '000000'
         click_button 'ログイン'
       end
-      
+
       it '管理者が作成したサブスクリプションが表示される' do
         # save_and_open_page
         # 作成済みのサブスクリプションの名称が画面上に表示されていることを確認

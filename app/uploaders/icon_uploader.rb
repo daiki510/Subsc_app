@@ -4,7 +4,7 @@ class IconUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :fog
-  
+
   def store_dir
     "sample-image/#{model.id}"
   end
@@ -14,16 +14,16 @@ class IconUploader < CarrierWave::Uploader::Base
   # def store_dir
   #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   # end
-  
-  #アップロード時の画像サイズ
-  process resize_and_pad: [100, 100, "#ffffff", "Center"]
 
-  #添付できるファイルの種類
+  # アップロード時の画像サイズ
+  process resize_and_pad: [100, 100, '#ffffff', 'Center']
+
+  # 添付できるファイルの種類
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
-  #サムネイル
+  # サムネイル
   version :thumb do
     process resize_to_fit: [50, 50]
   end
