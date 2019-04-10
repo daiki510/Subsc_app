@@ -5,7 +5,7 @@ class ServicesController < ApplicationController
   PER_PAGE = 10
 
   def index
-    @services = Service.sort_open_services
+    @services = Service.search_open_status
     # カテゴリーで絞り込み
     @services = @services.search_with_category(params[:category_id]) if params[:category_id]
 
@@ -14,9 +14,9 @@ class ServicesController < ApplicationController
 
     # ソート機能
     @services = @services.sort_name if params[:sort_name] # 名前順
-    @services = Service.sort_with_user_count if params[:sort_with_rank] # 人気順
-    @services = Service.sort_using_services(current_user) if params[:sort_status] # 利用中のみ
-    @services = Service.sort_secret_services(current_user) if params[:sercet_index] # オリジナルのみ
+    @services = @services.sort_with_user_count if params[:sort_with_rank] # 人気順
+    @services = @services.search_with_using(current_user) if params[:sort_status] # 利用中のみ
+    @services = @services.search_secret_status.search_with_user_id(current_user) if params[:sercet_index] # オリジナルのみ
 
     # CSV出力
     respond_to do |format|

@@ -1,4 +1,6 @@
 class Service < ApplicationRecord
+  extend OrderAsSpecified
+
   has_many :subscriptions, dependent: :destroy
   has_many :users, through: :subscriptions, source: :user
   has_many :categorizings, dependent: :destroy
@@ -15,9 +17,11 @@ class Service < ApplicationRecord
   enum status: { open: 0, secret: 9, development: 5 }
 
   scope :search_with_category, ->(category_id) { where(id: category_ids = Categorizing.where(category_id: category_id).pluck(:service_id)) }
-  scope :sort_open_services, -> { where(status: 0) }
-  scope :sort_secret_services, ->(user) { where(status: 9).where(user_id: user.id) }
-  scope :sort_using_services, ->(user) { where(id: user.subscriptions.map(&:service_id)) }
+  scope :search_open_status, -> { where(status: 0) }
+  scope :search_secret_status, -> { where(status: 9) }
+  scope :search_with_user_id, ->(user) { where(user_id: user.id) }
+  scope :search_with_using, ->(user) { where(id: user.subscriptions.map(&:service_id)) }
+  scope :search_with_unregisterd, ->(user) { where(id: Subscription.where(charge: 0).where(user_id: user.id).map(&:service_id)) }
   scope :sort_name, -> { order(name: :asc) }
 
   # 検索メソッド
@@ -30,8 +34,20 @@ class Service < ApplicationRecord
   # 利用者数順にソート
   def self.sort_with_user_count
     using_count = Subscription.group(:service_id).count
-    servise_ids = Hash[using_count.sort_by { |_, v| -v }].keys
-    where(id: servise_ids).where(status: 0).order_as_specified(id: servise_ids)
+    service_ids = Hash[using_count.sort_by { |_, v| -v }].keys
+    where(id: service_ids).where(status: 0).order_as_specified(id: service_ids)
+  end
+
+  # 料金順にソート
+  def self.sort_charge
+    service_ids = Subscription.order(charge: :desc).map(&:service_id)
+    where(id: service_ids).order_as_specified(id: service_ids)
+  end
+
+  # 支払順にソート
+  def self.sort_date
+    service_ids = Subscription.order(due_date: :asc).map(&:service_id)
+    where(id: service_ids).order_as_specified(id: service_ids)
   end
 
   # CSVエクスポート
