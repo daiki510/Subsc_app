@@ -46,7 +46,7 @@ class Service < ApplicationRecord
   def self.sort_with_user_count
     using_count = Subscription.group(:service_id).count
     servise_ids = Hash[using_count.sort_by { |_, v| -v }].keys
-    where(id: servise_ids).order_as_specified(id: servise_ids)
+    where(id: servise_ids).where(status: 0).order_as_specified(id: servise_ids)
   end
 
   # CSVエクスポート

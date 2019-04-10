@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: :index
-  before_action :required_admin, only: %i[edit update destroy]
+  before_action :required_creator, only: %i[edit update destroy]
   PER_PAGE = 10
 
   def index
@@ -16,7 +16,7 @@ class ServicesController < ApplicationController
     @services = @services.sort_name if params[:sort_name] # 名前順
     @services = Service.sort_with_user_count if params[:sort_with_rank] # 人気順
     @services = Service.using_services(current_user) if params[:sort_status] # 利用中のみ
-    @services = Service.sort_secret(current_user) if params[:sercet_index] # 利用中のみ
+    @services = Service.sort_secret(current_user) if params[:sercet_index] # オリジナルのみ
 
     # CSV出力
     respond_to do |format|

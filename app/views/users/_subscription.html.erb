@@ -19,7 +19,7 @@
               </p>
               <h5><%= service.name %></h5>
             </div>
-            <% subscription = subscription(service) %>
+            <% subscription = subscription(current_user, service) %>
             <div class="col-md-2">
               <%= subscription.charge %>
             </div>

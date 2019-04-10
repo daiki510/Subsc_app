@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     # ソート機能
     @services = @services.order(name: :asc) if params[:sort_name] # 名前順
-    @services = Kaminari.paginate_array(unregistered_subscriptions) if params[:sort_unregistered] # 詳細未登録のみ
+    @services = unregistered_subscriptions(current_user) if params[:sort_unregistered] # 詳細未登録のみ
     @services = Kaminari.paginate_array(sort_charge(@subscriptions)) if params[:sort_charge] # 利用料金順
     @services = Kaminari.paginate_array(sort_date(@subscriptions)) if params[:sort_date] # 支払日順
 
@@ -23,9 +23,9 @@ class UsersController < ApplicationController
   private
 
   # 未登録のサブスクリプションを抽出
-  def unregistered_subscriptions
-    service_ids = Subscription.where(charge: 0).map(&:service_id)
-    Service.find(service_ids)
+  def unregistered_subscriptions(user)
+    service_ids = Subscription.where(charge: 0).where(user_id: user.id).map(&:service_id)
+    Service.where(id: service_ids)
   end
 
   # 料金順にソート
