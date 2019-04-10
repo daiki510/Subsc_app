@@ -33,7 +33,7 @@
       </div>
       <div class="form-item my-3">
         <%= f.label :payment_type %>
-        <%= f.select :payment_type, [['クレジットカード'],['口座振込'],['現金']], prompt: true ,class: "form-control w-50" %> 
+        <%= f.select :payment_type, ['クレジットカード','口座振込','現金'].each, prompt: true ,class: "form-control w-50" %> 
       </div>
       <div class="form-item">
         <%= f.label :note %>

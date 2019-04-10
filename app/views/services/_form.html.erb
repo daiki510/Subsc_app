@@ -26,6 +26,14 @@
         <%= f.text_field :name, class: "form-control w-100" %>
       </div>
 
+      <% if current_user.admin? %>
+        <div class="form-item mb-2">
+          <span class="text-danger">*</span>
+          <%= f.label :status %>
+          <%= f.select :status, Service.statuses.keys.to_a, {}, class: "form-control w-100" %>
+        </div>
+      <% end %>
+
       <div class="form-item mb-2">
         <%= f.label :icon %>
         <div id="icon_field" onClick="$('#file').click()" >
