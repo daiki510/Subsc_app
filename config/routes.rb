@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#top'
+  root 'top#index'
 
   #ユーザー関連
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   
   resources :services do
-    resources :subscriptions
     post :import, on: :collection
   end
   
