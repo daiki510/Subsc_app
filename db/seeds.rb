@@ -25,7 +25,8 @@ end
     email: "test@test.com",
     admin: true,
     password: ENV['TEST_PASSWORD'],
-    password_confirmation: ENV['TEST_PASSWORD']
+    password_confirmation: ENV['TEST_PASSWORD'],
+    uid: SecureRandom.uuid,
   )
 end
 
@@ -35,7 +36,8 @@ end
     email: ENV['GMAIL'],
     admin: true,
     password: ENV['TEST_PASSWORD'],
-    password_confirmation:  ENV['TEST_PASSWORD']
+    password_confirmation:  ENV['TEST_PASSWORD'],
+    uid: SecureRandom.uuid,
   )
 end
 
