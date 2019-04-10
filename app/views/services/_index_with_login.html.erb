@@ -40,11 +40,11 @@
       <%# 追加or解除ボタン %>
       <td>
         <% if already_added?(service) %>
-          <%= button_to subscription_path(service, id: current_user.id), method: :delete, remote: true, class: "btn btn-light" do %>
+          <%= link_to subscription_path(service, id: current_user.id), method: :delete, class: "btn btn-light" do %>
             <%= fa_icon "minus" %>
           <% end %>
         <% else %>
-          <%= button_to subscription_path(service), remote: true, class: "btn btn-secondary" do %>
+          <%= link_to new_subscription_path(service_id: service.id), class: "btn btn-secondary" do %>
             <%= fa_icon "plus" %>
           <% end %>
         <% end %>

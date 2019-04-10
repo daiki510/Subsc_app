@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   
   resources :services do
+    resources :subscriptions
     post :import, on: :collection
   end
   

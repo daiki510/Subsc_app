@@ -3,13 +3,13 @@ class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @subscription = Subscription.new(service_id: params[:service_id])
+    @subscription = current_user.subscriptions.new(service_id: params[:service_id])
   end
 
   def create
-    @subscription = Subscription.new(subscription_params)
+    @subscription = current_user.subscriptions.new(subscription_params)
     if @subscription.save
-      redirect_to user_path(current_user.id), notice: 'サブスクリプションを登録しました'
+      redirect_to services_path, notice: 'サブスクリプションを登録しました'
     else
       render 'new'
     end
