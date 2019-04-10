@@ -24,6 +24,7 @@ class Service < ApplicationRecord
 
   # スコープ
   scope :search_with_category, ->(category_id) { where(id: category_ids = Categorizing.where(category_id: category_id).pluck(:service_id)) }
+  scope :sort_secret, ->(user) { where(status: 9).where(user_id: user.id) }
   scope :sort_name, -> { order(name: :asc) }
 
   # 検索メソッド
