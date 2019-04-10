@@ -40,7 +40,7 @@
       <%# 追加or解除ボタン %>
       <td>
         <% if already_added?(service) %>
-          <%= link_to subscription_path(service, id: current_user.id), method: :delete, class: "btn btn-light" do %>
+          <%= link_to subscription_path(service, service_id: service.id), method: :delete, class: "btn btn-light" do %>
             <%= fa_icon "minus" %>
           <% end %>
         <% else %>

@@ -35,8 +35,6 @@ class ServicesController < ApplicationController
     @service = Service.new(service_params)
     @service.status = 'secret' unless current_user.admin?
     if @service.save
-      # 一般ユーザーが新規登録する場合、modelにも併せて登録
-      # Model.create(user_id: current_user.id, service_id: @service.id) if @service.status == 'secret'
       redirect_to services_path, notice: "「#{@service.name}」を登録しました"
     else
       render 'new'
