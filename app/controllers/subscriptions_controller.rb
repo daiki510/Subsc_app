@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: %i[show edit update destroy]
+  before_action :set_subscription, only: %i[show edit update]
   before_action :authenticate_user!
 
   def new
@@ -15,7 +15,9 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    # raise
+  end
 
   def edit; end
 
@@ -28,6 +30,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
+    @subscription = current_user.subscriptions.find_by(service_id: params[:id])
     @subscription.destroy
     service = Service.find_by(id: @subscription.service_id)
     @service.destroy if service.status == 'secret'
@@ -37,7 +40,7 @@ class SubscriptionsController < ApplicationController
   private
 
   def set_subscription
-    @subscription = current_user.subscriptions.find_by(service_id: params[:service_id])
+    @subscription = current_user.subscriptions.find_by(id: params[:id])
   end
 
   def subscription_params
