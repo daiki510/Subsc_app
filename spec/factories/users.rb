@@ -4,14 +4,14 @@ FactoryBot.define do
     email { 'user1@example.com' }
     password { '000000' }
     provider { 'google' }
-    uid { '110033013805621465000' }
+    uid { SecureRandom.uuid }
   end
   factory :user2, class: User do
     name { 'test_user2' }
     email { 'user2@example.com' }
     password { '000000' }
     provider { 'google' }
-    uid { '110033013805621465011' }
+    uid { SecureRandom.uuid }
   end
   factory :admin_user, class: User do
     name { 'admin' }
@@ -19,6 +19,6 @@ FactoryBot.define do
     password { '000000' }
     admin { 'true' }
     provider { 'google' }
-    uid { '110033013805621465022' }
+    uid { SecureRandom.uuid }
   end
 end

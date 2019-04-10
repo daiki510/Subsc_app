@@ -4,7 +4,7 @@ RSpec.describe Subscription, type: :model do
   before do
     @user1 = FactoryBot.create(:user1)
     @user2 = FactoryBot.create(:user2)
-    @service = FactoryBot.create(:service1)
+    @service = FactoryBot.create(:service1, user: @user1)
     @subscription1 = FactoryBot.create(:subscription1, user: @user1, service: @service)
     @subscription2 = FactoryBot.create(:subscription2, user: @user2, service: @service)
   end
