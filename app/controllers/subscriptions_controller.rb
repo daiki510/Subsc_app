@@ -1,13 +1,14 @@
 class SubscriptionsController < ApplicationController
+  include Common
   before_action :set_subscription, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   def new
-    @subscription = current_user.subscriptions.new(service_id: params[:service_id])
+    @subscription = subscriptions.new(service_id: params[:service_id])
   end
 
   def create
-    @subscription = current_user.subscriptions.new(subscription_params)
+    @subscription = subscriptions.new(subscription_params)
     if @subscription.save
       redirect_to services_path, notice: 'サブスクリプションを登録しました'
     else
@@ -35,7 +36,7 @@ class SubscriptionsController < ApplicationController
   private
 
   def set_subscription
-    @subscription = current_user.subscriptions.find(params[:id])
+    @subscription = subscriptions.find(params[:id])
   end
 
   def subscription_params

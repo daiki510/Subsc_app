@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+  include Common
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:show]
   PER_PAGE = 10
 
   def show
-    @subscriptions = current_user.subscriptions
+    @subscriptions = subscriptions
     @services = current_user.services
 
     # 検索機能
