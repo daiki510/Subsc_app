@@ -1,11 +1,10 @@
 <div class="row">
-  <% @subscriptions.each do |subscription| %>
+  <% @services.each do |service| %>
     <div class="col-12 mb-3">
       <div class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-md-2 img-height">
-              <% service = service(subscription) %>
               <% if service.icon.present? %>
                 <%= image_tag service.icon.thumb.url %>
               <% else %>
@@ -20,7 +19,7 @@
               </p>
               <h5><%= service.name %></h5>
             </div>
-
+            <% subscription = subscription(service) %>
             <div class="col-md-2">
               <%= subscription.charge %>
             </div>
@@ -31,7 +30,7 @@
               <%= link_to subscription_path(subscription), class: "btn btn-info mr-2" do %>
                 <%= fa_icon "info" %>
               <% end %>
-              <%= link_to edit_subscription_path(subscription) ,class: "btn btn-success mr-2" do %>
+              <%= link_to edit_subscription_path(subscription), class: "btn btn-success mr-2" do %>
                 <%= fa_icon "pencil" %>
               <% end %>
               <%= link_to subscription_path(subscription), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" do %>

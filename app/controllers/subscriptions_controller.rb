@@ -15,9 +15,7 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def show
-    # raise
-  end
+  def show; end
 
   def edit; end
 

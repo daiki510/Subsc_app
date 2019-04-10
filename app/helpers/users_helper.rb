@@ -1,5 +1,9 @@
 module UsersHelper
-  def service(subscription)
-    Service.find_by(id: subscription.service_id)
+  def subscription(service)
+    Subscription.find_by(service_id: service.id)
+  end
+
+  def total_subscription_count(user)
+    user.subscriptions.count
   end
 end
