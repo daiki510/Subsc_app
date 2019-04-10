@@ -34,6 +34,7 @@ class ServicesController < ApplicationController
 
   def create
     @service = Service.new(service_params)
+    @service.user_id = current_user.id
     @service.status = 'secret' unless current_user.admin?
     if @service.save
       Subscription.create(user_id: current_user.id, service_id: @service.id) if @service.status == 'secret'

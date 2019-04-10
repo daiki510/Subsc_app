@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
 
   # アソシエーション
-  has_many :services
+  has_many :services, dependent: :destroy
   has_many :contacts, dependent: :destroy
 
   has_many :subscriptions, dependent: :destroy
