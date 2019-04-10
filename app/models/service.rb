@@ -9,6 +9,8 @@ class Service < ApplicationRecord
   has_many :categorizings, dependent: :destroy
   has_many :categories, through: :categorizings, source: :category
 
+  belongs_to :user
+
   # バリデーション
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
   validates :summary, presence: true, length: { maximum: 255 }

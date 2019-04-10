@@ -9,6 +9,7 @@ ja:
       contact: "問い合わせ"
     attributes:
       service:
+        user: "ユーザー"
         name: "名前"
         icon: "アイコン"
         summary: "概要"
