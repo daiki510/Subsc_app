@@ -40,7 +40,6 @@
         <%= f.text_area :note ,class: "form-control w-50" ,rows: 5 %> 
       </div>
       
-      <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :service_id, value: @subscription.service_id %>
 
       <div class="button-panel">

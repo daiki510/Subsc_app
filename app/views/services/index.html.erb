@@ -32,7 +32,7 @@
     <%= link_to '人気順', services_path(sort_with_rank: "true"), class: "btn btn-outline-secondary #{params[:sort_with_rank] ? 'disabled' : ''}" %>
     <%= link_to '名前順', services_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_name] ? 'disabled' : ''}" %>
     <% if current_user %>
-      <%= link_to '利用中のみ', services_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_status] ? 'disabled' : ''}" %>
+      <%= link_to '利用中のみ', services_path(sort_using_services: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_using_services] ? 'disabled' : ''}" %>
     <% end %>
     <%= link_to 'オリジナル', services_path(sercet_index: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sercet_index] ? 'disabled' : ''}" %>
   </div>

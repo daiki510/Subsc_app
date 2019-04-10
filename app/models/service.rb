@@ -1,45 +1,30 @@
 class Service < ApplicationRecord
-  # gem:OrderAsSpecifiedの読み込み
-  extend OrderAsSpecified
-
-  # アソシエーション
   has_many :subscriptions, dependent: :destroy
   has_many :users, through: :subscriptions, source: :user
-
   has_many :categorizings, dependent: :destroy
   has_many :categories, through: :categorizings, source: :category
 
   belongs_to :user
 
-  # バリデーション
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
   validates :summary, presence: true, length: { maximum: 255 }
   validates :link, format: /\A#{URI.regexp(%w[http https])}\z/, allow_blank: true
 
-  # 画像アップロード
   mount_uploader :icon, IconUploader
 
-  # enumの定義
   enum status: { open: 0, secret: 9, development: 5 }
 
-  # スコープ
   scope :search_with_category, ->(category_id) { where(id: category_ids = Categorizing.where(category_id: category_id).pluck(:service_id)) }
-  scope :sort_secret, ->(user) { where(status: 9).where(user_id: user.id) }
+  scope :sort_open_services, -> { where(status: 0) }
+  scope :sort_secret_services, ->(user) { where(status: 9).where(user_id: user.id) }
+  scope :sort_using_services, ->(user) { where(id: user.subscriptions.map(&:service_id)) }
   scope :sort_name, -> { order(name: :asc) }
 
   # 検索メソッド
   def self.search(search)
-    if search
-      where(['name LIKE ?', "%#{search}%"])
-    else
-      all
-    end
-  end
+    return where(['name LIKE ?', "%#{search}%"]) if search
 
-  # 利用中のサービスを抽出
-  def self.using_services(user)
-    service_ids = user.subscriptions.map(&:service_id)
-    where(id: service_ids)
+    all
   end
 
   # 利用者数順にソート
