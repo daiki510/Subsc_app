@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: %i[show edit update]
+  before_action :set_subscription, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   def new
@@ -30,9 +30,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @subscription = current_user.subscriptions.find_by(service_id: params[:id])
-    @subscription.destroy
     service = Service.find_by(id: @subscription.service_id)
+    @subscription.destroy
     @service.destroy if service.status == 'secret'
     redirect_to services_path, notice: 'マイページから削除しました'
   end
@@ -40,7 +39,7 @@ class SubscriptionsController < ApplicationController
   private
 
   def set_subscription
-    @subscription = current_user.subscriptions.find_by(id: params[:id])
+    @subscription = current_user.subscriptions.find(params[:id])
   end
 
   def subscription_params
