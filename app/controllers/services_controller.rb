@@ -16,6 +16,7 @@ class ServicesController < ApplicationController
     @services = @services.sort_name if params[:sort_name] # 名前順
     @services = Service.sort_with_user_count if params[:sort_with_rank] # 人気順
     @services = Service.using_services(current_user) if params[:sort_status] # 利用中のみ
+    @services = Service.where(status: 9) if params[:sercet_index] # 利用中のみ
 
     # CSV出力
     respond_to do |format|
@@ -35,6 +36,7 @@ class ServicesController < ApplicationController
     @service = Service.new(service_params)
     @service.status = 'secret' unless current_user.admin?
     if @service.save
+      Subscription.create(user_id: current_user.id, service_id: @service.id) if @service.status == 'secret'
       redirect_to services_path, notice: "「#{@service.name}」を登録しました"
     else
       render 'new'

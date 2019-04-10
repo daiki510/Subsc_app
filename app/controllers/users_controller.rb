@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   def show
     @subscriptions = current_user.subscriptions
     @services = current_user.services
-    # 詳細情報の未登録がある場合は、警告メッセージ表示
-    # flash.now[:alert] = '詳細情報が未登録のサブスクリプションがあります' if unregistered_service?(@services, @services)
 
     # 検索機能
     @services = @services.search(params[:search]) if params[:search]
@@ -30,13 +28,13 @@ class UsersController < ApplicationController
     Service.find(service_ids)
   end
 
-  # 料金順にソート(マイページ)
+  # 料金順にソート
   def sort_charge(subscriptions)
     service_ids = subscriptions.order(charge: :desc).map(&:service_id)
     Service.find(service_ids).sort_by { |o| service_ids.index(o.id) }
   end
 
-  # 支払順にソート(マイページ)
+  # 支払順にソート
   def sort_date(subscriptions)
     service_ids = subscriptions.order(due_date: :asc).map(&:service_id)
     Service.find(service_ids).sort_by { |o| service_ids.index(o.id) }

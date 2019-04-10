@@ -30,7 +30,6 @@ class SubscriptionsController < ApplicationController
   def destroy
     service = Service.find_by(id: @subscription.service_id)
     @subscription.destroy
-    @service.destroy if service.status == 'secret'
     redirect_to services_path, notice: 'マイページから削除しました'
   end
 

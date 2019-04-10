@@ -34,8 +34,8 @@
     <% if current_user %>
       <%= link_to '利用中のみ', services_path(sort_status: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_status] ? 'disabled' : ''}" %>
     <% end %>
+    <%= link_to 'オリジナル', services_path(sercet_index: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sercet_index] ? 'disabled' : ''}" %>
   </div>
-
   <div class="services">
     <p>表示件数: <%= total_services(@services) %>件</p>
     <%= paginate @services %>
