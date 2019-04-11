@@ -16,7 +16,7 @@
   padding: 1.5em 1.25em;
 }
 
-.total-box {
+.frame-box {
   position: relative;
   margin: 2em 0;
   padding: 0.5em 1em;
@@ -24,7 +24,7 @@
   border-radius: 8px;
 }
 
-.total-box .total-title {
+.frame-box .frame-title {
   position: absolute;
   display: inline-block;
   top: -13px;
@@ -37,12 +37,12 @@
   font-weight: bold;
 }
 
-.total-box p {
+.frame-box p {
   margin: 0;
   padding: 0;
 }
 
-.total-box h4 {
+.frame-box h4 {
   text-align: center;
   margin-bottom: 0;
   padding: 0.5em;
@@ -52,12 +52,12 @@
 // マイページ サブスクリプション情報
 // ================================================================
 
-.subsc-title h5 {
+.service-title {
   position: relative;
   padding: 0.25em 0;
 }
 
-.subsc-title h5:after {
+.service-title:after {
   content: "";
   display: block;
   height: 4px;

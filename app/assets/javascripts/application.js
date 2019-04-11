@@ -42,9 +42,10 @@ $(document).on("turbolinks:load", function () {
 });
 
 // ポップオーバー
-$(function () {
+$(document).on("turbolinks:load", function () {
   $('.detail-info').popover({
     trigger: 'hover',
+    placement: 'bottom',
   });
 });
 

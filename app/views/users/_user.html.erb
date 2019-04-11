@@ -6,8 +6,8 @@
         <p><%= current_user.email %></p>
       </div>
       <div class="card-body">
-        <div class="total-box">
-          <span class="total-title">合計利用料金</span>
+        <div class="frame-box">
+          <span class="frame-title">合計利用料金</span>
           <h4><%= total_charge(current_user) %>円</h4>
         </div>
         <p>通知頻度: <%= current_user.notification_status_i18n %></p>

@@ -16,7 +16,7 @@
                 <div class="no-icon">No-Icon</div>
               <% end %>
             </div>
-            <div class="col-md-8 subsc-title">
+            <div class="col-md-8">
               <div class="row category">
                 <div class="col-md-12">
                   <% service.categories.each do |category|%>
@@ -24,7 +24,7 @@
                   <% end %>
                 </div>
                 <div class="col-md-12">
-                  <h5><%= service.name %></h5>
+                  <h5 class="service-title"><%= service.name %></h5>
                 </div>
               </div>
             </div>
@@ -46,7 +46,7 @@
               <% end %>
             </div>
             <div class="col-md-5 text-right">
-              <span>
+              <span  data-toggle="popover", data-content="利用者数" class="detail-info">
                 <%= fa_icon "users" , class: "mr-2" %><%= service.subscriptions.count %>
               </span>
               <span class="ml-3">

@@ -56,7 +56,8 @@ body {
 // ======================================================================
 
 .popover {
-  background: rgb(83, 83, 83);
+  background: rgb(114, 114, 114);
+  border: none;
 }
 
 .popover-body {
@@ -68,7 +69,7 @@ body {
 }
 
 .popover .arrow:after {
-  border-bottom-color: rgb(83, 83, 83);
+  border-bottom-color: rgb(114, 114, 114);
 }
 
 // ======================================================================
@@ -165,6 +166,18 @@ body {
 .btn-circle {
   width: 38px;
   height: 38px;
+}
+
+.btn-link {
+  background-color: #90e2e2;
+  color: #fff;
+  border: none;
+}
+
+.btn-link:hover {
+  background-color: #69d3d3;
+  color: #fff;
+  border: none;
 }
 
 // ======================================================================

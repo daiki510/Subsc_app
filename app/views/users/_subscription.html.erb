@@ -11,13 +11,13 @@
                 No-Icon
               <% end %>
             </div>
-            <div class="col-md-4 subsc-title">
+            <div class="col-md-4">
               <p>
                 <% service.categories.each do |category|%>
                   <span class="badge badge-primary p-1 px-2"><%= category.name %></span>
                 <% end %>
               </p>
-              <h5><%= service.name %></h5>
+              <h5 class="service-title"><%= service.name %></h5>
             </div>
             <% subscription = subscription(current_user, service) %>
             <div class="col-md-2">

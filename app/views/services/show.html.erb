@@ -1,42 +1,84 @@
-<div class="container">
-  <div class="show-wrapper">
-    <h1 class="mb-5">サブスク詳細</h1>
-    <table class="table table-hover w-50 mb-5">
-      <tr>
-        <td>名前</td>
-        <td><%= @service.name %></td>
-      </tr>
-      <tr>
-        <td>アイコン</td>
-        <% if @service.icon.present? %>
-          <td><%= image_tag @service.icon.thumb.url %></td>
-        <% else %>
-          <td>No-Icon</td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>URL</td>
-        <td><%= auto_link(@service.link, html: { target: '_blank' }) %></td>
-      </tr>
-      <tr>
-        <td>概要</td>
-        <td><%= @service.summary %></td>
-      </tr>
-      <tr>
-        <td>カテゴリー</td>
-        <td>
-          <% @service.categories.each do |category|%>
-            <span class="badge badge-primary py-1 px-2"><%= category.name %></span>
-          <% end %>
-        </td>
-      </tr>
-    </table>
-    
-    <div class="form-footer">
-      <% if current_user.admin? %>
-        <%= link_to "編集", edit_service_path, class: "btn btn-success mr-3" %>
-      <% end %>
-      <%= link_to "一覧へ戻る", services_path, class: "btn btn-light" %>
+<div class="container show-page">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-6 mx-auto mb-3">
+      <div class="card p-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 ml-3">
+              <% if @service.icon.present? %>
+                <div class="service-icon">
+                  <%= image_tag @service.icon.url %>
+                </div>
+              <% else %>
+                <div class="no-icon">No-Icon</div>
+              <% end %>
+            </div>
+            <div class="col-md-7">
+              <div class="row category">
+                <div class="col-md-12">
+                  <% @service.categories.each do |category|%>
+                    <span class= "badge badge-primary py-1 px-2"><%= category.name %></span>
+                  <% end %>
+                </div>
+                <div class="col-md-12">
+                  <h3 class="service-title"><%= @service.name %></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%# .row1 %>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="frame-box mb-2">
+                <span class="frame-title">Summary</span>
+                <p><%= @service.summary %></p>
+              </div>
+            </div>
+          </div>
+          <%# .row2 %>
+
+          <div class="row mt-4">
+            <div class="col-md-7">
+              <%= link_to services_path ,"data-toggle" => "popover", "data-content" => "一覧へ戻る", class: "btn btn-secondary btn-circle detail-info mr-2" do %>
+                <%= fa_icon "undo" %>
+              <% end %>
+              <%= link_to @service.link, target: :blank, "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info mr-2"  do %>
+                <%= fa_icon "link" %>
+              <% end %>
+              <% if current_user.admin? || @service.status == "secret" %>
+                <%= link_to edit_service_path(@service) ,class: "btn btn-success btn-circle mr-2" do %>
+                  <%= fa_icon "pencil" %>
+                <% end %>
+                <%= link_to service_path(@service), method: :delete, remote: true, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger btn-circle delete" do %>
+                  <%= fa_icon "trash" %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col-md-5 text-right">
+              <span  data-toggle="popover", data-content="利用者数" class="detail-info">
+                <%= fa_icon "users" , class: "mr-2" %><%= @service.subscriptions.count %>
+              </span>
+              <span class="ml-3">
+                <% if already_added?(@service) %>
+                  <%= link_to subscription_path(id: get_subscription_id(@service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light btn-circle detail-info" do %>
+                    <%= fa_icon "minus" %>
+                  <% end %>
+                <% else %>
+                  <%= link_to new_subscription_path(service_id: @service.id),"data-toggle" => "popover", "data-content" => "追加", class: "btn btn-secondary btn-circle detail-info" do %>
+                    <%= fa_icon "plus" %>
+                  <% end %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+          <%# .row3 %>
+        </div>
+        <%# .card-body %>
+      </div>
+      <%# .card %>
     </div>
+    <%# .col %>
   </div>
+  <%# .row %>
 </div>
