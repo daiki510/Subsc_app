@@ -3,7 +3,7 @@ class ServicesController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :required_creator, only: %i[edit update destroy]
   before_action :check_file, only: %i[import]
-  PER_PAGE = 10
+  PER_PAGE = 12
 
   def index
     @services = Service.search_open_status

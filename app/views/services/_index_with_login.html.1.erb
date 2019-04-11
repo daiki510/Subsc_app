@@ -1,0 +1,67 @@
+<table class="table table-hover mt-3">
+  <tr class="thead-light">
+    <th id="icon">アイコン</th>
+    <th id="name">名前</th>
+    <th id="summary">概要</th>
+    <th id="category">カテゴリー</th>
+    <th id="count">利用者数</th>
+    <th id="status">利用状況</th>
+    <th id="addition">追加</th>
+    <th id="menu" colspan="3">メニュー</th>
+  </tr>
+
+  <% if @services.blank? %>
+    <tr>一致する結果はありません</tr>
+  <% end %>
+
+  <% @services.each do |service| %>
+    <tr>
+      <% if service.icon.present? %>
+        <td><%= image_tag service.icon.thumb.url %></td>
+      <% else %>
+        <td>No-Icon</td>
+      <% end %>
+      <td><%= service.name %></td>
+      <td><%= service.summary %></td>
+      <%# カテゴリー一覧 %>
+      <td>
+        <% service.categories.each do |category|%>
+          <%= link_to category.name, services_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
+        <% end %>
+      </td>
+      <%# 利用者数 %>
+      <td class="text-center"><%= service.subscriptions.count %></td>
+      <%# 利用状況 %>
+      <td>
+        <% if already_added?(service) %>
+          利用中
+        <% end %>
+      </td>
+      <%# 追加or解除ボタン %>
+      <td>
+        <% if already_added?(service) %>
+          <%= link_to subscription_path(id: get_subscription_id(service)), method: :delete, class: "btn btn-light" do %>
+            <%= fa_icon "minus" %>
+          <% end %>
+        <% else %>
+          <%= link_to new_subscription_path(service_id: service.id), class: "btn btn-secondary" do %>
+            <%= fa_icon "plus" %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to service_path(service) ,class: "btn btn-info btn-circle mr-2" do %>
+          <%= fa_icon "info" %>
+        <% end %>
+        <% if current_user.admin? || service.status == "secret" %>
+          <%= link_to edit_service_path(service) ,class: "btn btn-success btn-circle mr-2" do %>
+            <%= fa_icon "pencil" %>
+          <% end %>
+          <%= link_to service_path(service), method: :delete, remote: true, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger btn-circle delete" do %>
+            <%= fa_icon "trash" %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

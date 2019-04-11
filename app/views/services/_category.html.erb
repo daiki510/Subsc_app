@@ -1,0 +1,11 @@
+<div class="card mb-4">
+  <div class="card-header p-0 pl-2 pt-2">
+    <h6 class="ml-2">カテゴリー</h6>
+  </div>
+  <div class="card-body">
+    <span><%= link_to 'All', services_path, class: "badge badge-light py-1 px-2" %></span>
+    <% categories.each do |category| %>
+      <span><%= link_to category.name, services_path(category_id: category.id), class: "badge badge-light py-1 px-2" %></span>
+    <% end %>
+  </div>
+</div>

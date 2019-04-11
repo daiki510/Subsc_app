@@ -6,39 +6,21 @@
     <%= render 'csv' %>
   <% end %>
 
-  <div class="card mb-4">
-    <div class="card-header p-0 pl-2 pt-2">
-      <h5>カテゴリー</h5>
-    </div>
-    <div class="card-body">
-      <span><%= link_to 'All', services_path, class: "badge badge-light py-1 px-2" %></span>
-      <% categories.each do |category| %>
-        <span><%= link_to category.name, services_path(category_id: category.id), class: "badge badge-light py-1 px-2" %></span>
-      <% end %>
-    </div>
+  <%= render 'category' %>
+
+  <div class="row mb-4 pb-3 border-bottom">
+    <%= render 'search' %>
   </div>
 
-  <div class="mb-4">
-    <%= form_tag(services_path, method: 'get',class: "form-inline w-50" ) do %>
-      <%= text_field_tag :search ,"",placeholder: "サブスクリプション名",class: "form-control"%>
-      <div class="input-group-append">
-        <%= submit_tag '検索', :name => nil, class: "btn btn-outline-secondary ml-2" %>
-        <%= link_to 'クリア', services_path, class: "btn btn-outline-secondary ml-2" %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="mb-4 pb-2 border-bottom">
-    <%= link_to '人気順', services_path(sort_with_rank: "true"), class: "btn btn-outline-secondary #{params[:sort_with_rank] ? 'disabled' : ''}" %>
-    <%= link_to '名前順', services_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_name] ? 'disabled' : ''}" %>
-    <% if current_user %>
-      <%= link_to '利用中のみ', services_path(search_with_using: "true"), class: "btn btn-outline-secondary ml-2 #{params[:search_with_using] ? 'disabled' : ''}" %>
-    <% end %>
-    <%= link_to 'オリジナル', services_path(sercet_index: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sercet_index] ? 'disabled' : ''}" %>
-  </div>
   <div class="services">
-    <p>表示件数: <%= total_services(@services) %>件</p>
-    <%= paginate @services %>
+    <div class="row border-bottom mb-4">
+      <div class="col-md-9">
+        <%= paginate @services %>
+      </div>
+      <div class="col-md-3 text-right pt-3">
+        <span>表示件数: <%= total_services(@services) %>件</span>
+      </div>
+    </div>
     <% if current_user %>
       <%= render 'index_with_login' %>
     <% else %>
