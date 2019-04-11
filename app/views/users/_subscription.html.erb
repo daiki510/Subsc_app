@@ -33,7 +33,7 @@
               <%= link_to edit_subscription_path(subscription), class: "btn btn-success mr-2" do %>
                 <%= fa_icon "pencil" %>
               <% end %>
-              <%= link_to subscription_path(subscription), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" do %>
+              <%= link_to subscription_path(subscription, back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" do %>
                 <%= fa_icon "minus" %>
               <% end %>
             </div>

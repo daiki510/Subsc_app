@@ -30,7 +30,12 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription.destroy
-    redirect_to services_path, notice: 'マイページから削除しました'
+    flash[:alert] = 'マイページから削除しました'
+    if params[:back_to_mypage]
+      redirect_to user_path(current_user)
+    else
+      redirect_to services_path
+    end
   end
 
   private
