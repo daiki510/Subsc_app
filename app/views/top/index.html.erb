@@ -12,10 +12,7 @@
   <body>
     <div class="top-body">
       <div class="header">
-        header
-        <%= link_to "ログイン", new_user_session_path %>
-        <%= link_to "新規登録", new_user_registration_path %>
-        <%= link_to "サブスクリプション一覧", services_path %>
+        <%= render 'layouts/header' %>
       </div>
       <div class="top-image">
         top-image

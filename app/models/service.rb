@@ -52,7 +52,7 @@ class Service < ApplicationRecord
 
   # CSVエクスポート
   def self.csv_attributes
-    %w[name summary link created_at updated_at]
+    %w[name summary link user_id created_at updated_at]
   end
 
   def self.generate_csv

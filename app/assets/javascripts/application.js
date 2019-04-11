@@ -18,7 +18,7 @@
 //= require turbolinks
 //= require_tree .
 
-// サブスクリプション登録時のアイコン設定
+// サービス登録時のアイコン設定
 $(document).on("turbolinks:load", function () {
   $fileField = $('#file')
 
@@ -46,4 +46,12 @@ $(function () {
   $('.detail-info').popover({
     trigger: 'hover',
   });
+});
+
+// CSVファイル名を表示させる
+$(document).on('change', ':file', function () {
+  var input = $(this),
+    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+  input.parent().parent().next(':text').val(label);
 });

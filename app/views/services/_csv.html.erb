@@ -1,16 +1,31 @@
-<%= form_tag import_services_path, multipart: true do %>
-  <div class=”input-inline”>
-    <div class="input-group">
-      <label class="input-group-prepend">
-        <span class="btn btn-secondary">
-          ファイル選択<%= file_field_tag :file, style: "display:none;" %>
-        </span>
-      </label>
-      <%= text_field_tag :text, "", class: "form-control csv-text", readonly: "" %>
+<button type="button" class="btn btn-info ml-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    CSV関連表示
+</button>
+<div class="collapse" id="collapseExample">
+  <div class="row">
+    <div class="col-md-9">
+      <%= form_tag import_services_path, multipart: true do %>
+        <div class="row input-inline">
+          <div class="col-md-9">
+            <div class="input-group">
+              <label class="input-group-prepend">
+                <span class="btn btn-secondary">
+                  ファイル選択<%= file_field_tag :file, style: "display:none;" %>
+                </span>
+              </label>
+              <%= text_field_tag :text, "", class: "form-control csv-text", readonly: "" %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="input-group">
+              <%= submit_tag "CSVインポート", class: "btn btn-info" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class="input-group">
-      <%= submit_tag "CSVインポート", class: "btn btn-info mb-2" %>
+    <div class="col-md-3">
+      <%= link_to 'CSVエクスポート', services_path(format: :csv), class: "btn btn-success mb-3" %>
     </div>
   </div>
-<% end %>
-<%= link_to 'CSVエクスポート', services_path(format: :csv), class: "btn btn-success mb-3" %>
+</div>

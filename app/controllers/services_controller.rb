@@ -2,6 +2,7 @@ class ServicesController < ApplicationController
   before_action :set_service, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: :index
   before_action :required_creator, only: %i[edit update destroy]
+  before_action :check_file, only: %i[import]
   PER_PAGE = 10
 
   def index
@@ -77,5 +78,9 @@ class ServicesController < ApplicationController
     params.require(:service).permit(
       :name, :icon, :icon_cache, :link, :summary, :status, category_ids: []
     )
+  end
+
+  def check_file
+    redirect_to services_path, alert: 'CSVファイルを選択してください' if params[:file].nil?
   end
 end
