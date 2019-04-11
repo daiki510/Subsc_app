@@ -19,7 +19,8 @@
       <% end %>
 
       <div class="form-item">
-        <%# <h3><%= service_name(@subscription) %>
+        <h3>サービス名：<%= service(@subscription).name %></h3>
+        <p>関連リンク：<%= link_to service(@subscription).link %></p>
       </div>
       <div class="form-item">
         <span class="text-danger">*</span>
