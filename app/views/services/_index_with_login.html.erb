@@ -20,7 +20,7 @@
               <div class="row category">
                 <div class="col-md-12">
                   <% service.categories.each do |category|%>
-                    <span class="badge badge-primary p-1 px-2"><%= category.name %></span>
+                    <%= link_to category.name, services_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
                   <% end %>
                 </div>
                 <div class="col-md-12">
