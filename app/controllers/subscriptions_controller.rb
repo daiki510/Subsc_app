@@ -10,7 +10,7 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = subscriptions.new(subscription_params)
     if @subscription.save
-      redirect_to services_path, notice: 'サブスクリプションを登録しました'
+      redirect_to services_path, notice: "「#{service_name(@subscription)}」を追加しました"
     else
       render 'new'
     end
@@ -22,7 +22,7 @@ class SubscriptionsController < ApplicationController
 
   def update
     if @subscription.update(subscription_params)
-      redirect_to user_path(current_user.id), notice: 'サブスクリプションを更新しました'
+      redirect_to user_path(current_user.id), notice: "「#{service_name(@subscription)}」を更新しました"
     else
       render 'edit'
     end
@@ -30,7 +30,7 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription.destroy
-    flash[:alert] = 'マイページから削除しました'
+    flash[:alert] = "「#{service_name(@subscription)}」を削除しました"
     if params[:back_to_mypage]
       redirect_to user_path(current_user)
     else
@@ -46,5 +46,9 @@ class SubscriptionsController < ApplicationController
 
   def subscription_params
     params.require(:subscription).permit(:charge, :due_date, :payment_type, :note, :user_id, :service_id)
+  end
+
+  def service_name(subscription)
+    Service.find_by(id: subscription.service_id).name
   end
 end

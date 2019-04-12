@@ -32,20 +32,25 @@
           <%# .row1 %>
 
           <div class="row mt-4">
-            <div class="col-md-5">
+            <div class="col-md-7">
               <%= link_to service_path(service) ,"data-toggle" => "popover", "data-content" => "詳細",class: "btn btn-info btn-circle detail-info mr-2" do %>
                 <%= fa_icon "info" %>
               <% end %>
-              <%= link_to service.link, target: :blank, "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info mr-2"  do %>
-                <%= fa_icon "link" %>
+              <% if current_user.admin? || service.status == "secret" %>
+                <%= link_to edit_service_path(service) ,class: "btn btn-success btn-circle mr-2" do %>
+                  <%= fa_icon "pencil" %>
+                <% end %>
+                <%= link_to service_path(service), method: :delete, remote: true, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger btn-circle delete" do %>
+                  <%= fa_icon "trash" %>
+                <% end %>
               <% end %>
             </div>
-            <div class="col-md-7 text-right">
+            <div class="col-md-5 text-right">
+              <span  data-toggle="popover", data-content="利用者数" class="detail-info">
+                <%= fa_icon "users" , class: "mr-2" %><%= service.subscriptions.count %>
+              </span>
               <span class="ml-3">
                 <% if already_added?(service) %>
-                  <span  data-toggle="popover", data-content="利用者数" class="detail-info mr-2">
-                    <%= fa_icon "users" , class: "mr-2" %><%= service.subscriptions.count %>
-                  </span>
                   <%= link_to subscription_path(id: get_subscription_id(service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light detail-info" do %>
                     <%= fa_icon "minus" %>
                   <% end %>

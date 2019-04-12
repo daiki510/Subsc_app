@@ -26,7 +26,7 @@ class Service < ApplicationRecord
 
   # 検索メソッド
   def self.search(search)
-    return where(['name LIKE ?', "%#{search}%"]) if search
+    return where(['name ILIKE ?', "%#{search}%"]) if search
 
     all
   end
