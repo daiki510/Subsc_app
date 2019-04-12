@@ -1,78 +1,122 @@
-<div class="form">
-  <%= form_with model: @service, local: true do |f| %>
+<div class="container service-form show-page">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 mx-auto mb-3">
+      <% if @service.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @service.errors.count %>件のエラーがあります。</h2>
 
-    <% if @service.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= @service.errors.count %>件のエラーがあります。</h2>
-
-        <ul>
-          <% @service.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="form-wrapper w-50">
-      <% if params[:id] %>
-         <h1>サブスク編集</h1>
-      <% else %>
-         <h1>サブスク登録</h1>
-      <% end %>
-      
-      <div class="form-item mb-2">
-        <span class="text-danger">*</span>
-        <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control w-100" %>
-      </div>
-
-      <% if current_user.admin? %>
-        <div class="form-item mb-2">
-          <span class="text-danger">*</span>
-          <%= f.label :status %>
-          <%= f.select :status, Service.statuses.keys.to_a, {}, class: "form-control w-100" %>
+          <ul>
+            <% @service.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
-
-      <div class="form-item mb-2">
-        <%= f.label :icon %>
-        <div id="icon_field" onClick="$('#file').click()" >
-          <% if @service.icon.url.present? %>
-            <%= image_tag(@service.icon.url) %>
+      <div class="card p-3">
+        <h2 class="form-title">
+          <% if params[:id] %>
+            サービス編集
+          <% else %>
+            サービス登録
           <% end %>
-          <div class="mask">
-            <div class="caption">画像を選択</div>
+        </h2>
+        <%= form_with model: @service, local: true do |f| %>
+          <div class="card-body">
+            <div class="row d-flex align-items-center">
+              <div class="col-md-3">
+                <div class="form-item mb-2">
+                
+                  <div id="icon_field" onClick="$('#file').click()" >
+                    <% if @service.icon.url.present? %>
+                      <%= image_tag(@service.icon.url) %>
+                    <% end %>
+                    <div class="mask">
+                      <div class="caption">アイコン</div>
+                    </div>
+                  </div>
+                  <%= f.file_field :icon, class: "icon", style: "display:none;", id: "file" %>
+                  <%= f.hidden_field :icon_cache %>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-9">
+                <div class="form-label-group mb-2" id="service-name-box">
+                  <%= f.text_field :name, placeholder: "Name", class: "form-control service-name" %>
+                  <%= f.label :name ,"サービス名"%>
+                </div>
+              </div>
+            </div>
+            <%# .row1 %>
+
+            <div class="row my-3">
+              <div class="col-12">
+                <div class="form-label-group mb-2">
+                  <%= f.text_area :summary ,placeholder: "サービス概要",class: "form-control" ,rows: 5 %>
+                </div>  
+              </div>
+            </div>
+            <%# .row2 %>
+
+            <div class="row mb-2">
+              <div class="col-12">
+                <div class="form-label-group mb-2">
+                  <%= f.text_field :link, autofocus: true, autocomplete: "link" ,placeholder: "Link",class: "form-control w-100" %> 
+                  <%= f.label :link %>
+                </div>  
+              </div>
+            </div>
+            <%# .row3 %>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="frame-box mb-2">
+                  <span class="frame-title"><%= f.label :category_ids, 'カテゴリー(複数可)' %></span>
+                  <p class="check-categories">
+                    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, prompt: true do |l| %>
+                      <span class="mx-1"><%= l.label { l.check_box + l.text } %></span>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <%# .row4 %>
+
+            <% if current_user.admin? %>
+              <div class="form-label-group my-4">
+                <div class="row">
+                  <div class="label-notifiy col-md-3 text-center">
+                    <span>公開範囲</span>
+                  </div>
+                  <div class="col-md-4 select-box select-plus">
+                    <%= f.select :status, Service.statuses.keys.to_a, {}, class: "form-control" %>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <p class="text-danger ml-3 mt-3">登録したサービスは、他のユーザーには表示されません</p>
+            <% end %>
+
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="button-panel">
+                  <%= f.submit class: "btn btn-lg btn-signin btn-block text-uppercase mt-3" %>
+                </div>  
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-3">
+                <%= link_to services_path ,"data-toggle" => "popover", "data-content" => "一覧へ戻る", class: "btn btn-secondary btn-circle detail-info mr-2" do %>
+                  <%= fa_icon "undo" %>
+                <% end %>  
+              </div>
+            </div>
+            <%# .row3 %>
           </div>
-        </div>
-        <%= f.file_field :icon, class: "icon", style: "display:none;", id: "file" %>
-        <%= f.hidden_field :icon_cache %>
+          <%# .card-body %>
+        <% end %>
       </div>
-
-      <div class="form-item mb-2">
-        <%= f.label :link %>
-        <%= f.text_field :link ,class: "form-control w-100" %> 
-      </div>
-      <div class="form-item mb-2">
-        <span class="text-danger">*</span>
-        <%= f.label :summary %>
-        <%= f.text_area :summary ,class: "form-control w-100" ,rows: 5 %>
-      </div>
-      <div class="form-item my-2">
-        <%= f.label :category_ids, 'カテゴリー(複数可)' %><br>
-        <div class="border rounded p-2">
-          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, prompt: true do |l| %>
-            <span class="mx-1"><%= l.label { l.check_box + l.text } %></span>
-          <% end %>
-        </div>
-      </div>
-      <div class="button-panel">
-        <%= f.submit class: "btn btn-primary my-2" %>
-      </div>
-      
-      <div class="form-footer">
-        <%= link_to "一覧へ戻る", services_path, class: "btn btn-light" %>
-      </div>
+      <%# .card %>
     </div>
-  <% end %>
+    <%# .col %>
+  </div>
+  <%# .row %>
 </div>
-
