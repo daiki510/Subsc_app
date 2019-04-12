@@ -3,12 +3,14 @@
     <div class="col-12 mb-3">
       <div class="card">
         <div class="card-body">
-          <div class="row">
-            <div class="col-md-2 img-height">
+          <div class="row d-flex align-items-center">
+            <div class="col-md-2">
               <% if service.icon.present? %>
-                <%= image_tag service.icon.thumb.url %>
+                <div class="service-icon">
+                  <%= image_tag service.icon.url %>
+                </div>
               <% else %>
-                No-Icon
+                <div class="no-icon">No-Icon</div>
               <% end %>
             </div>
             <div class="col-md-4">
@@ -17,23 +19,27 @@
                   <span class="badge badge-primary p-1 px-2"><%= category.name %></span>
                 <% end %>
               </p>
-              <h5 class="service-title"><%= service.name %></h5>
+              <h5 class="service-title ommision"><%= service.name %></h5>
             </div>
             <% subscription = subscription(current_user, service) %>
-            <div class="col-md-2">
-              <%= subscription.charge %>
+            <div class="col-md-3">
+              <div class="row subsc-info">
+                <div class="col-md-12 mb-3">
+                  <%= fa_icon "credit-card" %><span class="ml-2"><%= subscription.charge %>円</span>
+                </div>
+                <div class="col-md-12">
+                  <%= fa_icon "calendar" %><span class="ml-2"><%= subscription.due_date %>日</span>
+                </div>
+              </div>
             </div>
-            <div class="col-md-2">
-              <%= subscription.due_date %>日
-            </div>
-            <div class="col-md-2">
-              <%= link_to subscription_path(subscription), class: "btn btn-info mr-2" do %>
+            <div class="col-md-3">
+              <%= link_to subscription_path(subscription), class: "btn btn-info btn-circle mr-2" do %>
                 <%= fa_icon "info" %>
               <% end %>
-              <%= link_to edit_subscription_path(subscription), class: "btn btn-success mr-2" do %>
+              <%= link_to edit_subscription_path(subscription), class: "btn btn-success btn-circle mr-2" do %>
                 <%= fa_icon "pencil" %>
               <% end %>
-              <%= link_to subscription_path(subscription, back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger" do %>
+              <%= link_to subscription_path(subscription, back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger btn-circle" do %>
                 <%= fa_icon "minus" %>
               <% end %>
             </div>
