@@ -33,7 +33,7 @@
 
           <div class="row mt-4">
             <div class="col-md-7">
-              <%= link_to service_path(service) ,class: "btn btn-info btn-circle mr-2" do %>
+              <%= link_to service_path(service) ,"data-toggle" => "popover", "data-content" => "詳細",class: "btn btn-info btn-circle detail-info mr-2" do %>
                 <%= fa_icon "info" %>
               <% end %>
               <% if current_user.admin? || service.status == "secret" %>
@@ -51,11 +51,11 @@
               </span>
               <span class="ml-3">
                 <% if already_added?(service) %>
-                  <%= link_to subscription_path(id: get_subscription_id(service)), method: :delete, class: "btn btn-light" do %>
+                  <%= link_to subscription_path(id: get_subscription_id(service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light detail-info" do %>
                     <%= fa_icon "minus" %>
                   <% end %>
                 <% else %>
-                  <%= link_to new_subscription_path(service_id: service.id), class: "btn btn-secondary" do %>
+                  <%= link_to new_subscription_path(service_id: service.id),"data-toggle" => "popover", "data-content" => "追加", class: "btn btn-secondary detail-info" do %>
                     <%= fa_icon "plus" %>
                   <% end %>
                 <% end %>

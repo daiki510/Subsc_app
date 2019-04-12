@@ -12,7 +12,7 @@
         </div>
         <p>通知頻度: <%= current_user.notification_status_i18n %></p>
         <div class="form-footer mb-5">
-          <%= link_to edit_user_registration_path, 'data-toggle' => "popover", 'data-content' => "ユーザー編集" ,'data-placement'=> "bottom" , class: "subscription-info btn btn-success mr-3" do %>
+          <%= link_to edit_user_registration_path, 'data-toggle' => "popover", 'data-content' => "ユーザー編集" ,'data-placement'=> "bottom" , class: "subscription-info btn btn-success detail-info mr-3" do %>
             <%= fa_icon "pencil" ,class: "big" %>
           <% end %>
         </div>
