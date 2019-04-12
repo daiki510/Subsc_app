@@ -1,0 +1,39 @@
+<table class="table table-hover mt-3">
+  <tr class="thead-light">
+    <th id="icon">アイコン</th>
+    <th id="name">名前</th>
+    <th id="summary">概要</th>
+    <th id="category">カテゴリー</th>
+    <th id="count">利用者数</th>
+    <th id="menu"></th>
+  </tr>
+
+  <% if @services.blank? %>
+    <tr>一致する結果はありません</tr>
+  <% end %>
+
+  <% @services.each do |service| %>
+    <tr>
+      <% if service.icon.present? %>
+        <td><%= image_tag service.icon.thumb.url %></td>
+      <% else %>
+        <td>No-Icon</td>
+      <% end %>
+      <td><%= service.name %></td>
+      <td><%= service.summary %></td>
+      <%# カテゴリー一覧 %>
+      <td>
+        <% service.categories.each do |category|%>
+          <%= link_to category.name, services_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
+        <% end %>
+      </td>
+      <%# 利用者数 %>
+      <td class="text-center"><%= service.subscriptions.count %></td>
+      <td>
+        <%= link_to service_path(service.id) ,class: "btn btn-info btn-circle mr-2 disabled" do %>
+          <%= fa_icon "info" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

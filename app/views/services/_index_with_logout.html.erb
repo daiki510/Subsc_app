@@ -1,39 +1,53 @@
-<table class="table table-hover mt-3">
-  <tr class="thead-light">
-    <th id="icon">アイコン</th>
-    <th id="name">名前</th>
-    <th id="summary">概要</th>
-    <th id="category">カテゴリー</th>
-    <th id="count">利用者数</th>
-    <th id="menu"></th>
-  </tr>
-
+<div class="row">
   <% if @services.blank? %>
-    <tr>一致する結果はありません</tr>
+    <p>一致する結果はありません</p>
   <% end %>
-
   <% @services.each do |service| %>
-    <tr>
-      <% if service.icon.present? %>
-        <td><%= image_tag service.icon.thumb.url %></td>
-      <% else %>
-        <td>No-Icon</td>
-      <% end %>
-      <td><%= service.name %></td>
-      <td><%= service.summary %></td>
-      <%# カテゴリー一覧 %>
-      <td>
-        <% service.categories.each do |category|%>
-          <%= link_to category.name, services_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
-        <% end %>
-      </td>
-      <%# 利用者数 %>
-      <td class="text-center"><%= service.subscriptions.count %></td>
-      <td>
-        <%= link_to service_path(service.id) ,class: "btn btn-info btn-circle mr-2 disabled" do %>
-          <%= fa_icon "info" %>
-        <% end %>
-      </td>
-    </tr>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <% if service.icon.present? %>
+                <div class="service-icon">
+                  <%= image_tag service.icon.url %>
+                </div>
+              <% else %>
+                <div class="no-icon">No-Icon</div>
+              <% end %>
+            </div>
+            <div class="col-md-8">
+              <div class="row category">
+                <div class="col-md-12">
+                  <% service.categories.each do |category|%>
+                    <%= link_to category.name, services_path(category_id: category.id), class: "badge badge-primary py-1 px-2" %>
+                  <% end %>
+                </div>
+                <div class="col-md-12">
+                  <h5 class="service-title"><%= service.name %></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%# .row1 %>
+
+          <div class="row mt-1">
+            <div class="col-md-9">
+              <p class="summary-box"><%= service.summary %></p>
+            </div>
+            <div class="col-md-3 text-right">
+              <span  data-toggle="popover", data-content="利用者数" class="detail-info">
+                <%= fa_icon "users" , class: "mr-2" %><%= service.subscriptions.count %>
+              </span>
+            </div>
+          </div>
+          <%# .row2 %>
+        </div>
+        <%# .card-body %>
+      </div>
+      <%# .card %>
+    </div>
+    <%# .col %>
   <% end %>
-</table>
+</div>
+<%# .row %>
