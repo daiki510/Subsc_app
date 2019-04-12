@@ -3,7 +3,7 @@
     <p>一致する結果はありません</p>
   <% end %>
   <% @services.each do |service| %>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-3 <%= "using-service" if already_added?(service) %>">
       <div class="card">
         <div class="card-body">
           <div class="row">
