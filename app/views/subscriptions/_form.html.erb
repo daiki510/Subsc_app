@@ -21,7 +21,9 @@
         </h2>
         <%= form_with model: @subscription, local: true do |f| %>
           <% service = service(@subscription) %>
-          <%= f.hidden_field :service_id, value: params[:service_id] %>
+          <% unless params[:id] %>
+            <%= f.hidden_field :service_id, value: params[:service_id] %>
+          <% end %>
           <div class="card-body">
             <div class="row d-flex align-items-center pb-4 border-bottom">
               <div class="col-md-4 ml-4">

@@ -21,6 +21,7 @@ class SubscriptionsController < ApplicationController
   def edit; end
 
   def update
+    # raise
     if @subscription.update(subscription_params)
       redirect_to user_path(current_user.id), notice: "「#{service_name(@subscription)}」を更新しました"
     else
