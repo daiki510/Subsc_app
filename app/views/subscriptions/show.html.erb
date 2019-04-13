@@ -72,7 +72,7 @@
                 <%= fa_icon "users" , class: "mr-2" %><%= service.subscriptions.count %>
               </span>
               <span class="ml-3">
-                <%= link_to subscription_path(id: get_subscription_id(service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", data: { confirm: '本当に外してもいいですか?' } ,class: "btn btn-light btn-circle detail-info" do %>
+                <%= link_to subscription_path(id: get_subscription_id(current_user, service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", data: { confirm: '本当に外してもいいですか?' } ,class: "btn btn-light btn-circle detail-info" do %>
                   <%= fa_icon "minus" %>
                 <% end %>
               </span>

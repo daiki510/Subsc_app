@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     post :import, on: :collection
   end
   
-  resources :subscriptions
+  resources :subscriptions, except: [:index]
 
   #問い合わせ
   resources :contacts, only: [:new, :create]

@@ -7,7 +7,7 @@ module SubscriptionsHelper
     Subscription.where(user_id: user.id).sum(:charge)
   end
 
-  def get_subscription_id(service)
-    Subscription.find_by(service_id: service.id).id
+  def get_subscription_id(user, service)
+    user.subscriptions.find_by(service_id: service.id).id
   end
 end

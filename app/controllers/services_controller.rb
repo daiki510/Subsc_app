@@ -59,7 +59,7 @@ class ServicesController < ApplicationController
 
   def destroy
     @service.destroy
-    head :no_content
+    redirect_to services_path, alert: "「#{@service.name}」を削除しました"
   end
 
   # CSVインポート

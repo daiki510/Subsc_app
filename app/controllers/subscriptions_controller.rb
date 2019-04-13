@@ -30,7 +30,7 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription.destroy
-    flash[:alert] = "「#{service_name(@subscription)}」を削除しました"
+    flash[:alert] = "「#{service_name(@subscription)}」を利用一覧から外しました"
     if params[:back_to_mypage]
       redirect_to user_path(current_user)
     else

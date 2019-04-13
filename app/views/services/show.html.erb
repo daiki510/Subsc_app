@@ -50,7 +50,7 @@
                 <%= link_to edit_service_path(@service) ,class: "btn btn-success btn-circle mr-2" do %>
                   <%= fa_icon "pencil" %>
                 <% end %>
-                <%= link_to service_path(@service), method: :delete, remote: true, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger btn-circle delete" do %>
+                <%= link_to service_path(@service), method: :delete, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger btn-circle delete" do %>
                   <%= fa_icon "trash" %>
                 <% end %>
               <% end %>
@@ -61,7 +61,7 @@
               </span>
               <span class="ml-3">
                 <% if already_added?(@service) %>
-                  <%= link_to subscription_path(id: get_subscription_id(@service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light btn-circle detail-info" do %>
+                  <%= link_to subscription_path(id: get_subscription_id(current_user, @service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light btn-circle detail-info" do %>
                     <%= fa_icon "minus" %>
                   <% end %>
                 <% else %>

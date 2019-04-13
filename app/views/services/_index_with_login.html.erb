@@ -46,7 +46,7 @@
                   <span  data-toggle="popover", data-content="利用者数" class="detail-info mr-2">
                     <%= fa_icon "users" , class: "mr-2" %><%= service.subscriptions.count %>
                   </span>
-                  <%= link_to subscription_path(id: get_subscription_id(service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light detail-info" do %>
+                  <%= link_to subscription_path(id: get_subscription_id(current_user, service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light detail-info" do %>
                     <%= fa_icon "minus" %>
                   <% end %>
                 <% else %>
