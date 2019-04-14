@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-5">
   <%= form_tag(services_path, method: 'get',class: "form-inline" ) do %>
     <%= text_field_tag :search ,"",placeholder: "サービス名",class: "form-control search-form w-50"%>
     <div class="input-group-append">
@@ -8,10 +8,13 @@
   <% end %>
 </div>
 
-<div class="col-md-6 text-right">
+<div class="col-md-7 text-right">
   <%= link_to '人気順', services_path(sort_with_rank: "true"), class: "btn btn-outline-secondary #{params[:sort_with_rank] ? 'disabled' : ''}" %>
   <%= link_to '名前順', services_path(sort_name: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_name] ? 'disabled' : ''}" %>
-  <% if current_user %>
+  <%= link_to '新着順', services_path(sort_create: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_create] ? 'disabled' : ''}" %>
+  <% if current_user&.admin? %>
+    <%= link_to '更新順', services_path(sort_update: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_update] ? 'disabled' : ''}" %>
+  <% elsif current_user %>
     <%= link_to '利用中のみ', services_path(search_with_using: "true"), class: "btn btn-outline-secondary ml-2 #{params[:search_with_using] ? 'disabled' : ''}" %>
     <%= link_to 'オリジナル', services_path(sercet_index: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sercet_index] ? 'disabled' : ''}" %>
   <% end %>

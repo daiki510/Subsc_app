@@ -23,6 +23,8 @@ class Service < ApplicationRecord
   scope :search_with_using, ->(user) { where(id: user.subscriptions.map(&:service_id)) }
   scope :search_with_unregisterd, ->(user) { where(id: Subscription.where(charge: 0).where(user_id: user.id).map(&:service_id)) }
   scope :sort_name, -> { order(name: :asc) }
+  scope :sort_create, -> { order(created_at: :desc) }
+  scope :sort_update, -> { order(updated_at: :desc) }
 
   # 検索メソッド
   def self.search(search)
