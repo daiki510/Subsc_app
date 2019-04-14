@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   scope :search_with_category, ->(category_id) { where(id: category_ids = Categorizing.where(category_id: category_id).pluck(:service_id)) }
   scope :sort_name, -> { order(name: :asc) }
+  scope :sort_create, -> { order(created_at: :desc) }
 
   # 検索メソッド
   def self.search(search)
