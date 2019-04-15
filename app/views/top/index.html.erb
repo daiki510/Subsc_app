@@ -11,22 +11,17 @@
 
   <body>
     <div class="top-body">
-      <div class="header">
-        <%= render 'layouts/header' %>
-      </div>
-      <div class="top-image">
-        top-image
+      <%= render 'layouts/header' %>
+      <div class="main">
+        <%= render 'top/main' %>
       </div>
       <div class="feature">
-        feature
+        <%= render 'top/feature' %>
       </div>
       <div class="step">
-        step
+        <%= render 'top/step' %>
       </div>
-      <div class="footer">
-        footer
-        <p><%= link_to "TOP", "#" %></p>
-      </div>
+      <%= render 'layouts/footer' %>
     </div>
   </body>
 </html>
