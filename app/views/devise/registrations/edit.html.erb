@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-9 col-md-7 col-lg-4 mx-auto">
+  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="card card-signin my-5">
       <div class="card-body">
@@ -51,11 +51,15 @@
       </div>
       <div class="card-footer py-4">
         <div class="row">
-          <div class="col-md-6">
-            <%= button_to "マイページへ戻る", :back ,method: :get, class: "btn btn-outline-secondary btn-back"%>
+          <div class="col-md-6 ml-3">
+            <%= link_to user_path(current_user) ,"data-toggle" => "popover", "data-content" => "一覧へ戻る", class: "btn btn-secondary btn-circle detail-info mr-2" do %>
+              <%= fa_icon "undo" %>
+            <% end %>
           </div>
-          <div class="col-md-6">
-            <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当に削除してよろしいですか？ 全てのデータが削除されます" }, method: :delete, class: "btn btn-sm btn-outline-secondary btn-delete" %>
+          <div class="col-md-4">
+            <%= button_to registration_path(resource_name),"data-toggle" => "popover", "data-content" => "アカウント削除", data: { confirm: "本当に削除してよろしいですか？ 全てのデータが削除されます" }, method: :delete, class: "btn btn-sm btn-outline-secondary btn-delete detail-info" do %>
+              <%= fa_icon "user-times" %>
+            <% end %>
           </div>
         </div>
       </div>
