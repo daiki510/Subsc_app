@@ -56,3 +56,23 @@ $(document).on('change', ':file', function () {
     label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
   input.parent().parent().next(':text').val(label);
 });
+
+//pagetopボタン
+$(function () {
+  var topBtn = $('#page-top');
+  topBtn.hide();
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      topBtn.fadeIn();
+    } else {
+      topBtn.fadeOut();
+    }
+  });
+
+  topBtn.click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 700); //戻るスピード調整
+    return false;
+  });
+});

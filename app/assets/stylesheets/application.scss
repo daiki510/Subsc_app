@@ -38,6 +38,10 @@ body {
   // min-height: 100vh;
 }
 
+a:hover {
+  text-decoration: none
+}
+
 .big {
   font-size: 1.2em;
   font-weight: 600;
@@ -74,7 +78,7 @@ body {
 }
 
 .dropdown-menu.show {
-  background-color: #50bfa4;
+  background-color: #5d7972ad;
 }
 
 .dropdown-menu a {

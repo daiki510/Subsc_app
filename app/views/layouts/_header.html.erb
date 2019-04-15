@@ -1,12 +1,12 @@
 <header class="container">
-  <nav class="navbar navbar-expand-sm bg-light">
+  <nav class="navbar navbar-expand-sm navbar-fixed-top">
     <%= link_to "Subsc", root_path, class: "nav-brand nav-link" %>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <%= link_to services_path, role: "button", "data-toggle" => "dropdown",id: "navbarDropdownMenuLink", "aria-haspopup" => "true", "aria-expanded" => "false", class: "nav-link dropdown-toggle burger-menu" do %>
           <%= fa_icon ("bars") , class: "mr-1" %>MENU
         <% end %>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <% if user_signed_in? %>
             <%= link_to "マイページ", user_path(current_user.id), class: "dropdown-item" %>
             <%= link_to "サービス一覧", services_path, class: "dropdown-item" %>
@@ -19,6 +19,8 @@
           <% else %>
             <%= link_to "ログイン", new_user_session_path, class: "dropdown-item" %>
             <%= link_to "新規登録", new_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Subscとは", "#feature", class: "dropdown-item" %>
+            <%= link_to "使い方", "#step", class: "dropdown-item" %>
             <%= link_to "サービス一覧", services_path, class: "dropdown-item" %>
           <% end %>
         </div>
