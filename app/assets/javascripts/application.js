@@ -58,7 +58,7 @@ $(document).on('change', ':file', function () {
 });
 
 //pagetopボタン
-$(function () {
+$(document).on("turbolinks:load", function () {
   var topBtn = $('#page-top');
   topBtn.hide();
   $(window).scroll(function () {

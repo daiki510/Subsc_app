@@ -14,4 +14,11 @@ FactoryBot.define do
     association :user, factroy: :user2
     association :service, factroy: :service1
   end
+  # factory :subscription2, class: Subscription do
+  #   charge { '3000' }
+  #   due_date { '21日' }
+  #   note { 'this is test note' }
+  #   association :user, factroy: :admin_user
+  #   association :service, factroy: :service1
+  # end
 end
