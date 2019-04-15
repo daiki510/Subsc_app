@@ -1,11 +1,26 @@
 <div class="container pt-5">
-  <div class="main-content">
-    <h1 class="display-4">見出し!</h1>
-    <p class="lead">本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら</p>
-    <hr class="my-4">
-    <p>本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら本文はこちら</p>
-    <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-lg" %>
-    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-danger btn-lg" %>
-    <%= link_to "サービス一覧", services_path, class: "btn btn-success btn-lg" %>
-  </div><!-- /.jumbotron -->
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="main-content">
+        <h1 class="display-4">見出し!</h1>
+        <p class="lead">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <hr class="my-4">
+        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      </div>
+    </div>
+    <% unless current_user %>
+      <div class="top-menu col-lg-5">
+        <div class="row">
+          <ul class="list-inline">
+            <li>
+              <%= link_to "ログイン", new_user_session_path, class: "btn btn-signin-top btn-lg mb-5" %>
+            </li>
+            <li>
+              <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-signup-top" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

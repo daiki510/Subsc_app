@@ -11,9 +11,7 @@
 // ヘッダー
 // ======================================================================
 
-.navbar .dropdown-menu {
-  margin-top: 10px;
-}
+
 
 // ======================================================================
 // メイン
@@ -31,6 +29,36 @@
   // background-image: url("main.png");
   background-size: cover;
   background-position: center 60%;
+}
+
+.main .top-menu {
+  padding: 100px 0 0 80px;
+}
+
+a.btn.btn-signin-top {
+  width: 300px;
+  background-color: #3393d3;
+  color: #fff;
+  font-weight: 600;
+}
+
+a.btn.btn-signin-top:hover {
+  background-color: #1280c9;
+  color: #fff;
+  border: 3px solid #0967a5;
+}
+
+a.btn.btn-signup-top {
+  width: 300px;
+  background-color: #d8881f;
+  color: #fff;
+  font-weight: 600;
+}
+
+a.btn.btn-signup-top:hover {
+  background-color: #db8008;
+  color: #fff;
+  border: 3px solid #b66c0c;
 }
 
 // ======================================================================
