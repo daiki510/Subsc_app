@@ -29,12 +29,55 @@ body {
 }
 
 .container {
-  min-height: 100vh;
+  // min-height: 100vh;
 }
 
 .big {
   font-size: 1.2em;
   font-weight: 600;
+}
+
+// ======================================================================
+// ナビメニュー
+// ======================================================================
+.nav-brand {
+  color: #50bfa4;
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.nav-brand:hover {
+  color: #19a885;
+}
+
+.burger-menu {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #50bfa4;
+}
+
+.burger-menu:hover {
+  color: #28997d;
+}
+
+#navbarDropdownMenuLink span {
+  color: #50bfa4;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-left: 0.3em;
+}
+
+.dropdown-menu.show {
+  background-color: #50bfa4;
+}
+
+.dropdown-menu a {
+  color: #fff;
+  font-weight: 600;
+}
+
+.dropdown-toggle::after {
+  display: none;
 }
 
 // ======================================================================

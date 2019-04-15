@@ -1,0 +1,47 @@
+<header class="">
+  <nav class="navbar navbar-expand-sm bg-light">
+    <div class="">
+      <li class="nav-item" >
+        <%= link_to "TOP", root_path, class: "navbar-brand　nav-link text-dark" %>
+      </li>
+      
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive" aria-expanded="true" aria-controls="navbarResponsive" aria-label="Toggle navigation">
+          <%= fa_icon ("bars 2x") , class: "" %><span>MENU</span>
+        </button>
+        <div class="navbar-collapse collapse show" id="navbarResponsive">
+          <ul class="navbar-nav">
+            <% if user_signed_in? %>
+              <li class="nav-item text-dark">
+                <%= link_to "マイページ", user_path(current_user.id) %>
+              </li>
+              <li class="nav-item text-dark">
+                <%= link_to "サービス一覧", services_path %>
+              </li>
+              <li class="nav-item text-dark">
+              <%= link_to "お問い合わせ", new_contact_path %>
+              </li>
+              <% if current_user.admin? %>
+                <li class="nav-item text-dark">
+                  <%= link_to "管理者メニュー", rails_admin_path %>
+                </li>
+              <% end %>
+              <li class="nav-item text-dark">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
+              </li>
+            <% else %>
+              <li class="nav-item text-dark">
+                <%= link_to "ログイン", new_user_session_path %>
+              </li>
+              <li class="nav-item text-dark">
+                <%= link_to "新規登録", new_user_registration_path %>
+              </li>
+              <li class="nav-item text-dark">
+                <%= link_to "サブスクリプション一覧", services_path %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+    </div>
+  </nav>
+</header>

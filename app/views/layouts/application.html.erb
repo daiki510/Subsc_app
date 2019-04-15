@@ -10,18 +10,14 @@
   </head>
 
   <body>
-    <%# ヘッダー %>
     <%= render 'layouts/header' %>
 
-    <%# フラッシュメッセージ %>
     <%= render 'layouts/flash' %>
 
-    <div class="content mt-4">
+    <div class="container my-3">
       <%= yield %>
     </div>
 
-    <%# フッター %>
     <%= render 'layouts/footer' %>
-    
   </body>
 </html>
