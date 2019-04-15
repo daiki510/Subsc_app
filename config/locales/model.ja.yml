@@ -22,7 +22,6 @@ ja:
         service: "サービス"
         charge: "利用料金"
         due_date: "支払日"
-        payment_type: "支払方法"
         note: "備考欄"
         created_at: "作成日時"
         updated_at: "更新日時"

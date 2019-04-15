@@ -46,7 +46,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_params
-    params.require(:subscription).permit(:charge, :due_date, :payment_type, :note, :user_id, :service_id)
+    params.require(:subscription).permit(:charge, :due_date, :note, :user_id, :service_id)
   end
 
   def service_name(subscription)

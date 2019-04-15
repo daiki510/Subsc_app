@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_10_051317) do
+ActiveRecord::Schema.define(version: 2019_04_15_082025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 2019_04_10_051317) do
     t.bigint "service_id"
     t.integer "charge", default: 0, null: false
     t.integer "due_date", default: 1, null: false
-    t.string "payment_type", default: "", null: false
     t.text "note", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
