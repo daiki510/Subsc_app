@@ -2,10 +2,8 @@ require 'rails_helper'
 
 describe 'ユーザー管理機能', type: :system do
   describe 'ログイン前のテスト' do
-    before do
-      FactoryBot.create(:user)
-    end
-    context '新規登録機能' do
+    let!(:user) { FactoryBot.create(:user) }
+    describe '新規登録機能' do
       before do
         visit new_user_registration_path
         fill_in 'メールアドレス', with: 'testuser_01@example.com'
@@ -25,7 +23,7 @@ describe 'ユーザー管理機能', type: :system do
         end
       end
     end
-    context 'ログイン機能' do
+    describe 'ログイン機能' do
       context 'ログインに成功した時' do
         it 'ログイン後のメッセージが表示される' do
           visit new_user_session_path

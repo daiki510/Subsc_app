@@ -50,7 +50,7 @@
                     <%= fa_icon "minus" %>
                   <% end %>
                 <% else %>
-                  <%= link_to new_subscription_path(service_id: service.id),"data-toggle" => "popover", "data-content" => "追加", class: "btn btn-secondary detail-info" do %>
+                  <%= link_to new_subscription_path(service_id: service.id),"data-toggle" => "popover", "data-content" => "追加", class: "btn btn-secondary detail-info add-btn" do %>
                     <%= fa_icon "plus" %>
                   <% end %>
                 <% end %>
