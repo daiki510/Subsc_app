@@ -51,7 +51,7 @@ Ruby 2.5.3 Rails 5.2.2
 https://docs.google.com/spreadsheets/d/1hPqpIB2Ms8fzKr9zm89k4ASGjcrKa0S7N4r2jgp4o6k/edit#gid=1946627660
 
 ## テーブル定義
-https://docs.google.com/spreadsheets/d/1o8ACI7H_Ut6xjQQV_lHISc-vdTYbjl_mUdN6vjlTunU/edit#gid=851735436
+https://docs.google.com/spreadsheets/d/1sFCbgJuLZgvsdPyY3Y1U3f4Cb1LLma0jLWz6J9eSckE/edit#gid=935108944
 
 ## 画面遷移図
 https://docs.google.com/spreadsheets/d/18RVg06Y_ombAyhJGxcHJfMpSvAPEs7WTvHnawqcoWbI/edit#gid=0
