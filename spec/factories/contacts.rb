@@ -3,6 +3,6 @@ FactoryBot.define do
     title { 'test' }
     email { 'test@example.com' }
     message { 'this is test' }
-    association :user, factory: :user1
+    user
   end
 end

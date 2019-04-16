@@ -2,38 +2,35 @@ require 'rails_helper'
 
 RSpec.describe Categorizing, type: :model do
   before do
-    @service = FactoryBot.create(:service1)
-    @category1 = FactoryBot.create(:category1)
-    @category2 = FactoryBot.create(:category2)
-    @categorizing1 = FactoryBot.create(:categorizing1, service: @service, category: @category1)
-    @categorizing2 = FactoryBot.create(:categorizing2, service: @service, category: @category2)
+    @service = FactoryBot.create(:service)
+    @category1 = FactoryBot.create(:category, name: 'test1')
+    @category2 = FactoryBot.create(:category, name: 'test2')
+    @categorizing = FactoryBot.create(:categorizing, service: @service, category: @category1)
   end
-  context 'If it is valid' do
-    # service_idとcategory_idがあれば有効な状態であること
-    it 'is valid with category_id, service_id' do
-      categorizing = @categorizing1
+  context 'factory_botの検証' do
+    it 'factory_botが有効かどうか' do
+      categorizing = @categorizing
       expect(categorizing).to be_valid
     end
-    # 一つのサブスクリプションに複数のカテゴリーを登録できること。
-    it 'is valid a service can have two or more categories' do
-      categorizing1 = @categorizing1
-      categorizing2 = @categorizing2
-      expect(categorizing1).to be_valid
-      expect(categorizing2).to be_valid
-    end
   end
-  context 'If it is invalid' do
-    # サブスクリプションがなければ無効な状態であること
-    it 'is invalid without a service_id' do
-      categorizing = FactoryBot.build(:categorizing1, category: @category1, service: nil)
-      categorizing.valid?
-      expect(categorizing.errors[:service]).to include('を入力してください')
-    end
-    # カテゴリーがなければ無効な状態であること
-    it 'is invalid without a category_id' do
-      categorizing = FactoryBot.build(:categorizing1, category: nil, service: @service)
-      categorizing.valid?
-      expect(categorizing.errors[:category]).to include('を入力してください')
-    end
+  it 'service_idとcategory_idがあれば有効な状態であること' do
+    categorizing = @categorizing
+    expect(categorizing).to be_valid
+  end
+  it 'サービスがなければ無効な状態であること' do
+    categorizing = FactoryBot.build(:categorizing, category: @category1, service: nil)
+    categorizing.valid?
+    expect(categorizing.errors[:service]).to include('を入力してください')
+  end
+  it 'カテゴリーがなければ無効な状態であること' do
+    categorizing = FactoryBot.build(:categorizing, category: nil, service: @service)
+    categorizing.valid?
+    expect(categorizing.errors[:category]).to include('を入力してください')
+  end
+  it '一つのサービスに複数のカテゴリーを登録できること' do
+    categorizing1 = @categorizing
+    categorizing2 = FactoryBot.build(:categorizing, category: @category2, service: @service)
+    expect(categorizing1).to be_valid
+    expect(categorizing2).to be_valid
   end
 end
