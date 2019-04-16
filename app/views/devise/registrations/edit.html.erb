@@ -57,7 +57,7 @@
             <% end %>
           </div>
           <div class="col-md-4">
-            <%= button_to registration_path(resource_name),"data-toggle" => "popover", "data-content" => "アカウント削除", data: { confirm: "本当に削除してよろしいですか？ 全てのデータが削除されます" }, method: :delete, class: "btn btn-sm btn-outline-secondary btn-delete detail-info" do %>
+            <%= button_to registration_path(resource_name),"data-toggle" => "popover", "data-content" => "アカウント削除", data: { confirm: "本当に削除してよろしいですか？ 全てのデータが削除されます" }, method: :delete, class: "btn btn-sm btn-outline-secondary btn-delete detail-info",id: "delete-user" do %>
               <%= fa_icon "user-times" %>
             <% end %>
           </div>

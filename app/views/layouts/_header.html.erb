@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-sm navbar-fixed-top">
     <%= link_to "Subsc", root_path, class: "nav-brand nav-link" %>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" id="menu-link">
         <%= link_to services_path, role: "button", "data-toggle" => "dropdown",id: "navbarDropdownMenuLink", "aria-haspopup" => "true", "aria-expanded" => "false", class: "nav-link dropdown-toggle burger-menu" do %>
           <%= fa_icon ("bars") , class: "mr-1" %>MENU
         <% end %>
@@ -15,7 +15,7 @@
               <%= link_to "管理者メニュー", rails_admin_path, class: "dropdown-item" %>
             <% end %>
             <div class="dropdown-divider"></div>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"  %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item", id: "logout-link"  %>
           <% else %>
             <%= link_to "ログイン", new_user_session_path, class: "dropdown-item" %>
             <%= link_to "新規登録", new_user_registration_path, class: "dropdown-item" %>
