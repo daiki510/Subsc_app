@@ -2,59 +2,46 @@ require 'rails_helper'
 
 RSpec.describe Service, type: :model do
   before do
-    @user = FactoryBot.create(:user1)
-    @service1 = FactoryBot.create(:service1, user: @user)
-    @service2 = FactoryBot.create(:service2, user: @user)
+    @user = FactoryBot.create(:user)
+    @service = FactoryBot.create(:service, user: @user)
   end
-  # factory_botが有効かどうかを検査。
-  context 'check factorybot of validation' do
-    it 'has a valid factory of service1' do
-      service = @service1
-      expect(service).to be_valid
-    end
-    it 'has a valid factory of service2' do
-      service = @service2
+  context 'factory_botの検証' do
+    it 'factory_botが有効かどうか' do
+      service = @service
       expect(service).to be_valid
     end
   end
 
-  # 名前と概要があれば有効な状態であること
-  it 'is valid with a name, summary' do
-    service = @service1
+  it '名前と概要があれば有効な状態であること' do
+    service = @service
     expect(service).to be_valid
   end
-  # 名前がなければ無効な状態であること
-  it 'is invalid without a name' do
-    service = FactoryBot.build(:service1, name: nil, user: @user)
+  it '名前がなければ無効な状態であること' do
+    service = FactoryBot.build(:service, name: nil, user: @user)
     service.valid?
     expect(service.errors[:name]).to include('を入力してください')
   end
-  # 重複した名前なら無効な状態であること
-  it 'is invalid with a duplicate name' do
-    service = FactoryBot.build(:service2, name: 'test_name1', user: @user)
+  it '重複した名前なら無効な状態であること' do
+    service = FactoryBot.build(:service, name: 'test_name', user: @user)
     service.valid?
     expect(service.errors[:name]).to include('はすでに存在します')
   end
-  # 名前が31文字以上なら無効な状態であること
-  it 'is invalid with name which has 31 or more characters' do
-    service = FactoryBot.build(:service1, name: 'test' * 10, user: @user)
+  it '名前が31文字以上なら無効な状態であること' do
+    service = FactoryBot.build(:service, name: 'test' * 10, user: @user)
     service.valid?
     expect(service.errors[:name]).to include('は30文字以内で入力してください')
   end
-  # 概要が256文字以上なら無効な状態であること
-  it 'is invalid with summary which has 256 or more characters' do
-    service = FactoryBot.build(:service1, summary: 'test' * 100, user: @user)
+  it '概要が256文字以上なら無効な状態であること' do
+    service = FactoryBot.build(:service, name: 'test', summary: 'test' * 100, user: @user)
     service.valid?
     expect(service.errors[:summary]).to include('は255文字以内で入力してください')
   end
-  # URLの書式が有効な状態であること
-  it 'is valid with link which is collect format' do
-    service = FactoryBot.create(:service1, name: 'test_name3', link: 'https://www.amazon.co.jp/', user: @user)
+  it 'URLの書式が有効な状態であること' do
+    service = FactoryBot.create(:service, name: 'test', link: 'https://www.amazon.co.jp/', user: @user)
     expect(service).to be_valid
   end
-  # URLの書式が無効な状態であること
-  it 'is invalid with link which is incollect format' do
-    service = FactoryBot.build(:service1, name: 'test_name3', link: 'amazon', user: @user)
+  it 'URLの書式が無効な状態であること' do
+    service = FactoryBot.build(:service, name: 'test', link: 'amazon', user: @user)
     service.valid?
     expect(service.errors[:link]).to include('は不正な値です')
   end
