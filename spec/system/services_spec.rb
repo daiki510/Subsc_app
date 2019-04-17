@@ -3,10 +3,12 @@ require 'rails_helper'
 describe 'サービス管理機能', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:admin_user) { FactoryBot.create(:admin_user) }
+  let!(:category) { FactoryBot.create(:category, name: 'category_test') }
   let!(:service_01) { FactoryBot.create(:service, user: admin_user, name: 'testname_01') }
   let!(:service_02) { FactoryBot.create(:service, user: user, name: 'testname_02', status: 'secret') }
-  # let(:category) { FactoryBot.create(:category, name: 'test') }
-  # let!(:service) { FactoryBot.create(:service, user: user, categories: [category]) }
+  let!(:service_03) { FactoryBot.create(:service, user: admin_user, name: 'testname_05') }
+  let!(:subscription) { FactoryBot.create(:subscription, user: user, service: service_03) }
+
   describe '一覧表示機能' do
     describe '登録ユーザー' do
       before do
@@ -85,6 +87,18 @@ describe 'サービス管理機能', type: :system do
           expect(page).to have_content '名前を入力してください'
         end
       end
+      context 'カテゴリーを追加して登録した時' do
+        before do
+          visit new_service_path
+          fill_in 'サービス名', with: 'test_name_03'
+          fill_in 'service[summary]',	with: 'testsummary_03'
+          check 'category_test'
+          click_button '登録する'
+        end
+        it '一覧画面にカテゴリー名が表示される' do
+          expect(page).to have_selector 'a.badge', text: 'category_test'
+        end
+      end
     end
     describe '詳細機能' do
       context '管理者がログインしている時' do
@@ -134,41 +148,90 @@ describe 'サービス管理機能', type: :system do
         it '一覧画面から表示されなくなる' do
           find('.delete').click
           page.accept_confirm '本当に削除してもいいですか?'
-          # save_and_open_page
           expect(page).to have_selector '.alert', text: '「testname_01」を削除しました'
         end
       end
     end
 
-    xdescribe 'カテゴリー検索' do
+    describe 'カテゴリー検索' do
+      let(:login_user) { admin_user }
+      before do
+        visit new_service_path
+        fill_in 'サービス名', with: 'test_name_04'
+        fill_in 'service[summary]',	with: 'testsummary_04'
+        check 'category_test'
+        click_button '登録する'
+      end
       context '任意のカテゴリーをクリックする' do
         it 'クリックしたカテゴリーを持つサービスのみ表示される' do
+          click_link 'category_test', match: :first
+          services = page.all('div.services')
+          expect(services.count).to be 1
         end
       end
     end
-    xdescribe '検索機能' do
+    describe '検索機能' do
+      let(:login_user) { admin_user }
       context '任意のサービス名を検索' do
         it '検索にヒットすると、一覧画面に表示される' do
+          page.find('.search-form').set('testname_01')
+          click_button '検索'
+          services = page.all('h5.service-title')
+          expect(services[0]).to have_content 'testname_01'
+        end
+        it '大文字でも小文字でも検索できる' do
+          page.find('.search-form').set('TESTNAME_05')
+          click_button '検索'
+          services = page.all('h5.service-title')
+          expect(services[0]).to have_content 'testname_05'
         end
         it '検索結果がない場合は、ないことを示す文章が表示される' do
+          page.find('.search-form').set('testname_100')
+          click_button '検索'
+          services = page.all('h5.service-title')
+          expect(page).to have_content '一致する結果はありません'
         end
       end
     end
-    xdescribe 'ソート機能' do
+    describe 'ソート機能' do
+      let(:login_user) { admin_user }
       context '名前順にソート' do
         it 'ABC順にソートされる' do
+          click_link '名前順'
+          services = page.all('h5.service-title')
+          expect(services[0]).to have_content 'testname_01'
+          expect(services[1]).to have_content 'testname_05'
         end
       end
       context '人気順にソート' do
         it '利用者数の多い順にソートされる' do
+          click_link '人気順'
+          service = service_03
+          services = page.all('h5.service-title')
+          expect(services[0]).to have_content 'testname_05'
+          expect(service.subscriptions.count).to be 1
         end
       end
       context '新着順にソート' do
         it '作成日が新しい順にソートされる' do
+          click_link '新着順'
+          services = page.all('h5.service-title')
+          expect(services[0]).to have_content 'testname_05'
+          expect(services[1]).to have_content 'testname_01'
         end
       end
       context '更新順にソート' do
+        before do
+          find('.service-info-1').click
+          find('.service-edit').click
+          fill_in 'サービス名',	with: 'update_testname_01'
+          click_button '更新する'
+        end
         it '更新日が新しい順にソートされる' do
+          click_link '更新順'
+          services = page.all('h5.service-title')
+          expect(services[0]).to have_content 'update_testname_01'
+          expect(services[1]).to have_content 'testname_05'
         end
       end
     end
