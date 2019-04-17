@@ -50,70 +50,99 @@ describe 'サービス管理機能', type: :system do
     end
   end
 
-  xdescribe '新規登録機能' do
-    context 'ユーザーがログインしている時' do
-      it '登録に成功した時、一覧画面に表示される' do
-      end
-      it '登録に失敗した時、登録画面にリダイレクトされる' do
-      end
+  describe 'サービス基本機能' do
+    before do
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: login_user.email
+      fill_in 'パスワード',	with: login_user.password
+      click_button 'Sign in'
+      visit services_path
     end
-  end
-  xdescribe '詳細機能' do
-    context '管理者がログインしている時' do
-      it '管理者が作成したサブスクリプションが表示される' do
-      end
-    end
-    context '一般ユーザーがログインしている時' do
-      it '編集ボタンが表示されない' do
-      end
-    end
-  end
-  xdescribe '編集機能' do
-    describe '管理者がログインしている時' do
-      context '名前を変更した時' do
-        it '編集に成功した時、一覧画面で表示が変更されている' do
+    describe '新規登録機能' do
+      let(:login_user) { admin_user }
+      context '登録に成功した時' do
+        before do
+          visit new_service_path
+          fill_in 'サービス名', with: 'testname_03'
+          fill_in 'service[summary]',	with: 'testsummary_03'
+          click_button '登録する'
         end
-        it '編集に失敗した時、編集画面にリダイレクトされる' do
+        it 'フラッシュメッセージが表示される' do
+          expect(page).to have_selector '.alert', text: '「testname_03」を登録しました'
+        end
+        it '一覧画面にリダイレクトされる' do
+          expect(current_path).to eq services_path
         end
       end
-    end
-  end
-  xdescribe '削除機能' do
-    context '管理者がログインしている時' do
-      it '一覧画面から表示されなくなる' do
+      context '登録に失敗した時' do
+        before do
+          visit new_service_path
+          fill_in 'サービス名', with: ''
+          fill_in 'service[summary]',	with: 'testsummary_03'
+          click_button '登録する'
+        end
+        it 'エラーメッセージが表示される' do
+          expect(page).to have_content '名前を入力してください'
+        end
       end
     end
-  end
+    xdescribe '詳細機能' do
+      context '管理者がログインしている時' do
+        it '管理者が作成したサブスクリプションが表示される' do
+        end
+      end
+      context '一般ユーザーがログインしている時' do
+        it '編集ボタンが表示されない' do
+        end
+      end
+    end
+    xdescribe '編集機能' do
+      describe '管理者がログインしている時' do
+        context '名前を変更した時' do
+          it '編集に成功した時、一覧画面で表示が変更されている' do
+          end
+          it '編集に失敗した時、編集画面にリダイレクトされる' do
+          end
+        end
+      end
+    end
+    xdescribe '削除機能' do
+      context '管理者がログインしている時' do
+        it '一覧画面から表示されなくなる' do
+        end
+      end
+    end
 
-  xdescribe 'カテゴリー検索' do
-    context '任意のカテゴリーをクリックする' do
-      it 'クリックしたカテゴリーを持つサービスのみ表示される' do
+    xdescribe 'カテゴリー検索' do
+      context '任意のカテゴリーをクリックする' do
+        it 'クリックしたカテゴリーを持つサービスのみ表示される' do
+        end
       end
     end
-  end
-  xdescribe '検索機能' do
-    context '任意のサービス名を検索' do
-      it '検索にヒットすると、一覧画面に表示される' do
-      end
-      it '検索結果がない場合は、ないことを示す文章が表示される' do
-      end
-    end
-  end
-  xdescribe 'ソート機能' do
-    context '名前順にソート' do
-      it 'ABC順にソートされる' do
+    xdescribe '検索機能' do
+      context '任意のサービス名を検索' do
+        it '検索にヒットすると、一覧画面に表示される' do
+        end
+        it '検索結果がない場合は、ないことを示す文章が表示される' do
+        end
       end
     end
-    context '人気順にソート' do
-      it '利用者数の多い順にソートされる' do
+    xdescribe 'ソート機能' do
+      context '名前順にソート' do
+        it 'ABC順にソートされる' do
+        end
       end
-    end
-    context '新着順にソート' do
-      it '作成日が新しい順にソートされる' do
+      context '人気順にソート' do
+        it '利用者数の多い順にソートされる' do
+        end
       end
-    end
-    context '更新順にソート' do
-      it '更新日が新しい順にソートされる' do
+      context '新着順にソート' do
+        it '作成日が新しい順にソートされる' do
+        end
+      end
+      context '更新順にソート' do
+        it '更新日が新しい順にソートされる' do
+        end
       end
     end
   end
