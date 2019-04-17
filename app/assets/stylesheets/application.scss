@@ -39,6 +39,11 @@ body {
   // margin-bottom: 50px;
 }
 
+a,
+input {
+  outline: none;
+}
+
 a:hover {
   text-decoration: none
 }
@@ -61,39 +66,57 @@ a:hover {
   color: #19a885;
 }
 
-.burger-menu {
-  font-size: 1.4em;
+button.navbar-toggler.burger-menu {
+  font-size: 1.5em;
   font-weight: 600;
   color: #50bfa4;
+  border: none;
 }
 
-.burger-menu:hover {
-  color: #28997d;
+button.navbar-toggler.burger-menu:hover {
+  color: #29b491;
 }
 
-#navbarDropdownMenuLink span {
-  color: #50bfa4;
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-left: 0.3em;
+ul.navbar-nav {
+  padding-left: 1em;
 }
 
-.dropdown-menu.show {
-  background-color: #4c8476eb;
+.header .nav-item {
+  margin-right: 0.6em;
 }
 
-.dropdown-menu a {
-  color: #fff;
+.header .nav-item:last-child {
+  margin-right: 0;
+}
+
+.header .navbar-nav a.nav-link:hover {
+  color: #38a78b;
   font-weight: 600;
 }
 
-.dropdown-toggle::after {
-  display: none;
-}
+// #navbarDropdownMenuLink span {
+//   color: #50bfa4;
+//   font-weight: bold;
+//   font-size: 1.2em;
+//   margin-left: 0.3em;
+// }
 
-.navbar .dropdown-menu {
-  margin-top: 10px;
-}
+// .dropdown-menu.show {
+//   background-color: #4c8476eb;
+// }
+
+// .dropdown-menu a {
+//   color: #fff;
+//   font-weight: 600;
+// }
+
+// .dropdown-toggle::after {
+//   display: none;
+// }
+
+// .navbar .dropdown-menu {
+//   margin-top: 10px;
+// }
 
 // ======================================================================
 // カード
