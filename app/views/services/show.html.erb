@@ -47,7 +47,7 @@
                 <%= fa_icon "link" %>
               <% end %>
               <% if current_user.admin? || @service.status == "secret" %>
-                <%= link_to edit_service_path(@service) ,class: "btn btn-success btn-circle mr-2" do %>
+                <%= link_to edit_service_path(@service) ,class: "btn btn-success btn-circle service-edit mr-2" do %>
                   <%= fa_icon "pencil" %>
                 <% end %>
                 <%= link_to service_path(@service), method: :delete, data: { confirm: '本当に削除してもいいですか?' } ,class: "btn btn-danger btn-circle delete" do %>

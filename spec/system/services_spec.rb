@@ -86,29 +86,56 @@ describe 'サービス管理機能', type: :system do
         end
       end
     end
-    xdescribe '詳細機能' do
+    describe '詳細機能' do
       context '管理者がログインしている時' do
+        let(:login_user) { admin_user }
         it '管理者が作成したサブスクリプションが表示される' do
+          find('.service-info-1').click
+          expect(page).to have_content 'testname_01'
+        end
+      end
+    end
+    describe '編集機能' do
+      context '管理者がログインしている時' do
+        let(:login_user) { admin_user }
+        before do
+          find('.service-info-1').click
+          find('.service-edit').click
+        end
+        context '名前を変更した時' do
+          it '編集に成功した時、一覧画面でメッセージが表示される' do
+            fill_in 'サービス名',	with: 'change_service_name'
+            click_button '更新する'
+            expect(page).to have_selector '.alert', text: '「change_service_name」を更新しました'
+          end
+          it '編集に失敗した時、編集画面にリダイレクトされる' do
+            fill_in 'サービス名',	with: ''
+            click_button '更新する'
+            within '#error_explanation' do
+              expect(page).to have_content '名前を入力してください'
+            end
+          end
         end
       end
       context '一般ユーザーがログインしている時' do
+        let(:login_user) { user }
         it '編集ボタンが表示されない' do
+          find('.service-info-1').click
+          expect(page).not_to have_css '.service-edit'
         end
       end
     end
-    xdescribe '編集機能' do
-      describe '管理者がログインしている時' do
-        context '名前を変更した時' do
-          it '編集に成功した時、一覧画面で表示が変更されている' do
-          end
-          it '編集に失敗した時、編集画面にリダイレクトされる' do
-          end
-        end
-      end
-    end
-    xdescribe '削除機能' do
+    describe '削除機能' do
       context '管理者がログインしている時' do
+        let(:login_user) { admin_user }
+        before do
+          find('.service-info-1').click
+        end
         it '一覧画面から表示されなくなる' do
+          find('.delete').click
+          page.accept_confirm '本当に削除してもいいですか?'
+          # save_and_open_page
+          expect(page).to have_selector '.alert', text: '「testname_01」を削除しました'
         end
       end
     end
