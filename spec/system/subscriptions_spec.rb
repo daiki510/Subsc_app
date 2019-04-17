@@ -96,7 +96,7 @@ describe 'サブスクリプション管理機能', type: :system do
         find('.subsc-delete-1').click
       end
       context '削除ボタンを押す' do
-        it 'マイページに削除メッセージが表示される' do
+        it 'マイページに削除メッセージが表示される', js: true do
           page.accept_confirm '本当に解除してもいいですか?'
           expect(page).to have_selector '.alert', text: '「testname_02」を利用一覧から外しました'
         end

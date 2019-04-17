@@ -24,9 +24,11 @@ describe 'ユーザー管理機能', type: :system do
       end
     end
     describe 'ログイン機能' do
+      before do
+        visit new_user_session_path
+      end
       context 'ログインに成功した時' do
         it 'ログイン後のメッセージが表示される' do
-          visit new_user_session_path
           fill_in 'メールアドレス', with: 'testuser@example.com'
           fill_in 'パスワード', with: '000000'
           click_button 'Sign in'
@@ -35,7 +37,6 @@ describe 'ユーザー管理機能', type: :system do
       end
       context 'ログインに失敗した時' do
         it '失敗した時のメッセージが表示される' do
-          visit new_user_session_path
           fill_in 'メールアドレス', with: 'test@example.com'
           fill_in 'パスワード', with: '000000'
           click_button 'Sign in'
@@ -44,13 +45,11 @@ describe 'ユーザー管理機能', type: :system do
       end
       xit ' 未完成のテスト' do
         context 'ログアウトする' do
-          it 'ログイン後に、ログアウトした時' do
+          it 'ログイン後に、ログアウトした時', js: true do
             fill_in 'メールアドレス', with: 'testuser@example.com'
             fill_in 'パスワード', with: '000000'
             click_button 'Sign in'
-            # save_and_open_page
-            find('#menu-link').click
-            click_link 'ログアウト'
+            click_on 'ログアウト'
             expect(page).to have_current_path '/'
           end
         end
@@ -72,7 +71,6 @@ describe 'ユーザー管理機能', type: :system do
       fill_in 'パスワード',	with: login_user.password
       click_button 'Sign in'
     end
-
     context '詳細機能' do
       context 'ユーザーがログインしている時' do
         let(:login_user) { user }
@@ -81,7 +79,6 @@ describe 'ユーザー管理機能', type: :system do
         end
       end
     end
-
     context '編集機能' do
       let(:login_user) { user }
       before do
@@ -110,7 +107,6 @@ describe 'ユーザー管理機能', type: :system do
         end
       end
     end
-
     context '削除機能' do
       let(:login_user) { user }
       before do
@@ -119,18 +115,15 @@ describe 'ユーザー管理機能', type: :system do
         page.accept_confirm '本当に削除してよろしいですか？ 全てのデータが削除されます'
       end
       context 'ユーザーを削除した場合' do
-        it 'トップページに画面遷移する' do
+        it 'トップページに画面遷移する', js: true do
           expect(current_path).to eq root_path
         end
-      end
-      xit ' 未完成のテスト' do
-        context 'ユーザーを削除した場合' do
-          it 'ログインができずエラーメッセージが表示される' do
-            fill_in 'メールアドレス', with: login_user.email
-            fill_in 'パスワード', with: login_user.password
-            click_button 'Sign in'
-            expect(page).to have_selector '.alert', text: 'メールアドレス もしくはパスワードが不正です'
-          end
+        it 'ログインができずエラーメッセージが表示される', js: true do
+          visit new_user_session_path
+          fill_in 'メールアドレス', with: login_user.email
+          fill_in 'パスワード', with: login_user.password
+          click_button 'Sign in'
+          expect(page).to have_selector '.alert', text: 'メールアドレス もしくはパスワードが不正です'
         end
       end
     end

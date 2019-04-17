@@ -145,7 +145,7 @@ describe 'サービス管理機能', type: :system do
         before do
           find('.service-info-1').click
         end
-        it '一覧画面から表示されなくなる' do
+        it '一覧画面から表示されなくなる', js: true do
           find('.delete').click
           page.accept_confirm '本当に削除してもいいですか?'
           expect(page).to have_selector '.alert', text: '「testname_01」を削除しました'
