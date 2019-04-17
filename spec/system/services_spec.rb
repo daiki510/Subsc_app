@@ -222,8 +222,7 @@ describe 'サービス管理機能', type: :system do
       end
       context '更新順にソート' do
         before do
-          find('.service-info-1').click
-          find('.service-edit').click
+          visit edit_service_path(service_01.id)
           fill_in 'サービス名',	with: 'update_testname_01'
           click_button '更新する'
         end
