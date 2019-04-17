@@ -21,17 +21,24 @@
 // ======================================================================
 // 共通項目
 // ======================================================================
-// $theme_color=#50bfa4;
-// theme-color : #50bfa4;
-// hover: #32a789;
+// theme_color=#50bfa4;
+* {
+  color: var(--font-color);
+}
 
 :root {
-  --main-color: #50bfa4;
-  // --sub-color: #ea6060;
+  --main-color: #57a99a;
+  --font-color: #555151;
+  --hover-color: #1a9e7d;
+  --new-color: #f77754;
 }
 
 body {
-  background-color: #f4f5f8;
+  background-color: #ecf4f3;
+}
+
+i {
+  color: #fff;
 }
 
 .container {
@@ -57,7 +64,7 @@ a:hover {
 // ナビメニュー
 // ======================================================================
 .nav-brand {
-  color: #50bfa4;
+  color: var(--main-color);
   font-size: 1.6em;
   font-weight: 600;
 }
@@ -69,7 +76,7 @@ a:hover {
 button.navbar-toggler.burger-menu {
   font-size: 1.5em;
   font-weight: 600;
-  color: #50bfa4;
+  color: var(--main-color);
   border: none;
 }
 
@@ -95,7 +102,7 @@ ul.navbar-nav {
 }
 
 // #navbarDropdownMenuLink span {
-//   color: #50bfa4;
+//   color: var(--main-color);
 //   font-weight: bold;
 //   font-size: 1.2em;
 //   margin-left: 0.3em;
@@ -160,8 +167,20 @@ ul.navbar-nav {
   border-radius: 1.5rem;
 }
 
+.btn-new {
+  background-color: var(--new-color);
+  border: none;
+  color: #fff;
+}
+
+.btn-new:hover {
+  background-color: #f1552a;
+  border: none;
+  color: #fff;
+}
+
 .btn-primary {
-  background-color: #50bfa4;
+  background-color: var(--main-color);
   border: none;
 }
 
@@ -171,32 +190,32 @@ ul.navbar-nav {
 }
 
 .btn-info {
-  background-color: #51bcda;
+  background-color: #3084a9;
   border: none;
 }
 
 .btn-info:hover {
-  background-color: #20add4;
+  background-color: #076c97;
   border: none;
 }
 
 .btn-success {
-  background-color: #6bd098;
+  background-color: #55a077d3;
   border: none;
 }
 
 .btn-success:hover {
-  background-color: #33a566;
+  background-color: #55a077;
   border: none;
 }
 
 .btn-danger {
-  background-color: #f5593d;
+  background-color: #d55b3e;
   border: none;
 }
 
 .btn-danger:hover {
-  background-color: #dd3c20;
+  background-color: #c94423;
   border: none;
 }
 
@@ -217,18 +236,26 @@ ul.navbar-nav {
   border-radius: 3px;
   font-weight: bold;
   color: #FFF;
-  background-image: linear-gradient(45deg, #50bfa4 0%, #6ee0c4 100%);
+  background-image: linear-gradient(45deg, var(--main-color) 0%, #6ee0c4 100%);
   transition: .4s;
 }
 
 .btn-signin:hover {
+  color: #fff;
   background-image: linear-gradient(45deg, #3c9b83 50%, #51b89e 100%);
 }
 
 
 .btn-google {
-  color: white;
   background-color: #ea4335;
+}
+
+.btn-google span {
+  color: #fff;
+}
+
+.btn-google span i {
+  color: rgb(121, 111, 107);
 }
 
 .btn-google:hover {
@@ -275,13 +302,17 @@ ul.navbar-nav {
 }
 
 .badge-primary {
-  background-color: #50bfa4;
+  background-color: var(--main-color);
   border: none;
 }
 
 a.badge-primary:hover {
-  background-color: #32a789;
+  background-color: var(--hover-color);
   border: none;
+}
+
+.category-badge {
+  color: var(--font-color)
 }
 
 // ======================================================================
@@ -296,12 +327,12 @@ a.badge-primary:hover {
   border-radius: 2em;
   margin-right: 5px;
   text-align: center;
-  color: #50bfa4;
+  color: var(--main-color);
 }
 
 .page-item.active .page-link {
-  background-color: #50bfa4;
-  border-color: #50bfa4;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
   color: #fff;
 }
 
@@ -325,11 +356,11 @@ a.badge-primary:hover {
 .form-title {
   width: 80%;
   margin: 0.7em auto;
-  color: #50bfa4;
+  color: var(--main-color);
   padding: 0.5em 0;
   text-align: center;
-  border-top: solid 3px #50bfa4;
-  border-bottom: solid 3px #50bfa4;
+  border-top: solid 3px var(--main-color);
+  border-bottom: solid 3px var(--main-color);
 }
 
 // ======================================================================
@@ -521,7 +552,7 @@ a.badge-primary:hover {
   position: relative;
   margin: 2em 0;
   padding: 0.5em 1em;
-  border: solid 3px #50bfa4;
+  border: solid 3px var(--main-color);
   border-radius: 8px;
 }
 
@@ -534,7 +565,7 @@ a.badge-primary:hover {
   line-height: 1;
   font-size: 19px;
   background: #FFF;
-  color: #50bfa4;
+  color: var(--main-color);
   font-weight: bold;
 }
 

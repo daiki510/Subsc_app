@@ -1,7 +1,6 @@
 // ======================================================================
 // 共通
 // ======================================================================
-
 .top-body {
   width: 100%;
   min-height: 100vh;
@@ -21,11 +20,11 @@
   width: 100%;
   // height: 800px;
   padding: 150px 0 250px;
-  background-color: #50bfa3;
+  background-color: var(--main-color);
 }
 
 .main-content {
-  background-color: #50bfa3;
+  background-color: var(--main-color);
   // background-image: url("main.png");
   background-size: cover;
   background-position: center 60%;
@@ -37,28 +36,27 @@
 
 a.btn.btn-signin-top {
   width: 300px;
-  background-color: #3393d3;
+  background-color: #408ab4;
   color: #fff;
   font-weight: 600;
 }
 
 a.btn.btn-signin-top:hover {
-  background-color: #1280c9;
+  background-color: #267cad;
   color: #fff;
-  border: 3px solid #0967a5;
 }
 
 a.btn.btn-signup-top {
   width: 300px;
-  background-color: #d8881f;
+  background-color: #f77754;
   color: #fff;
   font-weight: 600;
 }
 
 a.btn.btn-signup-top:hover {
-  background-color: #db8008;
+  background-color: #f86137;
   color: #fff;
-  border: 3px solid #b66c0c;
+  // border: 3px solid #f77754;
 }
 
 // ======================================================================
@@ -114,7 +112,7 @@ a.btn.btn-signup-top:hover {
 }
 
 .footer .list-inline li a:hover {
-  border-bottom: 3px solid #50bfa4;
+  border-bottom: 3px solid var(--main-color);
   padding-bottom: 5px;
 }
 

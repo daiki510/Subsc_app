@@ -1,6 +1,6 @@
 <div class="container">
   <% if current_user %>
-    <%= link_to 'サブスク新規登録', new_service_path, class: "btn btn-primary my-3" %>
+    <%= link_to 'サブスク新規登録', new_service_path, class: "btn btn-new my-3" %>
   <% end %>
   <% if current_user.try(:admin?) %>
     <%= render 'csv' %>
