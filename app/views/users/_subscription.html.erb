@@ -1,5 +1,5 @@
 <div class="row">
-  <% @services.each do |service| %>
+  <% @services.each.with_index(1) do |service, i| %>
     <div class="col-12 mb-3">
       <div class="card">
         <div class="card-body">
@@ -33,13 +33,13 @@
               </div>
             </div>
             <div class="col-md-3">
-              <%= link_to subscription_path(subscription), class: "btn btn-info btn-circle mr-2" do %>
+              <%= link_to subscription_path(subscription), class: "btn btn-info btn-circle subsc-info-#{i} mr-2" do %>
                 <%= fa_icon "info" %>
               <% end %>
-              <%= link_to edit_subscription_path(subscription), class: "btn btn-success btn-circle mr-2" do %>
+              <%= link_to edit_subscription_path(subscription), class: "btn btn-success btn-circle subsc-edit-#{i} mr-2" do %>
                 <%= fa_icon "pencil" %>
               <% end %>
-              <%= link_to subscription_path(subscription, back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger btn-circle" do %>
+              <%= link_to subscription_path(subscription, back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger btn-circle subsc-delete-#{i}" do %>
                 <%= fa_icon "minus" %>
               <% end %>
             </div>
