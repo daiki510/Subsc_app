@@ -43,23 +43,6 @@ describe 'ユーザー管理機能', type: :system do
           expect(page).to have_selector '.alert', text: 'メールアドレス もしくはパスワードが不正です'
         end
       end
-      xit ' 未完成のテスト' do
-        context 'ログアウトする' do
-          it 'ログイン後に、ログアウトした時', js: true do
-            fill_in 'メールアドレス', with: 'testuser@example.com'
-            fill_in 'パスワード', with: '000000'
-            click_button 'Sign in'
-            click_on 'ログアウト'
-            expect(page).to have_current_path '/'
-          end
-        end
-        context 'Googleログインする' do
-          it 'ログインに成功するとマイページに画面遷移する' do
-          end
-          it 'ログインに失敗するとログイン画面に戻る' do
-          end
-        end
-      end
     end
   end
 
