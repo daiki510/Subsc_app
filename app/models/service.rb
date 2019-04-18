@@ -26,52 +26,54 @@ class Service < ApplicationRecord
   scope :sort_create, -> { order(created_at: :desc) }
   scope :sort_update, -> { order(updated_at: :desc) }
 
-  # 検索メソッド
-  def self.search(search)
-    return where(['name ILIKE ?', "%#{search}%"]) if search
+  class << self
+    # 検索メソッド
+    def search(search)
+      return where(['name ILIKE ?', "%#{search}%"]) if search
 
-    all
-  end
+      all
+    end
 
-  # 利用者数順にソート
-  def self.sort_with_user_count
-    using_count = Subscription.group(:service_id).count
-    service_ids = Hash[using_count.sort_by { |_, v| -v }].keys
-    where(id: service_ids).where(status: 0).order_as_specified(id: service_ids)
-  end
+    # 利用者数順にソート
+    def sort_with_user_count
+      using_count = Subscription.group(:service_id).count
+      service_ids = Hash[using_count.sort_by { |_, v| -v }].keys
+      where(id: service_ids).where(status: 0).order_as_specified(id: service_ids)
+    end
 
-  # 料金順にソート
-  def self.sort_charge
-    service_ids = Subscription.order(charge: :desc).map(&:service_id)
-    where(id: service_ids).order_as_specified(id: service_ids)
-  end
+    # 料金順にソート
+    def sort_charge
+      service_ids = Subscription.order(charge: :desc).map(&:service_id)
+      where(id: service_ids).order_as_specified(id: service_ids)
+    end
 
-  # 支払順にソート
-  def self.sort_date
-    service_ids = Subscription.order(due_date: :asc).map(&:service_id)
-    where(id: service_ids).order_as_specified(id: service_ids)
-  end
+    # 支払順にソート
+    def sort_date
+      service_ids = Subscription.order(due_date: :asc).map(&:service_id)
+      where(id: service_ids).order_as_specified(id: service_ids)
+    end
 
-  # CSVエクスポート
-  def self.csv_attributes
-    %w[name summary link user_id created_at updated_at]
-  end
+    # CSVエクスポート
+    def csv_attributes
+      %w[name summary link user_id created_at updated_at]
+    end
 
-  def self.generate_csv
-    CSV.generate(headers: true) do |csv|
-      csv << csv_attributes
-      all.find_each do |service|
-        csv << csv_attributes.map { |attr| service.send(attr) }
+    def generate_csv
+      CSV.generate(headers: true) do |csv|
+        csv << csv_attributes
+        all.find_each do |service|
+          csv << csv_attributes.map { |attr| service.send(attr) }
+        end
       end
     end
-  end
 
-  # CSVインポート
-  def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      service = Service.new
-      service.attributes = row.to_hash.slice(*csv_attributes)
-      service.save!
+    # CSVインポート
+    def import(file)
+      CSV.foreach(file.path, headers: true) do |row|
+        service = Service.new
+        service.attributes = row.to_hash.slice(*csv_attributes)
+        service.save!
+      end
     end
   end
 end
