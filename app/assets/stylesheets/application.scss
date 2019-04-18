@@ -91,6 +91,7 @@ button.navbar-toggler.burger-menu {
   font-weight: 600;
   color: var(--main-color);
   border: none;
+  outline: none;
 }
 
 button.navbar-toggler.burger-menu:hover {
@@ -114,29 +115,9 @@ ul.navbar-nav {
   font-weight: 600;
 }
 
-// #navbarDropdownMenuLink span {
-//   color: var(--main-color);
-//   font-weight: bold;
-//   font-size: 1.2em;
-//   margin-left: 0.3em;
-// }
-
-// .dropdown-menu.show {
-//   background-color: #4c8476eb;
-// }
-
-// .dropdown-menu a {
-//   color: #fff;
-//   font-weight: 600;
-// }
-
-// .dropdown-toggle::after {
-//   display: none;
-// }
-
-// .navbar .dropdown-menu {
-//   margin-top: 10px;
-// }
+.header .navbar i.fa-bars {
+  color: var(--main-color)
+}
 
 // ======================================================================
 // カード
