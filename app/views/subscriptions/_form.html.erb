@@ -1,6 +1,6 @@
-<div class="container service-form show-page">
+<div class="container subscription-form">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 mx-auto mb-3">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 mx-auto mb-3">
       <% if @subscription.errors.any? %>
         <div id="error_explanation">
           <h2><%= @subscription.errors.count %>件のエラーがあります。</h2>
@@ -11,7 +11,7 @@
           </ul>
         </div>
       <% end %>
-      <div class="card p-3">
+      <div class="card">
         <h2 class="form-title">
           <% if params[:id] %>
             サブスクリプション編集
@@ -51,22 +51,28 @@
             <%# .row1 %>
 
             <div class="row d-flex align-items-center mt-4">
-              <div class="col-xs-12 col-md-5">
-                <div class="form-label-group">
-                  <%= f.number_field :charge, in: 0..100000, placeholder: "Charge",required: true, class: "form-control" %>
-                  <%= f.label :charge %>
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-7">
+              <div class="col-xs-12 col-md-7 col-lg-7">
                 <div class="form-label-group">
                   <div class="row d-flex align-items-center">
-                    <div class="col-md-4 label-notifiy text-right">
+                    <div class="col-lg-5">
+                      <span><%= f.label :charge %></span>
+                    </div>
+                    <div class="col-lg-5">
+                      <%= f.number_field :charge, in: 0..100000,required: true, class: "form-control text-center charge-form" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-5 col-lg-5 due-date-box">
+                <div class="form-label-group">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-lg-4 label-notifiy text-right">
                       <span>支払日</span>
                     </div>
-                    <div class="col-md-4 select-box select-plus">
+                    <div class="col-lg-4 select-box select-plus">
                       <%= f.select :due_date, (1..31).each,placeholder: "due_date", class: "form-control" %>
                     </div>
-                    <div class="col-md-1">日</div>
+                    <div class="col-lg-1">日</div>
                   </div>
                 </div>
               </div>
@@ -85,30 +91,12 @@
             <div class="row">
               <div class="col-12">
                 <div class="button-panel">
-                  <%= f.submit class: "btn btn-lg btn-signin btn-block text-uppercase mt-3" %>
+                  <%= f.submit class: "btn btn-lg btn-register btn-block mt-3" %>
                 </div>  
               </div>
             </div>
             <%# .row4 %>
-            <div class="row mt-4">
-              <div class="col-5">
-                <% if params[:id] %>
-                  <%= link_to user_path(current_user) ,"data-toggle" => "popover", "data-content" => "一覧へ戻る", class: "btn btn-secondary btn-circle detail-info mr-2" do %>
-                    <%= fa_icon "undo" %>
-                  <% end %>
-                <% else %>
-                  <%= link_to services_path ,"data-toggle" => "popover", "data-content" => "一覧へ戻る", class: "btn btn-secondary btn-circle detail-info mr-2" do %>
-                    <%= fa_icon "undo" %>
-                  <% end %>
-                <% end %>
-                <% unless service.link %>
-                  <%= link_to service.link, target: :blank, "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info mr-2"  do %>
-                    <%= fa_icon "link" %>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-            <%# .row5 %>
+            
           </div>
           <%# .card-body %>
         <% end %>

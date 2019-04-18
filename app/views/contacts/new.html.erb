@@ -1,5 +1,5 @@
 <div class="row contact-form">
-  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+  <div class="col-sm-12 col-md-10 col-lg-7 mx-auto">
     <div class="card card-signin mt-5 mb-3">
       <div class="card-body">
         <h5 class="card-title text-center">お問い合わせフォーム</h5>
@@ -7,7 +7,6 @@
           <% if @contact.errors.any? %>
             <div id="error_explanation">
               <h2><%= @contact.errors.count %>件のエラーがあります。</h2>
-
               <ul>
                 <% @contact.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
@@ -17,19 +16,15 @@
           <% end %>
 
           <div class="form-label-group">
-            <%= f.text_field :email, autofocus: true, autocomplete: "email" ,placeholder: "Email", class: "form-control mb-4" %>
-            <%= f.label :email, "返信先メールアドレス" %>
+            <%= f.text_field :email, placeholder: "返信先メールアドレス ", required: true, class: "form-control mb-4" %>
           </div>
-
           <div class="form-label-group">
-            <%= f.text_field :title, autofocus: true, autocomplete: "title" ,placeholder: "Title", class: "form-control mb-4" %>
-            <%= f.label :title %>
+            <%= f.text_field :title, placeholder: "タイトル", required: true, class: "form-control mb-4" %>
           </div>
 
           <div class="form-label-group mb-2">
-            <%= f.text_area :message ,placeholder: "問い合わせ内容",class: "form-control" ,rows: 6 %>
+            <%= f.text_area :message, placeholder: "問い合わせ内容", required: true, class: "form-control" ,rows: 6 %>
           </div>  
-
           <div class="row mt-4">
             <div class="col-12">
               <div class="button-panel">
@@ -42,11 +37,6 @@
       <%# .card-body %>
     </div>
     <%# .card %>
-    <div class="">
-      <%= link_to services_path ,"data-toggle" => "popover", "data-content" => "一覧へ戻る", class: "btn btn-secondary btn-circle detail-info mr-2" do %>
-        <%= fa_icon "undo" %>
-      <% end %>  
-    </div>
   </div>
   <%# .col %>
 </div>

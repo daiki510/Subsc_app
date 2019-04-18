@@ -45,6 +45,7 @@
           </div>
           <%# .row2 %>
 
+          <% if @subscription.note.present? %>
           <div class="row">
             <div class="col-md-12">
               <div class="frame-box mb-2 pt-3">
@@ -53,6 +54,7 @@
               </div>
             </div>
           </div>
+          <% end %>
           <%# .row3 %>
 
           <div class="row mt-4">

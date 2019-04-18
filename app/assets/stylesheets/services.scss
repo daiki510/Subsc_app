@@ -118,6 +118,10 @@
   color: var(--font-color);
 }
 
+a.btn-new {
+  font-size: 1.2em;
+}
+
 // ================================================================
 // サービス詳細
 // ================================================================
@@ -160,12 +164,20 @@
   border-radius: 1.5em;
 }
 
+.service-form .card {
+  padding: 2em 4em 4em 4em;
+}
+
+.service-form .form-label-group input {
+  border-radius: 1em;
+}
+
 .service-form .frame-box {
   position: relative;
   margin: 2em 0;
   padding: 1em;
   border: solid 1px #ced4da;
-  border-radius: 1.5em;
+  border-radius: 1em;
 }
 
 .service-form .frame-box .frame-title {
@@ -187,4 +199,15 @@
 
 .service-form .check-categories input {
   margin-right: 5px;
+}
+
+.form-title {
+  width: 80%;
+  margin: 0.7em auto;
+  color: var(--main-color);
+  padding: 0.5em 0;
+  text-align: center;
+  border-top: solid 3px var(--main-color);
+  border-bottom: solid 3px var(--main-color);
+  font-weight: 600;
 }

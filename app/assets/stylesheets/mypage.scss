@@ -58,6 +58,40 @@ i.fa-undo {
   font-size: 1.2em;
 }
 
+.add-subscription a {
+  font-weight: 500;
+  font-size: 1.1em;
+  padding: 0.4em 0.8em;
+}
+
+.show-page i.fa-minus {
+  color: var(--font-color);
+}
+
+.subscription-form .card {
+  padding: 2em 4em 4em 4em;
+}
+
+.subscription-form input#subscription_charge,
+.subscription-form textarea {
+  border-radius: 1em;
+}
+
+.subscription-form label {
+  margin-left: 2em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+input.charge-form {
+  font-size: 1.2em;
+}
+
+.subscription-form .due-date-box span {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 // ================================================================
 // マイページ 検索・ソート・ページネーション
 // ================================================================
