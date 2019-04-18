@@ -24,10 +24,13 @@ i.fa-undo {
   color: #fff;
 }
 
+.edit-user i.fa-user-times {
+  color: var(--font-color);
+}
+
 // ================================================================
 // マイページ サブスクリプション情報
 // ================================================================
-
 .service-title {
   position: relative;
   padding: 0.25em 0;

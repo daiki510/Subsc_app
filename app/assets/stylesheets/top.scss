@@ -19,8 +19,7 @@
 .main {
   width: 100%;
   padding: 110px 0 150px;
-  background: linear-gradient(135deg, rgba(46, 158, 121, 0.8), rgba(179, 135, 41, 0.8)),
-    url("main.png");
+  background: linear-gradient(135deg, rgba(46, 158, 121, 0.8), rgba(179, 135, 41, 0.8)), image-url("main.png");
   background-size: cover;
 }
 
