@@ -24,6 +24,19 @@
 // theme_color=#50bfa4;
 * {
   color: var(--font-color);
+  font-family: system-ui,
+    "Noto Sans Japanese",
+    "Helvetica Neue",
+    "Segoe UI",
+    "Original Yu Gothic",
+    "Yu Gothic",
+    YuGothic,
+    Verdana,
+    "ヒラギノ角ゴ ProN W3",
+    Meiryo,
+    "M+ 1p",
+    sans-serif;
+  scroll-behavior: smooth;
 }
 
 :root {

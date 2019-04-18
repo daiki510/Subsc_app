@@ -18,25 +18,33 @@
 
 .main {
   width: 100%;
-  // height: 800px;
-  padding: 150px 0 250px;
-  background-color: var(--main-color);
+  padding: 130px 0 150px;
+  background: linear-gradient(135deg, rgba(46, 158, 121, 0.8), rgba(179, 135, 41, 0.8)),
+    url("main.png");
+  background-size: cover;
 }
+
 
 .main-content {
   background-color: var(--main-color);
-  // background-image: url("main.png");
-  background-size: cover;
-  background-position: center 60%;
 }
 
-.main .top-menu {
-  padding: 100px 0 0 80px;
+h1.display-4 {
+  font-size: 130px;
+  color: #fff;
+  font-family: "segoe UI", "Noto Sans JP", 游ゴシック, YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Verdana, メイリオ, Meiryo, sans-serif;
+}
+
+p.lead {
+  color: #fff;
+  font-size: 90px;
+  font-weight: 800;
+  text-shadow: 2px 4px 3px rgba(12, 109, 60, 0.3);
 }
 
 a.btn.btn-signin-top {
   width: 300px;
-  background-color: #408ab4;
+  background-color: #408ab4a4;
   color: #fff;
   font-weight: 600;
 }
@@ -48,7 +56,7 @@ a.btn.btn-signin-top:hover {
 
 a.btn.btn-signup-top {
   width: 300px;
-  background-color: #f77754;
+  background-color: #f7775498;
   color: #fff;
   font-weight: 600;
 }
@@ -65,16 +73,55 @@ a.btn.btn-signup-top:hover {
 
 .feature {
   width: 100%;
-  padding: 155px 0;
+  padding: 100px 0;
   background-color: rgb(231, 231, 231);
 }
 
-.feature .fa-circle {
+.feature-heading {
+  font-weight: 700;
+}
+
+.feature-header h4 {
+  font-weight: 600;
+  line-height: 2em;
+}
+
+i.fa.fa-circle.fa-stack-2x {
   color: var(--main-color);
 }
 
 .feature .fa-stack-1x {
   color: #fff;
+}
+
+.feature-box {
+  margin: 2em 0;
+  background: #f1f1f1;
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+}
+
+.feature-box .feature-subtitle {
+  font-size: 1.5em;
+  background: var(--main-color);
+  padding: 10px;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.feature-box .feature-subtitle i.fa-check {
+  font-size: 0.8em;
+}
+
+.feature-box p.feature-text {
+  padding: 15px 20px;
+  margin: 0;
+}
+
+.feature-text {
+  font-size: 0.8em;
+  font-weight: 600;
 }
 
 // ======================================================================
@@ -87,8 +134,67 @@ a.btn.btn-signup-top:hover {
   background-color: var(--main-color);
 }
 
+.step-heading {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
 .fa-chevron-right {
-  padding-top: 100px;
+  padding-top: 50px;
+}
+
+.step-upper {
+  background-color: var(--font-color);
+  width: 130px;
+  height: 130px;
+  margin: 0 auto;
+  position: relative;
+  line-height: 130px;
+}
+
+.step-upper .fa.fa-stack-2x {
+  font-size: 4em;
+  margin-top: 32px;
+}
+
+.step span.step-number {
+  font-family: 'Hammersmith One',
+    sans-serif;
+  font-style: normal;
+  background: #e77150f8;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+  position: absolute;
+  top: -1.0em;
+  left: -1.0em;
+  color: #fff;
+  border-radius: 50em;
+  font-size: 1.1em;
+}
+
+.step-lower {
+  margin-top: 1.5em;
+}
+
+.step-lower .step-subtitle {
+  font-weight: 800;
+  font-size: 1.6em;
+}
+
+.step-lower .step-text {
+  font-weight: 600;
+  font-size: 0.8em;
+  margin-top: 0.9em;
+  line-height: 1.5em;
+}
+
+.step-lower .step-text span {
+  font-weight: 800;
+  // font-size: 0.8em;
+  // margin-top: 0.9em;
+  // line-height: 1.5em;
 }
 
 // ======================================================================

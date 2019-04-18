@@ -1,26 +1,23 @@
-<div class="container pt-5">
+<div class="container">
   <div class="row">
-    <div class="col-lg-7">
-      <div class="main-content">
-        <h1 class="display-4">見出し!</h1>
-        <p class="lead">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+    <div class="col-lg-12">
+      <div class="main-title">
+        <p class="lead">SELECT<br>YOUR<br>SUBSCRIPTION</p>
         <hr class="my-4">
-        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
       </div>
     </div>
-    <% unless current_user %>
-      <div class="top-menu col-lg-5">
-        <div class="row">
-          <ul class="list-inline">
-            <li>
-              <%= link_to "ログイン", new_user_session_path, class: "btn btn-signin-top btn-lg mb-5" %>
-            </li>
-            <li>
-              <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-signup-top" %>
-            </li>
-          </ul>
-        </div>
-      </div>
-    <% end %>
   </div>
+  <%# /.row %>
+  <% unless current_user %>
+    <div class="row main-menu text-center">
+      <div class="col-lg-6">
+        <%= link_to "LOG IN", new_user_session_path, class: "btn btn-signin-top btn-lg mb-5" %>
+      </div>
+      <div class="col-lg-6">
+        <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-lg btn-signup-top" %>
+      </div>
+    </div>
+    <%# /.row %>
+  <% end %>
 </div>
+<%# /.container %>
