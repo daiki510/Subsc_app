@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root 'top#index'
 
-  #ユーザー関連
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   
   resources :subscriptions, except: [:index]
 
-  #問い合わせ
   resources :contacts, only: [:new, :create]
+
+  get '*path', controller: 'application', action: 'render_404'
 end
