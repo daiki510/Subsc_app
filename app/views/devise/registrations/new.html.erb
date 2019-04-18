@@ -6,23 +6,19 @@
         <h5 class="card-title text-center">Sign up</h5>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-signin"}) do |f| %>
           <div class="form-label-group">
-            <%= f.text_field :name, autofocus: true, autocomplete: "name" ,placeholder: "Name", class: "form-control mb-4" %>
-            <%= f.label :name %>
+            <%= f.text_field :name,placeholder: "ユーザー名", required: true, class: "form-control mb-4" %>
           </div>
 
           <div class="form-label-group">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" ,placeholder: "Email address", class: "form-control mb-4" %>
-            <%= f.label :email %>
+            <%= f.email_field :email, placeholder: "メールアドレス", required: true, class: "form-control mb-4" %>
           </div>
 
           <div class="form-label-group">
-            <%= f.password_field :password, autocomplete: "current-password",placeholder: "Password", class: "form-control mb-4" %>
-            <%= f.label :password %>
+            <%= f.password_field :password, placeholder: "パスワード", required: true, class: "form-control mb-4" %>
           </div>
 
           <div class="form-label-group">
-            <%= f.password_field :password_confirmation, autocomplete: "current-password",placeholder: "Password", class: "form-control mb-4" %>
-            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, placeholder: "パスワード確認", required: true, class: "form-control mb-4" %>
           </div>
 
           <%= f.submit "Sign up", class: "btn btn-lg btn-signin btn-block text-uppercase mt-3" %>

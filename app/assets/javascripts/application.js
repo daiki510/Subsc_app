@@ -72,7 +72,7 @@ $(document).on("turbolinks:load", function () {
   topBtn.click(function () {
     $('body,html').animate({
       scrollTop: 0
-    }, 700); //戻るスピード調整
+    }, 300); //戻るスピード調整
     return false;
   });
 });
