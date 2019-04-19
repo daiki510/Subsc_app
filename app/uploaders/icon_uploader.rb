@@ -6,14 +6,17 @@ class IconUploader < CarrierWave::Uploader::Base
   storage :fog
 
   def store_dir
-    "sample-image/#{model.id}"
+    "icon-images/#{model.id}"
   end
 
-  # storage :file
+  def size_range
+    0..5.megabytes
+  end
 
-  # def store_dir
-  #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  # end
+  # ファイル名を書き換え
+  def filename
+    "#{model.name}_icon_#{model.id}.#{file.extension}" if original_filename
+  end
 
   # アップロード時の画像サイズ
   process resize_and_pad: [100, 100, '#ffffff', 'Center']
@@ -27,10 +30,4 @@ class IconUploader < CarrierWave::Uploader::Base
   version :thumb do
     process resize_to_fit: [50, 50]
   end
-
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
 end
