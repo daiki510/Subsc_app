@@ -110,3 +110,22 @@ input.charge-form {
   padding-left: 2em;
   margin-bottom: 0.5em;
 }
+
+// ================================================================
+// ヘルプ
+// ================================================================
+.help-page .card {
+  margin-top: 20px;
+}
+
+.help-page h5 {
+  font-weight: 600;
+}
+
+.help-title {
+  font-weight: 600;
+  font-size: 3em;
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid var(--font-color);
+  padding-bottom: 8px;
+}

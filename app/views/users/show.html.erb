@@ -31,7 +31,11 @@
     </div>
     <%# サブスクリプション一覧 %>
     <div class="col-md-9">
-      <%= render 'subscription' %>
+      <% if @services.blank? %>
+        <%= render 'first_visit_page' %>
+      <% else %>
+        <%= render 'subscription' %>
+      <% end %>
     </div>
   </div>
 </div>
