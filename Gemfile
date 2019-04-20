@@ -16,24 +16,22 @@ gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
-# ログイン機能
+# ユーザー管理機能
 gem 'cancancan'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'rails_admin', '~> 1.3'
 
-# 画像アップロード用
+# 画像アップロード
 gem 'aws-sdk-s3'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick', '~> 4.8'
 
-# ページネーション
-gem 'kaminari'
-
 # フロントエンド関連
 gem 'bootstrap'
+gem 'kaminari'
 gem 'font-awesome-sass', '~> 5.8.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

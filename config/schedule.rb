@@ -1,5 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + "/environment")
-# set :output, 'log/cron.log'
 set :output, { :error => 'log/whenever.log', :standard => 'log/cron.log' }
 
 # set :environment, :development
@@ -12,14 +11,10 @@ set :output, { :error => 'log/whenever.log', :standard => 'log/cron.log' }
 # end
 
 # set :environment, :production
-# every 1.day, at: ['9:00 am', '12:40 pm'] do
+# every 1.month, at: ['9:00 am'] do
 #   rake "notifying:one_in_a_month"
 # end
 
-# every 1.day, at: ['9:00 am', '12:42 pm'] do
-#   rake "notifying:two_in_a_month"
-# end
-
-# every 1.minute do
+# every "00 09 1,15 * *" do
 #   rake "notifying:two_in_a_month"
 # end
