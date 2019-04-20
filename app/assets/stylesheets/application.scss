@@ -24,18 +24,6 @@
 // theme_color=#50bfa4;
 * {
   color: var(--font-color);
-  font-family: system-ui,
-    "Noto Sans Japanese",
-    "Helvetica Neue",
-    "Segoe UI",
-    "Original Yu Gothic",
-    "Yu Gothic",
-    YuGothic,
-    Verdana,
-    "ヒラギノ角ゴ ProN W3",
-    Meiryo,
-    "M+ 1p",
-    sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -522,4 +510,25 @@ a.badge-primary:hover {
   text-align: center;
   margin-bottom: 0;
   padding: 0.5em;
+}
+
+// ======================================================================
+// フラッシュメッセージ
+// ======================================================================
+.alert {
+  margin-bottom: 0;
+  border-radius: 0;
+  text-align: center;
+}
+
+.alert-success {
+  color: #fff;
+  background-color: #50bfa4;
+  border: none;
+}
+
+.alert-danger {
+  color: #fff;
+  background-color: #f77754;
+  border: none;
 }
