@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   resources :contacts, only: [:new, :create]
 
-  get '*path', controller: 'application', action: 'render_404'
+  # get '*path', controller: 'application', action: 'render_404'
 end
