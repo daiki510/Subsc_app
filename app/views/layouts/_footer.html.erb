@@ -9,11 +9,13 @@
           <li class="list-inline-item">
             <%= link_to "プライバシーポリシー", page_path('privacy') %>
           </li>
+          <% if current_user %>
+            <li class="list-inline-item">
+              <%= link_to "お問い合わせ", new_contact_path %>
+            </li>
+          <% end %>
           <li class="list-inline-item">
-            <a href="#">お問い合わせ</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">ヘルプ</a>
+            <%= link_to "ヘルプ", page_path('help') %>
           </li>
         </ul>
       </div>

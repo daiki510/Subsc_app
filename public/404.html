@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>The page you were looking for doesn't exist (500)</title>
+  <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
     body {
@@ -20,27 +20,38 @@
 
     #num {
       font-size: 10em;
-      color: #57a99a;
+      color: #f77754;
       margin: 0;
     }
 
     #str {
       font-size: 5em;
-      color: #57a99a;
+      color: #f77754;
       margin: 0;
     }
 
     #text {
       color: #555151;
     }
+
+    #text a {
+      color: rgb(31, 82, 194);
+      text-decoration: none;
+    }
+
+    #text a:hover {
+      color: rgb(12, 50, 134);
+      border-bottom: 1px solid rgb(12, 50, 134);
+    }
   </style>
 </head>
 
 <body>
   <div class="error">
-    <p id="num">500</p>
-    <p id="str">Internal Server Error</p>
-    <p id="text">ページが表示できませんでした。</p>
+    <p id="num">404</p>
+    <p id="str">Not Found</p>
+    <p id="text">お探しのページは見つかりません。<br><a href="/services">一覧へ戻る</a></p>
+
   </div>
 </body>
 
