@@ -186,6 +186,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     hashie (3.6.0)
+    high_voltage (3.1.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
@@ -469,6 +470,7 @@ DEPENDENCIES
   factory_bot_rails
   fog-aws
   font-awesome-sass (~> 5.8.1)
+  high_voltage
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails
