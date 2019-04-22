@@ -6,10 +6,11 @@
 利用しているサブスクリプション（定額制サービス）を見える化します。
 毎月の合計利用金額や支払日などの基本情報を管理し、それらを月毎にメールで通知してくれるサービスです。
 サービスはSubscが管理することによって、ユーザーはそれらを追加ボタン押すだけで利用できます。
-また、このアプリによって、無駄な消費も減り、使うべきサービスに投資ができます。
+また、このアプリによって、サービスの取捨選択ができ、使うべきサービスに投資ができます。
 
 ## コンセプト
-利用しているサブスクリプションの見える化
+利用しているサブスクリプションの見える化<br>
+そして、「SELECT YOUR SUBSCRIPTIONS」= サブスクリプションの取捨選択
 
 ## 開発環境
 Ruby 2.5.3
@@ -17,8 +18,8 @@ Rails 5.2.2
 Bundler 2.0.1
 
 ## インフラ
-デプロイ：EC2<br>
-画像アップロード：S3
+デプロイ：AWS EC2<br>
+画像アップロード先：S3
 
 ## 機能一覧
 ### ユーザー管理機能
@@ -81,6 +82,7 @@ https://docs.google.com/spreadsheets/d/1kWLZ5_rrjU3MG7BgFCa_ZDRlWnGTrGcJVC5ldbRV
 - unicorn
 - capistrano
 - aws-sdk-s3
+- high_voltage
 - order_as_specified
 - rails_autolink
 - kaminari
