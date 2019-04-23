@@ -1,7 +1,7 @@
 <div class="container show-page">
   <div class="row">
     <div class="col-12">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="card p-3">
             <button type="button" class="close text-right" data-dismiss="modal" onfocus="this.blur();">&times;</button>
@@ -62,9 +62,6 @@
 
               <div class="row mt-4">
                 <div class="col-md-7">
-                  <%= link_to user_path(current_user) ,"data-toggle" => "popover", "data-content" => "一覧へ戻る", class: "btn btn-secondary btn-circle detail-info mr-2" do %>
-                    <%= fa_icon "undo" %>
-                  <% end %>
                   <%= link_to service.link, target: :blank, "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info mr-2"  do %>
                     <%= fa_icon "link" %>
                   <% end %>
@@ -72,14 +69,9 @@
                     <%= fa_icon "pencil" %>
                   <% end %>
                 </div>
-                <div class="col-md-5 text-right">
+                <div class="col-md-5 text-right mt-3">
                   <span  data-toggle="popover", data-content="利用者数" class="detail-info">
                     <%= fa_icon "users" , class: "mr-2" %><%= service.subscriptions.count %>
-                  </span>
-                  <span class="ml-3">
-                    <%= link_to subscription_path(id: get_subscription_id(current_user, service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", data: { confirm: '本当に外してもいいですか?' } ,class: "btn btn-light btn-circle detail-info" do %>
-                      <%= fa_icon "minus" %>
-                    <% end %>
                   </span>
                 </div>
               </div>

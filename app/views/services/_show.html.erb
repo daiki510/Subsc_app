@@ -1,7 +1,7 @@
 <div class="container show-page">
   <div class="row mb-5">
     <div class="col-12 mb-3">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="card p-3">
             <button type="button" class="close text-right" data-dismiss="modal" onfocus="this.blur();">&times;</button>
@@ -43,9 +43,6 @@
 
               <div class="row mt-4">
                 <div class="col-md-7">
-                  <%= link_to services_path ,"data-toggle" => "popover", "data-content" => "一覧へ戻る", class: "btn btn-secondary btn-circle detail-info mr-2" do %>
-                    <%= fa_icon "undo" %>
-                  <% end %>
                   <%= link_to @service.link, target: :blank, "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info mr-2"  do %>
                     <%= fa_icon "link" %>
                   <% end %>
