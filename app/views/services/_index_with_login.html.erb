@@ -33,7 +33,7 @@
 
           <div class="row mt-4">
             <div class="col-md-5">
-              <%= link_to service_path(service) ,"data-toggle" => "popover", "data-content" => "詳細",class: "btn btn-info btn-circle detail-info mr-2 service-info-#{i}" do %>
+              <%= link_to service_path(service) ,remote: true, "data-toggle" => "popover", "data-content" => "詳細",class: "btn btn-info btn-circle detail-info mr-2 service-info-#{i}" do %>
                 <%= fa_icon "info" %>
               <% end %>
               <%= link_to service.link, target: :blank, "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info mr-2"  do %>
