@@ -1,0 +1,108 @@
+<div class="container subscription-form">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 mx-auto mb-3">
+      <% if @subscription.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @subscription.errors.count %>件のエラーがあります。</h2>
+          <ul>
+            <% @subscription.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="card">
+        <h2 class="form-title">
+          <% if params[:id] %>
+            サブスクリプション編集
+          <% else %>
+            サブスクリプション登録
+          <% end %>
+        </h2>
+        <%= form_with model: @subscription, local: true do |f| %>
+          <% service = service(@subscription) %>
+          <% unless params[:id] %>
+            <%= f.hidden_field :service_id, value: params[:service_id] %>
+          <% end %>
+          <div class="card-body">
+            <div class="row d-flex align-items-center pb-4 border-bottom">
+              <div class="col-md-4 ml-4">
+                <% if service.icon.present? %>
+                  <div class="service-icon">
+                    <%= image_tag service.icon.url %>
+                  </div>
+                <% else %>
+                  <div class="no-icon">No-Icon</div>
+                <% end %>
+              </div>
+              <div class="col-md-7">
+                <div class="row category">
+                  <div class="col-md-12">
+                    <% service.categories.each do |category|%>
+                      <span class= "badge badge-primary py-1 px-2"><%= category.name %></span>
+                    <% end %>
+                  </div>
+                  <div class="col-md-12">
+                    <h3 class="service-title"><%= service.name %></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%# .row1 %>
+
+            <div class="row d-flex align-items-center mt-4">
+              <div class="col-xs-12 col-md-7 col-lg-7">
+                <div class="form-label-group">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-lg-5">
+                      <span><%= f.label :charge %></span>
+                    </div>
+                    <div class="col-lg-5">
+                      <%= f.number_field :charge, in: 0..100000,required: true, class: "form-control text-center charge-form" %>円
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-5 col-lg-5 due-date-box">
+                <div class="form-label-group">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-lg-4 label-notifiy text-right">
+                      <span>支払日</span>
+                    </div>
+                    <div class="col-lg-4 select-box select-plus">
+                      <%= f.select :due_date, (1..31).each,placeholder: "due_date", class: "form-control" %>
+                    </div>
+                    <div class="col-lg-1">日</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%# .row2 %>
+
+            <div class="row my-2">
+              <div class="col-12">
+                <div class="form-label-group mb-2">
+                  <%= f.text_area :note ,placeholder: "備考欄",class: "form-control" ,rows: 5 %>
+                </div>  
+              </div>
+            </div>
+            <%# .row3 %>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="button-panel">
+                  <%= f.submit class: "btn btn-lg btn-register btn-block mt-3" %>
+                </div>  
+              </div>
+            </div>
+            <%# .row4 %>
+          </div>
+          <%# .card-body %>
+        <% end %>
+      </div>
+      <%# .card %>
+    </div>
+    <%# .col %>
+  </div>
+  <%# .row %>
+</div>

@@ -75,9 +75,36 @@ i.fa-undo {
   padding: 2em 4em 4em 4em;
 }
 
-.subscription-form input#subscription_charge,
+.subscription-form input#subscription_charge {
+  width: 35%;
+  height: 50px;
+  font-size: 1.3em;
+  text-align: center;
+  margin: 0 5px 25px 5px;
+  border-radius: 0.3em;
+  border: 1px solid rgb(163, 163, 163);
+}
+
+.subscription-form select#subscription_due_date {
+  width: 20%;
+  height: 50px;
+  font-size: 1.3em;
+  text-align: center;
+  margin: 0 5px 25px 24px;
+  border-radius: 0.8em;
+  border: 1px solid rgb(163, 163, 163);
+  background-color: #fff;
+}
+
 .subscription-form textarea {
-  border-radius: 1em;
+  border-radius: 0.4em;
+}
+
+.subscription-form .service-icon img,
+.subscription-form .no-icon {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
 }
 
 .subscription-form label {
