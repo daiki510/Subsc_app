@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="col-md-3">
-              <%= link_to subscription_path(subscription), class: "btn btn-info btn-circle subsc-info-#{i} mr-2" do %>
+              <%= link_to subscription_path(subscription),remote: true, class: "btn btn-info btn-circle subsc-info-#{i} mr-2" do %>
                 <%= fa_icon "info" %>
               <% end %>
               <%= link_to edit_subscription_path(subscription), class: "btn btn-success btn-circle subsc-edit-#{i} mr-2" do %>
