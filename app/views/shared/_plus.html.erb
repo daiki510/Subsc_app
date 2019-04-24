@@ -1,0 +1,5 @@
+<span id="plus-btn">
+  <%= link_to new_subscription_path(service_id: service.id),"data-toggle" => "popover", "data-content" => "追加",remote: true, class: "btn btn-secondary detail-info" do %>
+    <%= fa_icon "plus" %>
+  <% end %>
+</span>

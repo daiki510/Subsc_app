@@ -1,0 +1,4 @@
+$("div#subscription-<%= @service.id %>").removeClass("using-service");
+$("span#subscription-btn-<%= @service.id %> span#minus-btn").addClass("display-none");
+$("span#subscription-btn-<%= @service.id %>").append("<%= j(render("shared/plus", service: @service)) %>");
+$("span#users-count-<%= @service.id %>").text("<%= @service.subscriptions.count %>");

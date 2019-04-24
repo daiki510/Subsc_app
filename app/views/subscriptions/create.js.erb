@@ -2,6 +2,7 @@
     $("div#subscription-<%= @service.id %>").addClass("using-service");
     $("span#subscription-btn-<%= @service.id %> span#plus-btn").addClass("display-none");
     $("span#subscription-btn-<%= @service.id %>").append("<%= j(render("shared/minus", service: @service)) %>");
+    $("span#users-count-<%= @service.id %>").text("<%= @service.subscriptions.count %>");
 <%  elsif @status == 'fail' %>
     alert('既に登録してあります');
 <% end %>

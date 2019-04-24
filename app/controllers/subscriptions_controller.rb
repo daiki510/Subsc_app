@@ -26,7 +26,6 @@ class SubscriptionsController < ApplicationController
   def edit; end
 
   def update
-    # raise
     if @subscription.update(subscription_params)
       redirect_to user_path(current_user.id), notice: "「#{service_name(@subscription)}」を更新しました"
     else
@@ -35,12 +34,17 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
+    @service = Service.find(@subscription.service_id)
     @subscription.destroy
-    flash[:alert] = "「#{service_name(@subscription)}」を利用一覧から外しました"
-    if params[:back_to_mypage]
-      redirect_to user_path(current_user)
-    else
-      redirect_to services_path
+    respond_to do |format|
+      if params[:back_to_mypage]
+        flash[:alert] = "「#{service_name(@subscription)}」を利用一覧から外しました"
+        format.html { redirect_to user_path(current_user) }
+      else
+        flash[:alert] = "「#{service_name(@subscription)}」を利用一覧から外しました"
+        format.html { redirect_to services_path }
+      end
+      format.js
     end
   end
 

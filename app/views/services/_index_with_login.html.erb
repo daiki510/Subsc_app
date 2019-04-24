@@ -43,18 +43,19 @@
             <div class="col-md-7 text-right">
               <span class="ml-3">
                 <span  data-toggle="popover", data-content="利用者数" class="detail-info mr-2">
-                  <%= fa_icon "users" , class: "mr-2 users-count" %><%= service.subscriptions.count %>
+                  <%= fa_icon "users" , class: "mr-2 users-count" %>
+                  <span id="users-count-<%= service.id %>"><%= service.subscriptions.count %></span>
                 </span>
                 <span id="subscription-btn-<%= service.id %>">
                   <% if already_added?(service) %>
                     <span id="minus-btn">
-                      <%= link_to subscription_path(id: get_subscription_id(current_user, service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light detail-info" do %>
+                      <%= link_to subscription_path(id: get_subscription_id(current_user, service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", remote: true, class: "btn btn-light detail-info" do %>
                         <%= fa_icon "minus" %>
                       <% end %>
                     </span>
                   <% else %>
                     <span id="plus-btn">
-                      <%= link_to new_subscription_path(service_id: service.id),"data-toggle" => "popover", "data-content" => "追加",remote: true, class: "btn btn-secondary detail-info add-btn-#{i}" do %>
+                      <%= link_to new_subscription_path(service_id: service.id),"data-toggle" => "popover", "data-content" => "追加", remote: true, class: "btn btn-secondary detail-info" do %>
                         <%= fa_icon "plus" %>
                       <% end %>
                     </span>
