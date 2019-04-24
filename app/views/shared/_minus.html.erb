@@ -1,0 +1,5 @@
+<span id="minus-btn">
+  <%= link_to subscription_path(id: get_subscription_id(current_user, service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light detail-info" do %>
+    <%= fa_icon "minus" %>
+  <% end %>
+</span>

@@ -3,7 +3,7 @@
     <p>一致する結果はありません</p>
   <% end %>
   <% @services.each.with_index(1) do |service, i| %>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-3 <%= "using-service" if already_added?(service) %>">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-3 <%= "using-service" if already_added?(service) %>" id="subscription-<%= service.id %>">
       <div class="card">
         <div class="card-body">
           <div class="row">
@@ -45,15 +45,21 @@
                 <span  data-toggle="popover", data-content="利用者数" class="detail-info mr-2">
                   <%= fa_icon "users" , class: "mr-2 users-count" %><%= service.subscriptions.count %>
                 </span>
-                <% if already_added?(service) %>
-                  <%= link_to subscription_path(id: get_subscription_id(current_user, service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light detail-info" do %>
-                    <%= fa_icon "minus" %>
+                <span id="subscription-btn-<%= service.id %>">
+                  <% if already_added?(service) %>
+                    <span id="minus-btn">
+                      <%= link_to subscription_path(id: get_subscription_id(current_user, service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", class: "btn btn-light detail-info" do %>
+                        <%= fa_icon "minus" %>
+                      <% end %>
+                    </span>
+                  <% else %>
+                    <span id="plus-btn">
+                      <%= link_to new_subscription_path(service_id: service.id),"data-toggle" => "popover", "data-content" => "追加",remote: true, class: "btn btn-secondary detail-info add-btn-#{i}" do %>
+                        <%= fa_icon "plus" %>
+                      <% end %>
+                    </span>
                   <% end %>
-                <% else %>
-                  <%= link_to new_subscription_path(service_id: service.id),"data-toggle" => "popover", "data-content" => "追加", class: "btn btn-secondary detail-info add-btn-#{i}" do %>
-                    <%= fa_icon "plus" %>
-                  <% end %>
-                <% end %>
+                </span>
               </span>
             </div>
           </div>
@@ -67,3 +73,4 @@
   <% end %>
 </div>
 <%# .row %>
+<div id="subscription-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

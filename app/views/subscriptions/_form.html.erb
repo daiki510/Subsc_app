@@ -1,6 +1,6 @@
 <div class="container subscription-form">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 mx-auto mb-3">
+    <div class="col-12">
       <% if @subscription.errors.any? %>
         <div id="error_explanation">
           <h2><%= @subscription.errors.count %>件のエラーがあります。</h2>
@@ -11,67 +11,74 @@
           </ul>
         </div>
       <% end %>
-      <div class="card">
-        <h2 class="form-title">
-          <% if params[:id] %>
-            サブスクリプション編集
-          <% else %>
-            サブスクリプション登録
-          <% end %>
-        </h2>
-        <%= form_with model: @subscription, local: true do |f| %>
-          <% service = service(@subscription) %>
-          <% unless params[:id] %>
-            <%= f.hidden_field :service_id, value: params[:service_id] %>
-          <% end %>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-xs-12 col-md-2 col-lg-3">
-                <% if service.icon.present? %>
-                  <div class="service-icon">
-                    <%= image_tag service.icon.url %>
-                  </div>
-                <% else %>
-                  <div class="no-icon">No-Icon</div>
-                <% end %>
-              </div>
-              <div class="col-xs-12 col-md-10 col-lg-9">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card">
+            <button type="button" class="close text-right" data-dismiss="modal" onfocus="this.blur();">&times;</button>
+            <h2 class="form-title">
+              <% if params[:id] %>
+                編 集
+              <% else %>
+                登 録
+              <% end %>
+            </h2>
+            <%= form_with model: @subscription, remote: true do |f| %>
+              <% service = service(@subscription) %>
+              <% unless params[:id] %>
+                <%= f.hidden_field :service_id, value: params[:service_id] %>
+              <% end %>
+              <div class="card-body">
                 <div class="row">
-                  <div class="col-lg-12">
-                    <%= f.label :charge %>
-                    <%= f.number_field :charge, in: 0..100000,required: true, class: "" %>円
+                  <div class="col-xs-12 col-md-2 col-lg-3">
+                    <% if service.icon.present? %>
+                      <div class="service-icon">
+                        <%= image_tag service.icon.url %>
+                      </div>
+                    <% else %>
+                      <div class="no-icon">No-Icon</div>
+                    <% end %>
                   </div>
-                  <div class="col-lg-12">
-                    <%= f.label :due_date %>
-                    <%= f.select :due_date, (1..31).each,placeholder: "due_date", class: "form-control" %>日
+                  <div class="col-xs-12 col-md-10 col-lg-9">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <%= f.label :charge %>
+                        <%= f.number_field :charge, in: 0..100000,required: true, class: "" %>円
+                      </div>
+                      <div class="col-lg-12">
+                        <%= f.label :due_date %>
+                        <%= f.select :due_date, (1..31).each,placeholder: "due_date", class: "form-control" %>日
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <%# .row1 %>
+                <%# .row1 %>
 
-            <div class="row my-2">
-              <div class="col-12">
-                <div class="form-label-group mb-2">
-                  <%= f.text_area :note ,placeholder: "備考欄",class: "form-control mt-4" ,rows: 4 %>
-                </div>  
-              </div>
-            </div>
-            <%# .row3 %>
+                <div class="row my-2">
+                  <div class="col-12">
+                    <div class="form-label-group mb-2">
+                      <%= f.text_area :note ,placeholder: "備考欄",class: "form-control mt-4" ,rows: 4 %>
+                    </div>  
+                  </div>
+                </div>
+                <%# .row3 %>
 
-            <div class="row">
-              <div class="col-12">
-                <div class="button-panel">
-                  <%= f.submit class: "btn btn-lg btn-register btn-block mt-3" %>
-                </div>  
+                <div class="row">
+                  <div class="col-12">
+                    <div class="button-panel">
+                      <%= f.submit class: "btn btn-lg btn-register btn-block mt-3" %>
+                    </div>  
+                  </div>
+                </div>
+                <%# .row4 %>
               </div>
-            </div>
-            <%# .row4 %>
+              <%# .card-body %>
+            <% end %>
           </div>
-          <%# .card-body %>
-        <% end %>
+          <%# .card %>
+        </div>
+        <%# .modal-content %>
       </div>
-      <%# .card %>
+      <%# .modal-dialog %>
     </div>
     <%# .col %>
   </div>

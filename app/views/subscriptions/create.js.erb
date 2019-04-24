@@ -1,0 +1,8 @@
+<% if @status == 'success' %>
+    $("div#subscription-<%= @service.id %>").addClass("using-service");
+    $("span#subscription-btn-<%= @service.id %> span#plus-btn").addClass("display-none");
+    $("span#subscription-btn-<%= @service.id %>").append("<%= j(render("shared/minus", service: @service)) %>");
+<%  elsif @status == 'fail' %>
+    alert('既に登録してあります');
+<% end %>
+$("#subscription-modal").modal("hide");

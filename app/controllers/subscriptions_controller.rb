@@ -9,10 +9,15 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription = subscriptions.new(subscription_params)
-    if @subscription.save
-      redirect_to services_path, notice: "「#{service_name(@subscription)}」を追加しました"
-    else
-      render 'new'
+    respond_to do |format|
+      if @subscription.save
+        @service = Service.find(@subscription.service_id)
+        format.html { redirect_to services_path, notice: "「#{service_name(@subscription)}」を追加しました" }
+        format.js { @status = 'success' }
+      else
+        format.html { render :new }
+        format.js { @status = 'fail' }
+      end
     end
   end
 
