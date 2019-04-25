@@ -41,7 +41,6 @@ class SubscriptionsController < ApplicationController
         flash[:alert] = "「#{service_name(@subscription)}」を利用一覧から外しました"
         format.html { redirect_to user_path(current_user) }
       else
-        flash[:alert] = "「#{service_name(@subscription)}」を利用一覧から外しました"
         format.html { redirect_to services_path }
       end
       format.js
