@@ -1,6 +1,10 @@
 <div class="row">
   <% if @services.blank? %>
-    <p>一致する結果はありません</p>
+    <p class="ml-5">
+      一致する結果はありません。<br><br>
+      <span class="h5"><%= link_to "サービス新規登録", new_service_path %>でオリジナルのサービスを登録できます！</span>
+      (<span class="text-danger">他のユーザーには公開されません</span>)
+    </p>
   <% end %>
   <% @services.each.with_index(1) do |service, i| %>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-3 <%= "using-service" if already_added?(service) %>" id="subscription-<%= service.id %>">
