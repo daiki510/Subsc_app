@@ -19,7 +19,7 @@ class IconUploader < CarrierWave::Uploader::Base
   end
 
   # アップロード時の画像サイズ
-  process resize_and_pad: [100, 100, '#ffffff', 'Center']
+  # process resize_and_pad: [100, 100, '#ffffff', 'Center']
 
   # 添付できるファイルの種類
   def extension_whitelist
