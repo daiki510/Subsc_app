@@ -19,6 +19,6 @@ class UsersController < ApplicationController
     @services = @services.sort_date if params[:sort_date] # 支払日順
 
     # ページネーション
-    @services = @services.page(params[:page]).per(PER_PAGE)
+    @services = @services.page(params[:page]).per(PER_PAGE).includes(:categories)
   end
 end

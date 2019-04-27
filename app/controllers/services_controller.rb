@@ -28,7 +28,7 @@ class ServicesController < ApplicationController
     end
 
     # ページネーション
-    @services = @services.page(params[:page]).per(PER_PAGE).sort_name
+    @services = @services.page(params[:page]).per(PER_PAGE).sort_name.includes(:categories)
   end
 
   def new

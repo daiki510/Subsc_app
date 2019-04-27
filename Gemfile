@@ -74,6 +74,7 @@ group :development do
   gem 'rb-readline'
   gem 'rubocop', require: false
   gem 'web-console', '>= 3.3.0'
+  gem 'bullet'
 end
 
 group :test do
