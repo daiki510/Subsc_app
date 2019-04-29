@@ -42,6 +42,7 @@ gem 'enum_help'
 gem 'order_as_specified'
 gem 'rails_autolink'
 gem 'high_voltage'
+gem 'active_link_to'
 
 # AWS関連
 gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'

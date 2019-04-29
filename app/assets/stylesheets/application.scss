@@ -118,6 +118,13 @@ ul.navbar-nav {
   color: var(--main-color)
 }
 
+.header li.nav-item a.nav-link.active {
+  border-bottom: 4px solid var(--main-color);
+  padding-bottom: 3px;
+  color: var(--main-color);
+  font-weight: 700;
+}
+
 // ======================================================================
 // カード
 // ======================================================================
