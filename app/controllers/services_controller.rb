@@ -19,7 +19,7 @@ class ServicesController < ApplicationController
     @services = @services.sort_update if params[:sort_update] # 更新順
     @services = @services.sort_with_user_count if params[:sort_with_rank] # 人気順
     @services = @services.search_with_using(current_user) if params[:search_with_using] # 利用中のみ
-    @services = @services.search_secret_status.search_with_user_id(current_user) if params[:sercet_index] # オリジナルのみ
+    @services = Service.search_secret_status.search_with_user_id(current_user) if params[:sercet_index] # オリジナルのみ
 
     # CSV出力
     respond_to do |format|
