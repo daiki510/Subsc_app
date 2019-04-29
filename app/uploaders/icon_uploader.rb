@@ -15,7 +15,7 @@ class IconUploader < CarrierWave::Uploader::Base
 
   # ファイル名を書き換え
   def filename
-    "#{model.name}_icon_#{model.id}.#{file.extension}" if original_filename
+    "#{model.name}_icon.#{file.extension}" if original_filename
   end
 
   # アップロード時の画像サイズ
