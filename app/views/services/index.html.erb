@@ -18,7 +18,7 @@
         <%= paginate @services %>
       </div>
       <div class="col-md-3 text-right pt-3">
-        <span>表示件数: <%= total_services(@services) %>件</span>
+        <span>表示件数: <%= total_services(@services) %>件 / <%= @services.total_count %>件中</span>
       </div>
     </div>
     <% if current_user %>
