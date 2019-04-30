@@ -26,7 +26,9 @@ class ApplicationController < ActionController::Base
 
   def required_creator
     service = Service.find(params[:id])
-    redirect_to user_path(current_user.id), notice: '権限がありません' if current_user.id != service.user_id
+    unless current_user.admin?
+      redirect_to user_path(current_user.id), notice: '権限がありません' if current_user.id != service.user_id
+    end
   end
 
   def ensure_correct_user
