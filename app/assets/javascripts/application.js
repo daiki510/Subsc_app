@@ -50,7 +50,7 @@ $(document).on("turbolinks:load", function () {
 });
 
 // CSVファイル名を表示させる
-$(document).on('change', ':file', function () {
+$(document).on("turbolinks:load", 'change', ':file', function () {
   var input = $(this),
     numFiles = input.get(0).files ? input.get(0).files.length : 1,
     label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
@@ -76,3 +76,12 @@ $(document).on("turbolinks:load", function () {
     return false;
   });
 });
+
+// $(document).on("turbolinks:load", function () {
+//   $('.modal').click(function () {
+//     $(this).fadeOut();
+//   });
+//   $('.modal-dialog').on('click', function (e) {
+//     e.stopPropagation();
+//   });
+// });

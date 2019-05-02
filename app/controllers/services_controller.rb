@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: %i[index show]
   before_action :required_creator, only: %i[edit update destroy]
   before_action :check_file, only: %i[import]
   PER_PAGE = 12
