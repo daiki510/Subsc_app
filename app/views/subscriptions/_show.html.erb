@@ -62,7 +62,7 @@
 
               <div class="row mt-4">
                 <div class="col-md-7">
-                  <%= link_to service.link, target: :blank, "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info mr-2"  do %>
+                  <%= link_to service.link, target: :blank, rel: "noopener", "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info mr-2"  do %>
                     <%= fa_icon "link" %>
                   <% end %>
                 </div>
