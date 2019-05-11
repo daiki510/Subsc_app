@@ -22,6 +22,10 @@
           </div>
 
           <%= f.submit "Sign up", class: "btn btn-lg btn-signin btn-block text-uppercase mt-3" %>
+          <hr class="my-4">
+          <%= link_to user_google_omniauth_authorize_path, class: "btn btn-lg btn-google btn-block text-uppercase" do %>
+            <span><%= fa_icon "google" %>　Googleサインアップ</span>
+          <% end %>
         <% end %>
       </div>
       <div class="card-footer py-4">
