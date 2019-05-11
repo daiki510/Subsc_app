@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   resources :services do
     post :import, on: :collection
+    resources :clips, only: [:create, :destroy]
   end
   
   resources :subscriptions, except: [:index]
