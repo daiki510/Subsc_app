@@ -33,6 +33,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootstrap'
 gem 'kaminari'
 gem 'font-awesome-sass', '~> 5.8.1'
+gem 'font_awesome5_rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 

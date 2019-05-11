@@ -17,4 +17,8 @@ module ServicesHelper
   def already_clipped?(service)
     Clip.exists?(service_id: service.id)
   end
+
+  def clip(service)
+    current_user.clips.find_by(service_id: service.id)
+  end
 end

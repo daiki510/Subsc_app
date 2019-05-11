@@ -1,5 +1,10 @@
 <% if already_clipped?(service) %>
-  <%= button_to '気になるを取り消す', service_clips_path(service), method: :delete %>
+  <%= link_to service_clip_path(clip(service), service_id: service.id),"data-toggle" => "popover", "data-content" => "気になる解除", method: :delete, class: 'btn detail-info mt-1' do %>
+    <%= fa_icon 'bookmark', type: :solid, class: 'fas' %>
+  <% end %>
 <% else %>
-  <%= button_to '気になる', service_clips_path(service) %>
+  <%= link_to service_clips_path(service),"data-toggle" => "popover", "data-content" => "気になる登録", 
+  method: :post, class: 'btn detail-info mt-1' do %>
+    <%= fa_icon 'bookmark', type: :regular, class: 'far' %>
+  <% end %>
 <% end %>

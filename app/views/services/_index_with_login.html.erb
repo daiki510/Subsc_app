@@ -36,26 +36,24 @@
           <%# .row1 %>
 
           <div class="row mt-4">
-            <div class="col-md-5">
+            <div class="col-lg-7">
               <%= link_to service_path(service) ,remote: true, "data-toggle" => "popover", "data-content" => "詳細",class: "btn btn-info btn-circle detail-info mr-2 service-info-#{i}" do %>
                 <%= fa_icon "info" %>
               <% end %>
-              <%= link_to service.link, target: :blank, rel: "noopener", "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info mr-2"  do %>
+              <%= link_to service.link, target: :blank, rel: "noopener", "data-toggle" => "popover", "data-content" => "関連リンク", class: "btn btn-link btn-circle detail-info"  do %>
                 <%= fa_icon "link" %>
               <% end %>
+              <span id="clip-btn-<%= service.id %>" class="clip-btn">
+                <%= render 'clip', { service: service }  %>
+              </span>
             </div>
-            <div class="col-md-7 text-right">
-              <span class="ml-3">
-                <span  data-toggle="popover", data-content="利用者数" class="detail-info mr-2">
-                  <%= fa_icon "users" , class: "mr-2 users-count" %>
-                  <span id="users-count-<%= service.id %>"><%= service.subscriptions.count %></span>
-                </span>
-                <span id="clip-btn-<%= service.id %>">
-                  <%= render 'clip', { service: service }  %>
-                </span>
-                <span id="subscription-btn-<%= service.id %>">
-                  <%= render 'add', { service: service } %>
-                </span>
+            <div class="col-lg-5 text-right mt-1">
+              <span  data-toggle="popover", data-content="利用者数" class="detail-info mr-2">
+                <%= fa_icon "users" , class: "mr-2 users-count" %>
+                <span id="users-count-<%= service.id %>"><%= service.subscriptions.count %></span>
+              </span>
+              <span id="subscription-btn-<%= service.id %>">
+                <%= render 'add', { service: service } %>
               </span>
             </div>
           </div>

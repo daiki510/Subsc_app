@@ -14,6 +14,7 @@
  *= require_self
  */
 @import "bootstrap";
+@import 'font_awesome5_webfont';
 @import 'font-awesome-sprockets';
 @import "font-awesome";
 
@@ -38,13 +39,8 @@ body {
   background-color: #ecf4f3;
 }
 
-i {
+svg path {
   color: #fff;
-}
-
-.container {
-  // min-height: 100vh;
-  // margin-bottom: 50px;
 }
 
 a,
@@ -556,4 +552,32 @@ a.badge-primary:hover {
   color: #fff;
   background-color: #f77754;
   border: none;
+}
+
+// ======================================================================
+// アイコン
+// ======================================================================
+
+svg.fa-users path,
+svg.fa-minus path {
+  color: var(--font-color);
+}
+
+svg.fa-file-invoice-dollar,
+svg.fa-calendar-check {
+  font-size: 1.4em;
+  margin-right: 0.5em;
+}
+
+svg.fa-file-invoice-dollar path,
+svg.fa-calendar-check path {
+  color: rgb(90, 90, 90);
+}
+
+svg.fa-users {
+  font-size: 1.2em;
+}
+
+.subsc-btn-menu svg.fa-minus path {
+  color: #fff;
 }

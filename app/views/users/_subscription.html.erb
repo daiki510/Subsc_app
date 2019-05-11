@@ -25,19 +25,19 @@
             <div class="col-md-3">
               <div class="row subsc-info">
                 <div class="col-md-12 mb-3">
-                  <%= fa_icon "credit-card" %><span class="charge-item ml-2"><%= subscription.charge %>円</span>
+                  <%= fa_icon "file-invoice-dollar" %><span class="charge-item ml-2"><%= subscription.charge %>円</span>
                 </div>
                 <div class="col-md-12">
-                  <%= fa_icon "calendar" %><span class="due-date-item ml-2"><%= subscription.due_date %>日</span>
+                  <%= fa_icon "calendar-check" %><span class="due-date-item ml-2"><%= subscription.due_date %>日</span>
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 subsc-btn-menu">
               <%= link_to subscription_path(subscription),remote: true, class: "btn btn-info btn-circle subsc-info-#{i} mr-2" do %>
                 <%= fa_icon "info" %>
               <% end %>
               <%= link_to edit_subscription_path(subscription), class: "btn btn-success btn-circle subsc-edit-#{i} mr-2" do %>
-                <%= fa_icon "pencil" %>
+                <%= fa_icon "pen" %>
               <% end %>
               <%= link_to subscription_path(subscription, back_to_mypage: "true"), method: :delete,data: { confirm: '本当に解除してもいいですか?' }, class: "btn btn-danger btn-circle subsc-delete-#{i}" do %>
                 <%= fa_icon "minus" %>
