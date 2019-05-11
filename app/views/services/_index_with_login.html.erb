@@ -50,20 +50,11 @@
                   <%= fa_icon "users" , class: "mr-2 users-count" %>
                   <span id="users-count-<%= service.id %>"><%= service.subscriptions.count %></span>
                 </span>
+                <span id="clip-btn-<%= service.id %>">
+                  <%= render 'clip', { service: service }  %>
+                </span>
                 <span id="subscription-btn-<%= service.id %>">
-                  <% if already_added?(service) %>
-                    <span id="minus-btn">
-                      <%= link_to subscription_path(id: get_subscription_id(current_user, service)), method: :delete,"data-toggle" => "popover", "data-content" => "外す", remote: true, class: "btn btn-light detail-info" do %>
-                        <%= fa_icon "minus" %>
-                      <% end %>
-                    </span>
-                  <% else %>
-                    <span id="plus-btn">
-                      <%= link_to new_subscription_path(service_id: service.id),"data-toggle" => "popover", "data-content" => "追加", remote: true, class: "btn btn-secondary detail-info" do %>
-                        <%= fa_icon "plus" %>
-                      <% end %>
-                    </span>
-                  <% end %>
+                  <%= render 'add', { service: service } %>
                 </span>
               </span>
             </div>

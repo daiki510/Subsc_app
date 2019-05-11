@@ -12,4 +12,9 @@ module ServicesHelper
   def categories
     Category.all
   end
+
+  # 気になるサービスをクリップしているかどうか
+  def already_clipped?(service)
+    Clip.exists?(service_id: service.id)
+  end
 end

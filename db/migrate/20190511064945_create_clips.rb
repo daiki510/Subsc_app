@@ -6,5 +6,6 @@ class CreateClips < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_index :clips, [:user_id, :service_id], unique: true
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_082025) do
+ActiveRecord::Schema.define(version: 2019_05_11_064945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2019_04_15_082025) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_categorizings_on_category_id"
     t.index ["service_id"], name: "index_categorizings_on_service_id"
+  end
+
+  create_table "clips", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_clips_on_service_id"
+    t.index ["user_id", "service_id"], name: "index_clips_on_user_id_and_service_id", unique: true
+    t.index ["user_id"], name: "index_clips_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -89,6 +99,8 @@ ActiveRecord::Schema.define(version: 2019_04_15_082025) do
 
   add_foreign_key "categorizings", "categories"
   add_foreign_key "categorizings", "services"
+  add_foreign_key "clips", "services"
+  add_foreign_key "clips", "users"
   add_foreign_key "contacts", "users"
   add_foreign_key "services", "users"
   add_foreign_key "subscriptions", "services"
