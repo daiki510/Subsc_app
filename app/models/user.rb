@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :contacts, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :services, through: :subscriptions, source: :service
+  has_many :clips, dependent: :destroy
+  has_many :clipped_services, through: :clips, source: :service
 
   validates :name, presence: true, length: { maximum: 30 }
   devise :database_authenticatable, :registerable,

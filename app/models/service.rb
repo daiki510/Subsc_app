@@ -5,6 +5,8 @@ class Service < ApplicationRecord
   has_many :users, through: :subscriptions, source: :user
   has_many :categorizings, dependent: :destroy
   has_many :categories, through: :categorizings, source: :category
+  has_many :clips
+  has_many :clipped_users, through: :clips, source: :user
 
   belongs_to :user
 
