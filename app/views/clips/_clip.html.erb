@@ -1,5 +1,5 @@
 <% if already_clipped?(service) %>
-  <%= link_to service_clip_path(clip(service), service_id: service.id), method: :delete, remote: true, class: 'btn mt-1', id: "clip-btn-#{service.id}", onfocus: "this.blur();" do %>
+  <%= link_to service_clip_path(id: clip(service), service_id: service.id), method: :delete, remote: true, class: 'btn mt-1', id: "clip-btn-#{service.id}", onfocus: "this.blur();" do %>
     <%= fa_icon 'bookmark', type: :solid, class: 'fas' %>
   <% end %>
 <% else %>

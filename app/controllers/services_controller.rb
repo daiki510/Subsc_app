@@ -7,7 +7,7 @@ class ServicesController < ApplicationController
 
   def index
     @services = Service.search_open_status
-    @clip = Clip.new
+    # @clip = current_user.clips.build
     # カテゴリーで絞り込み
     @services = @services.search_with_category(params[:category_id]) if params[:category_id]
 
