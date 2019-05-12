@@ -1,0 +1,1 @@
+$("#clip-btn-<%= @service.id %>").html("<%= j(render partial: 'clips/clip', locals: { service: @service, user_id: current_user.id }) %>")
