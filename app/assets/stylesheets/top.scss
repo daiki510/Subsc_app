@@ -87,13 +87,29 @@ a.btn.btn-signup-top:hover {
   line-height: 2em;
 }
 
-i.fa.fa-circle.fa-stack-2x {
+svg.fa-stack-1x path {
   color: var(--main-color);
 }
 
-.feature .fa-stack-1x {
-  color: #fff;
+// svg.fa-circle {
+//   font-size: 2em;
+// }
+
+svg.fa-stack-1x {
+  font-size: 1.4em;
 }
+
+svg.fa-check {
+  font-size: 0.7em;
+}
+
+// i.fa.fa-circle.fa-stack-2x {
+//   color: var(--main-color);
+// }
+
+// .feature .fa-stack-1x {
+//   color: #fff;
+// }
 
 .feature-box {
   margin: 2em 0;
@@ -140,8 +156,12 @@ i.fa.fa-circle.fa-stack-2x {
   letter-spacing: 0.08em;
 }
 
-.fa-chevron-right {
-  padding-top: 50px;
+svg.fa-chevron-right path {
+  color: var(--font-color);
+}
+
+svg.fa-chevron-right {
+  font-size: 1.3em;
 }
 
 .step-upper {
