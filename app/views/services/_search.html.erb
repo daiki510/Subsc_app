@@ -14,6 +14,7 @@
   <%= link_to '新着順', services_path(sort_create: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_create] ? 'disabled' : ''}" %>
   <% if current_user&.admin? %>
     <%= link_to '更新順', services_path(sort_update: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_update] ? 'disabled' : ''}" %>
+    <%= link_to '気になるサービス', services_path(sort_clipped: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sort_clipped] ? 'disabled' : ''}" %>
   <% elsif current_user %>
     <%= link_to '利用中のみ', services_path(search_with_using: "true"), class: "btn btn-outline-secondary ml-2 #{params[:search_with_using] ? 'disabled' : ''}" %>
     <%= link_to 'オリジナル', services_path(sercet_index: "true"), class: "btn btn-outline-secondary ml-2 #{params[:sercet_index] ? 'disabled' : ''}" %>
