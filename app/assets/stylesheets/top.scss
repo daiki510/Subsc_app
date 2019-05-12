@@ -256,10 +256,14 @@ svg.fa-chevron-right {
 .footer .fa-2x {
   font-size: 1.5em;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  right: 40px;
 }
 
-.fa-chevron-circle-up {
+svg.fa-chevron-circle-up path {
   color: #169172;
+}
+
+svg.fa-chevron-circle-up {
+  font-size: 1.1em;
 }

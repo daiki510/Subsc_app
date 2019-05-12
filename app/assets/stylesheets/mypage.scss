@@ -24,8 +24,12 @@ i.fa-undo {
   color: #fff;
 }
 
-.edit-user i.fa-user-times {
+.edit-user svg.fa-user-times path {
   color: var(--font-color);
+}
+
+.edit-user svg.fa-user-times path:hover {
+  color: #fff;
 }
 
 // ================================================================
