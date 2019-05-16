@@ -32,7 +32,7 @@
     <%# サブスクリプション一覧 %>
     <div class="col-md-9">
       <% if @services.blank? %>
-        <%= render 'first_visit_page' %>
+        <%= render 'shared/help' %>
       <% else %>
         <%= render 'subscription' %>
       <% end %>
